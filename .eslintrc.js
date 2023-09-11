@@ -5,6 +5,7 @@ module.exports = {
         es2021: true,
         node: true,
     },
+    //https://www.sunapro.com/eslint-with-prettier/#index_id0
     extends: ["eslint:recommended", "plugin:@typescript-eslint/recommended", "prettier"],
     parser: "@typescript-eslint/parser",
     plugins: ["@typescript-eslint"],

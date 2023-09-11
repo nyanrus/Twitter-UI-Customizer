@@ -4,6 +4,9 @@
     },
     "compilerOptions": {
         "esModuleInterop": true,
-        "allowJs": true
+        "allowJs": true,
+        "strict": true,
+        "target": "ES2022",
+        "moduleResolution": "NodeNext"
     }
 }

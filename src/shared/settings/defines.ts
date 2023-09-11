@@ -5,6 +5,8 @@
 //https://zenn.dev/uttk/articles/bd264fa884e026
 //https://typescriptbook.jp/reference/object-oriented/interface/instanceof-and-interfaces#%E8%A4%87%E9%9B%91%E3%81%AA%E3%82%A4%E3%83%B3%E3%82%BF%E3%83%BC%E3%83%95%E3%82%A7%E3%83%BC%E3%82%B9%E3%81%AE%E5%88%A4%E5%AE%9A%E3%81%AFzod%E3%81%8C%E4%BE%BF%E5%88%A9
 import z from "zod";
+import { rename } from "./util";
+import "./util";
 const zSettings = z.object({
     /**
      * major.minor.patch形式
@@ -57,7 +59,7 @@ const zSettings = z.object({
         accountStart: z.boolean(),
     }),
     twitterIcon: z.enum(["default", "invisible", "twitter", "dog", "custom", "twitterIconX"]),
-    rightSideBar: z.object({
+    rightSidebar: z.object({
         searchBox: z.boolean(),
         verified: z.boolean(),
         trend: z.boolean(),
@@ -74,11 +76,11 @@ interface Settings {
     button: {
         color: {
             //buttonColor
-            default: {};
+            default: object;
             //butttonColorLight
-            light: {};
+            light: object;
             //buttonColorDark
-            dark: {};
+            dark: object;
         };
     };
     invisibleItems: {
@@ -116,7 +118,7 @@ interface Settings {
         accountStart: boolean;
     };
     twitterIcon: TwitterIconType;
-    rightSideBar: {
+    rightSidebar: {
         searchBox: boolean;
         verified: boolean;
         trend: boolean;
@@ -128,11 +130,139 @@ interface Settings {
     discoverMoreInTimeline: DiscoverMoreType;
 }
 
+type TZSettings = z.infer<typeof zSettings>;
+type TTwitterIcon = z.infer<typeof zSettings.shape.twitterIcon>;
+type TDiscoverMoreInTimeline = z.infer<typeof zSettings.shape.discoverMoreInTimeline>;
+
+// console.log(
+//     zSettings.shape.invisibleItems.tuicRename({
+//         osusumeUserTimeline: "osusume-user-timeline",
+//         twitterProPromotionBtn: "twitter-pro-promotion-btn",
+//         subscribeProfile: "subscribe-profile",
+//         subscribeTweets: "subscribe-tweets",
+//     }),
+// );
+
+// type AA = typeof zSettings.shape.invisibleItems.omit({
+//     osusumeUserTimeline: true,
+//     twitterProPromotionBtn: true,
+//     subscribeProfile: true,
+//     subscribeTweets: true,
+// }).extend({
+//     "osusume-user-timeline": z.boolean(),
+//     "twitter-pro-promotion-btn": z.boolean(),
+//     "subscribe-profile": z.boolean(),
+//     "subscribe-tweets": z.boolean(),
+// });
+const a = zSettings.shape.invisibleItems.tuicRename({
+    osusumeUserTimeline: "osusume-user-timeline",
+    twitterProPromotionBtn: "twitter-pro-promotion-btn",
+    subscribeProfile: "subscribe-profile",
+    subscribeTweets: "subscribe-tweets",
+});
+type A = z.output<typeof a>;
+console.log("AAAAAAAAAAAAAA");
+// console.log(
+//     ,
+// );
+console.log("AAAAAAAAAAAAAA");
+
+const zNonVersioned = zSettings
+    .omit({
+        version: true,
+        button: true,
+        invisibleItems: true,
+        others: true,
+        X2Twitter: true,
+        timeline: true,
+        twitterIcon: true,
+        discoverMoreInTimeline: true,
+    })
+    .extend({
+        buttonColor: z.any(),
+        buttonColorLight: z.any(),
+        buttonColorDark: z.any(),
+        invisibleItems: zSettings.shape.invisibleItems.tuicRename({
+            osusumeUserTimeline: "osusume-user-timeline",
+            twitterProPromotionBtn: "twitter-pro-promotion-btn",
+            subscribeProfile: "subscribe-profile",
+            subscribeTweets: "subscribe-tweets",
+        }),
+        otherBoolSetting: zSettings.shape.others,
+        XToTwitter: z
+            .object({ XToTwitter: z.boolean(), PostToTweet: z.boolean() })
+            .transform((arg) => {
+                return {
+                    X2Twitter: arg.XToTwitter,
+                    Post2Tweet: arg.PostToTweet,
+                };
+            }),
+        timeline: zSettings.shape.timeline.tuicRename({
+            osusumeUserTimeline: "osusume-user-timeline",
+            hideOtherRTTL: "hideOhterRTTL",
+        }),
+        twitterIcon: z.string().transform((arg): TTwitterIcon => {
+            const ret = {
+                invisible: "invisible",
+                twitter: "twitter",
+                dog: "dog",
+                custom: "custom",
+                "twitterIcon-X": "twitterIconX",
+            }[arg] as TTwitterIcon;
+            return ret ? ret : "default";
+        }),
+        "timeline-discoverMore": z.string().transform((arg): TDiscoverMoreInTimeline => {
+            const ret = {
+                discoverMore_detailOpen: "detailOpen",
+                discoverMore_detailClose: "detailClose",
+                discoverMore_invisible: "invisible",
+            }[arg] as TDiscoverMoreInTimeline;
+            return ret ? ret : "default";
+        }),
+    })
+    .transform((arg): TZSettings => {
+        return zSettings.parse({
+            version: [0, 1, 0],
+            button: {
+                color: {
+                    default: arg.buttonColor,
+                    light: arg.buttonColorLight,
+                    dark: arg.buttonColorDark,
+                },
+            },
+            invisibleItems: arg.invisibleItems,
+            others: arg.otherBoolSetting,
+            X2Twitter: arg.XToTwitter,
+            timeline: arg.timeline,
+            discoverMoreInTimeline: arg["timeline-discoverMore"],
+            ...arg,
+        });
+    });
+// .transform((arg): ZSettings => {
+//     const a: ZSettings = {
+//         ...arg,
+//         button: {
+//             color: {
+//                 default: arg.buttonColor,
+//                 light: arg.buttonColorLight,
+//                 dark: arg.buttonColorDark,
+//             },
+//         },
+//         others: arg.otherBoolSetting,
+//         X2Twitter: {
+//             X2Twitter: arg.XToTwitter.XToTwitter,
+//             Post2Tweet: arg.XToTwitter.PostToTweet,
+//         },
+//         discoverMoreInTimeline: arg["timeline-discoverMore"],
+//     };
+//     return zSettings.parse();
+// });
+
 // Original UnVersioned Settings Differs from Settings
 interface UnVersioned {
-    buttonColor: {};
-    buttonColorLight: {};
-    buttonColorDark: {};
+    buttonColor: object;
+    buttonColorLight: object;
+    buttonColorDark: object;
     visibleButtons: string[];
     sidebarButtons: string[];
     invisibleItems: {
@@ -175,5 +305,73 @@ enum DiscoverMoreType {
     detailOpen,
     detailClose,
 }
+
+const def = {
+    buttonColor: {},
+    buttonColorLight: {},
+    buttonColorDark: {},
+    visibleButtons: [
+        "reply-button",
+        "retweet-button",
+        "like-button",
+        "share-button",
+        "tweet_analytics",
+        "boolkmark",
+        "url-copy",
+    ],
+    sidebarButtons: [
+        "home",
+        "explore",
+        "communities",
+        "notifications",
+        "messages",
+        "lists",
+        "bookmarks",
+        "twiter-blue",
+        "profile",
+        "moremenu",
+    ],
+    invisibleItems: {
+        "osusume-user-timeline": false,
+        "twitter-pro-promotion-btn": false,
+        discoverMore: false,
+        "subscribe-profile": false,
+        "subscribe-tweets": false,
+        profileHighlights: false,
+        hideBelowDM: false,
+    },
+    otherBoolSetting: {
+        bottomScroll: false,
+        smallerSidebarContent: true,
+        roundIcon: true,
+        bottomSpace: false,
+        RTNotQuote: false,
+        sidebarNoneScrollbar: false,
+        noModalbottomTweetButtons: false,
+        faviconSet: false,
+    },
+    XToTwitter: { XToTwitter: false, PostToTweet: false },
+    clientInfo: {
+        clientInfoVisible: false,
+    },
+    timeline: {
+        "osusume-user-timeline": false,
+        hideOhterRTTL: false,
+        accountStart: false,
+    },
+    twitterIcon: "nomal",
+    rightSidebar: {
+        searchBox: false,
+        verified: false,
+        trend: false,
+        osusumeUser: false,
+        links: false,
+        space: false,
+        relevantPeople: false,
+    },
+    "timeline-discoverMore": "discoverMore_nomal",
+};
+
+console.log(zNonVersioned.parse(def));
 
 export { Settings, TwitterIconType, DiscoverMoreType, UnVersioned };
