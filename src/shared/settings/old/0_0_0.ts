@@ -1,21 +1,6 @@
 import z from "zod";
 import { TDiscoverMoreInTimeline, TTwitterIcon, TZSettings, zSettings } from "../defines";
 
-const renameZObject = <T extends z.ZodTypeAny>(
-    propertyName: string,
-    defaultValue: unknown,
-    defaultType: T,
-) => {
-    return z.preprocess((arg) => {
-        const name = propertyName;
-        if (typeof arg === "object" && arg && name in arg) {
-            const ret = arg[name as keyof typeof arg];
-            return ret ? ret : defaultValue;
-        }
-        return undefined;
-    }, defaultType);
-};
-
 const zS0_0_0 = z.object({
     //versionは存在しないのだ
     // version: z.array(z.number().int().nonnegative()).length(3),
