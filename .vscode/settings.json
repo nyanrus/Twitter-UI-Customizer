@@ -2,6 +2,22 @@
     "editor.tabSize": 4,
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true
+    },
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true
+    },
+    "editor.codeActionsOnSave": {
+        "source.fixAll.stylelint": true
+    },
+    "editor.quickSuggestions": {
+        "strings": true
+    },
+    "css.validate": false,
+    "scss.validate": false,
     "files.autoSave": "onFocusChange",
     "json.schemaDownload.enable": true,
     "prettier.tabWidth": 4,
@@ -9,8 +25,7 @@
     "prettier.singleQuote": false,
     "prettier.endOfLine": "auto",
     "prettier.printWidth": 300,
-    "editor.quickSuggestions": {
-        "strings": true
-    },
-    "editor.codeActionsOnSave": ["source.fixAll.eslint"]
+    "stylelint.packageManager": "yarn",
+    "stylelint.snippet": ["css", "scss"],
+    "stylelint.validate": ["css", "scss"]
 }
