@@ -7,6 +7,8 @@
         "allowJs": true,
         "strict": true,
         "target": "ES2022",
-        "moduleResolution": "NodeNext"
+        "moduleResolution": "NodeNext",
+        //https://github.com/colinhacks/zod/issues/2260#issuecomment-1709531677
+        "skipLibCheck": true
     }
 }

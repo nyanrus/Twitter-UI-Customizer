@@ -1,13 +1,13 @@
-import { TZSettings, TDiscoverMoreInTimeline, TTwitterIcon } from "./defines";
-const defaultSettings: TZSettings = {
-    version: [0, 1, 0],
-    button: {
-        color: {
-            default: {},
-            light: {},
-            dark: {},
-        },
-    },
+import { S0_0_02S0_1_0, zS0_0_0 } from "./old/0_0_0";
+
+//https://stackoverflow.com/questions/75945904/zod-typeerror-cannot-read-properties-of-undefined-reading-parse
+//元々これをdefines.tsにおいてたんだけど
+//cyclic dependencyはだめらしい
+
+const def = {
+    buttonColor: {},
+    buttonColorLight: {},
+    buttonColorDark: {},
     visibleButtons: [
         "reply-button",
         "retweet-button",
@@ -30,15 +30,15 @@ const defaultSettings: TZSettings = {
         "moremenu",
     ],
     invisibleItems: {
-        osusumeUserTimeline: false,
-        twitterProPromotionBtn: false,
+        "osusume-user-timeline": false,
+        "twitter-pro-promotion-btn": false,
         discoverMore: false,
-        subscribeProfile: false,
-        subscribeTweets: false,
+        "subscribe-profile": false,
+        "subscribe-tweets": false,
         profileHighlights: false,
         hideBelowDM: false,
     },
-    others: {
+    otherBoolSetting: {
         bottomScroll: false,
         smallerSidebarContent: true,
         roundIcon: true,
@@ -48,19 +48,16 @@ const defaultSettings: TZSettings = {
         noModalbottomTweetButtons: false,
         faviconSet: false,
     },
-    XToTwitter: {
-        XToTwitter: false,
-        PostToTweet: false,
-    },
+    XToTwitter: { XToTwitter: false, PostToTweet: false },
     clientInfo: {
         clientInfoVisible: false,
     },
     timeline: {
-        osusumeUserTimeline: false,
-        hideOtherRTTL: false,
+        "osusume-user-timeline": false,
+        hideOhterRTTL: false,
         accountStart: false,
     },
-    twitterIcon: "default",
+    twitterIcon: "nomal",
     rightSidebar: {
         searchBox: false,
         verified: false,
@@ -70,7 +67,6 @@ const defaultSettings: TZSettings = {
         space: false,
         relevantPeople: false,
     },
-    discoverMoreInTimeline: "default",
+    "timeline-discoverMore": "discoverMore_nomal",
 };
-
-export { defaultSettings };
+console.log(S0_0_02S0_1_0.parse(zS0_0_0.parse(def)));
