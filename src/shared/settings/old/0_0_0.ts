@@ -106,9 +106,7 @@ const S0_0_02S0_1_0 = z.preprocess((arg) => {
             },
             twitterIcon: twitterIcon(),
         };
-        zSettings.parse(obj);
-        console.log(zSettings.parse(obj));
-        return zSettings.parse(obj);
+        return obj;
     } else {
         return undefined;
     }
