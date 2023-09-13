@@ -609,8 +609,31 @@ display:none !important;
     margin-bottom: 8px;
 }
 
+.TUICCheckBoxParent,.TUICCheckBoxParent{
+    display:flex;
+}
+
+:is(.TUICCheckBoxParent,.TUICCheckBoxParent) > div{
+    display:inline-block;
+    margin-left:0.25em;
+    margin-top:auto;
+    margin-bottom:auto;
+}
+
 .TUIC_DeleteButton{
     color:rgb(244, 33, 46);
+}
+
+#TUIC_setting :is(label,span,button,h2){
+    white-space: pre-wrap;
+}
+
+
+.TUICEngagementsBox > div > span{
+    transition: border-bottom 0.2s;
+}
+.TUICEngagementsBox > div > span:hover{
+    border-bottom:solid 0.05px;
 }
 
 .r-icoktb{
@@ -668,6 +691,16 @@ ${
     TUICPref.get("otherBoolSetting.sidebarNoneScrollbar") ?? TUICData.defaultPref.otherBoolSetting.sidebarNoneScrollbar
         ? `
 header > div > div > div > div.r-1rnoaur{overflow:clip;}
+`
+        : ""
+}
+
+${
+    TUICPref.get("otherBoolSetting.noNumberBottomTweetButtons") ?? TUICData.defaultPref.otherBoolSetting.noNumberBottomTweetButtons
+        ? `
+.${TUICLibrary.getClasses.getClass("TUICItIsBigArticle")} [data-testid="app-text-transition-container"]{
+    display:none !important;
+}
 `
         : ""
 }

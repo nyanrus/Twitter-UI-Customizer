@@ -321,6 +321,16 @@ export const TUICOptionHTML = {
             },
             single: false,
         },
+        ".TUICRadio-fixEngagements": {
+            type: "change",
+            function: function (event) {
+                TUICPref.set(event.currentTarget.getAttribute("name"), event.currentTarget.getAttribute("value"));
+                TUICPref.save();
+                TUICLibrary.getClasses.update();
+                TUICObserver.observerFunction();
+            },
+            single: false,
+        },
         ".TUICSelectImg": {
             type: "change",
             function: async function (event) {
@@ -638,7 +648,9 @@ ${this.upDownList(
     this.checkbox("bottomScroll", TUICPref.get("otherBoolSetting.bottomScroll"), "bottomTweetButtons-setting-visibleScrollBar", "otherBoolSetting") +
         this.checkbox("bottomSpace", TUICPref.get("otherBoolSetting.bottomSpace"), "bottomTweetButtons-setting-removeSpaceBottomTweet-v2", "otherBoolSetting") +
         this.checkbox("RTNotQuote", TUICPref.get("otherBoolSetting.RTNotQuote"), "bottomTweetButtons-setting-RTNotQuote", "otherBoolSetting") +
-        this.checkbox("noModalbottomTweetButtons", TUICPref.get("otherBoolSetting.noModalbottomTweetButtons"), "bottomTweetButtons-setting-noModal", "otherBoolSetting"),
+        this.checkbox("noModalbottomTweetButtons", TUICPref.get("otherBoolSetting.noModalbottomTweetButtons"), "bottomTweetButtons-setting-noModal", "otherBoolSetting") +
+        this.checkbox("noNumberBottomTweetButtons", TUICPref.get("otherBoolSetting.noNumberBottomTweetButtons"), "bottomTweetButtons-setting-noNumber", "otherBoolSetting") +
+        this.checkbox("placeEngagementsLink", TUICPref.get("otherBoolSetting.placeEngagementsLink"), "bottomTweetButtons-setting-placeEngagementsLink", "otherBoolSetting"),
 )}
 ${this.upDownList(
     "sidebarButtons",
@@ -769,7 +781,9 @@ ${this.checkboxList("clientInfo", "clientInfo-settingTitle", "clientInfo")}
         return `
         <div class="TUICCheckBoxParent">
             <input id=${id} ${value ? "checked" : ""} type="checkbox" class="${type}"></input>
+            <div>
             <label class="TUIC_setting_text" for="${id}">${TUICI18N.get(name)}</label>
+            </div>
         </div>
         `;
     },
@@ -794,7 +808,9 @@ ${this.checkboxList("clientInfo", "clientInfo-settingTitle", "clientInfo")}
         return `
         <div class="TUICCheckBoxParent">
                 <input type="radio" name="${id}" value="${valueName}" id="${valueName}" class="${type}" ${value ? "checked" : ""}>
+                <div>
                 <label class="TUIC_setting_text" for="${valueName}">${TUICI18N.get(name)}</label>
+                </div>
             </div>
         `;
     },
