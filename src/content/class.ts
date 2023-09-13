@@ -12,9 +12,6 @@ const twitterIcon = function (elem: HTMLElement, base) {
         elem_class_add.push(getClass("TUIC_SVGDISPNONE"));
     };
     const twitterIcon = zS0_1_0.shape.twitterIcon.parse(TUICPref.get("twitterIcon"));
-    switch (twitterIcon) {
-        case ""    }
-
 
     switch (twitterIcon) {
         case "invisible":

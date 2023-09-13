@@ -19,7 +19,6 @@ const zS0_1_0 = z.object({
     visibleButtons: z.array(z.string()),
     sidebarButtons: z.array(z.string()),
     invisibleItems: z.object({
-        osusumeUserTimeline: z.boolean(),
         twitterProPromotionBtn: z.boolean(),
         discoverMore: z.boolean(),
         subscribeProfile: z.boolean(),

@@ -1,60 +1,88 @@
 import z from "zod";
 import { zS0_1_0, TS0_1_0, TDiscoverMoreInTimeline, TTwitterIcon } from "./0_1_0";
 
-const zS0_0_0 = z.object({
-    //versionは存在しないのだ
-    // version: z.array(z.number().int().nonnegative()).length(3),
-    buttonColor: z.any(),
-    buttonColorLight: z.any(),
-    buttonColorDark: z.any(),
-    //
-    visibleButtons: z.array(z.string()),
-    sidebarButtons: z.array(z.string()),
-    //
-    invisibleItems: z.object({
-        "osusume-user-timeline": z.boolean(),
-        "twitter-pro-promotion-btn": z.boolean(),
-        discoverMore: z.boolean(),
-        "subscribe-profile": z.boolean(),
-        "subscribe-tweets": z.boolean(),
-        profileHighlights: z.boolean(),
-        hideBelowDM: z.boolean(),
-    }),
-    otherBoolSetting: z.object({
-        bottomScroll: z.boolean(),
-        smallerSidebarContent: z.boolean(),
-        roundIcon: z.boolean(),
-        bottomSpace: z.boolean(),
-        RTNotQuote: z.boolean(),
-        sidebarNoneScrollbar: z.boolean(),
-        noModalbottomTweetButtons: z.boolean(),
-        faviconSet: z.boolean(),
-    }),
-    XToTwitter: z.object({
-        XToTwitter: z.boolean(),
-        PostToTweet: z.boolean(),
-    }),
-    clientInfo: z.object({
-        clientInfoVisible: z.boolean(),
-    }),
-    timeline: z.object({
-        "osusume-user-timeline": z.boolean(),
-        hideOhterRTTL: z.boolean(),
-        accountStart: z.boolean(),
-    }),
-    twitterIcon: z.string(),
-    rightSidebar: z.object({
-        searchBox: z.boolean(),
-        verified: z.boolean(),
-        trend: z.boolean(),
-        osusumeUser: z.boolean(),
-        links: z.boolean(),
-        space: z.boolean(),
-        relevantPeople: z.boolean(),
-    }),
-    "timeline-discoverMore": z.string(),
-});
+const zS0_0_0 = z.preprocess(
+    (arg) => {
+        // 値だけ移しとけば削除はZodが勝手にやってくれる
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const temp = arg as any;
+        if (temp.invisibleItems["osusume-user-timeline"] === true) {
+            temp.timeline["osusume-user-timeline"] = true;
+        }
+        if (temp.invisibleItems.hideOhterRTTL === true) {
+            temp.timeline.hideOhterRTTL = true;
+        }
+        if (temp.invisibleItems.discoverMore === true) {
+            temp["timeline-discoverMore"] = "discoverMore_invisible";
+        }
+        if (temp.invisibleItems["verified-rSidebar"] === true) {
+            temp.rightSidebar.verified = true;
+        }
+        if (temp.otherBoolSetting.invisibleTwitterLogo === true) {
+            temp.twitterIcon = "invisible";
+        }
+        if (temp.otherBoolSetting.XtoTwitter === true) {
+            temp.XToTwitter.XToTwitter = true;
+        }
+        if (temp.otherBoolSetting.PostToTweet === true) {
+            temp.XToTwitter.PostToTweet = true;
+        }
 
+        return temp;
+    },
+    z.object({
+        //versionは存在しないのだ
+        // version: z.array(z.number().int().nonnegative()).length(3),
+        buttonColor: z.any(),
+        buttonColorLight: z.any(),
+        buttonColorDark: z.any(),
+        //
+        visibleButtons: z.array(z.string()),
+        sidebarButtons: z.array(z.string()),
+        //
+        invisibleItems: z.object({
+            "twitter-pro-promotion-btn": z.boolean(),
+            discoverMore: z.boolean(),
+            "subscribe-profile": z.boolean(),
+            "subscribe-tweets": z.boolean(),
+            profileHighlights: z.boolean(),
+            hideBelowDM: z.boolean(),
+        }),
+        otherBoolSetting: z.object({
+            bottomScroll: z.boolean(),
+            smallerSidebarContent: z.boolean(),
+            roundIcon: z.boolean(),
+            bottomSpace: z.boolean(),
+            RTNotQuote: z.boolean(),
+            sidebarNoneScrollbar: z.boolean(),
+            noModalbottomTweetButtons: z.boolean(),
+            faviconSet: z.boolean(),
+        }),
+        XToTwitter: z.object({
+            XToTwitter: z.boolean(),
+            PostToTweet: z.boolean(),
+        }),
+        clientInfo: z.object({
+            clientInfoVisible: z.boolean(),
+        }),
+        timeline: z.object({
+            "osusume-user-timeline": z.boolean(),
+            hideOhterRTTL: z.boolean(),
+            accountStart: z.boolean(),
+        }),
+        twitterIcon: z.string(),
+        rightSidebar: z.object({
+            searchBox: z.boolean(),
+            verified: z.boolean(),
+            trend: z.boolean(),
+            osusumeUser: z.boolean(),
+            links: z.boolean(),
+            space: z.boolean(),
+            relevantPeople: z.boolean(),
+        }),
+        "timeline-discoverMore": z.string(),
+    }),
+);
 type TS0_0_0 = z.infer<typeof zS0_0_0>;
 
 // -------------------------------------------------------------------------------- //
@@ -100,7 +128,6 @@ const convertS0_0_02S0_1_0 = z.preprocess((arg) => {
             discoverMoreInTimeline: discoverMoreInTimeline(),
             invisibleItems: {
                 ...arg.invisibleItems,
-                osusumeUserTimeline: arg.invisibleItems["osusume-user-timeline"],
                 twitterProPromotionBtn: arg.invisibleItems["twitter-pro-promotion-btn"],
                 subscribeProfile: arg.invisibleItems["subscribe-profile"],
                 subscribeTweets: arg.invisibleItems["subscribe-tweets"],

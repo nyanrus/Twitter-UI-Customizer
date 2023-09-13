@@ -69,4 +69,5 @@ const def = {
     },
     "timeline-discoverMore": "discoverMore_nomal",
 };
-console.log(convertS0_0_02S0_1_0.parse(zS0_0_0.parse(def)));
+
+console.log(convertS0_0_02S0_1_0.parse(def));
