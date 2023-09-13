@@ -55,7 +55,7 @@ export const TUICLibrary = {
             return (
                 TUICPref.get(`${mode}.${name}.${type}`) ??
                 TUICData?.["colors-" + mode]?.[name]?.[type] ??
-                TUICPref.get(`buttonColor.${name}.${type}`) ??
+                settings.button.color.default[name][type] ??
                 TUICData.colors[name][type]
             ).escapeToUseHTML();
         },
@@ -197,11 +197,11 @@ export const TUICLibrary = {
             for (const i of TUICData.settings.colors.id) {
                 const a = localStorage.getItem(`${i}-background`) ?? "unknown";
                 if (a != "unknown") {
-                    TUICPref.set("buttonColor." + i, {
+                    settings.button.color.default[i] = {
                         background: a,
                         border: localStorage.getItem(`${i}-border`),
                         color: localStorage.getItem(`${i}-color`),
-                    });
+                    };
                 }
             }
 
