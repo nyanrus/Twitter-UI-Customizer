@@ -1,4 +1,4 @@
-import { S0_0_02S0_1_0, zS0_0_0 } from "./old/0_0_0";
+import { convertS0_0_02S0_1_0, zS0_0_0 } from "./versions/0_0_0";
 
 //https://stackoverflow.com/questions/75945904/zod-typeerror-cannot-read-properties-of-undefined-reading-parse
 //元々これをdefines.tsにおいてたんだけど
@@ -69,4 +69,4 @@ const def = {
     },
     "timeline-discoverMore": "discoverMore_nomal",
 };
-console.log(S0_0_02S0_1_0.parse(zS0_0_0.parse(def)));
+console.log(convertS0_0_02S0_1_0.parse(zS0_0_0.parse(def)));

@@ -1,5 +1,5 @@
 import z from "zod";
-import { TDiscoverMoreInTimeline, TTwitterIcon, TZSettings, zSettings } from "../defines";
+import { zS0_1_0, TS0_1_0, TDiscoverMoreInTimeline, TTwitterIcon } from "./0_1_0";
 
 const zS0_0_0 = z.object({
     //versionは存在しないのだ
@@ -57,10 +57,16 @@ const zS0_0_0 = z.object({
 
 type TS0_0_0 = z.infer<typeof zS0_0_0>;
 
+// -------------------------------------------------------------------------------- //
+// -------------------------------------------------------------------------------- //
+// -------------------------------------------------------------------------------- //
+// -------------------------------------------------------------------------------- //
+// -------------------------------------------------------------------------------- //
+
 const isTS0_0_0 = (arg: unknown): arg is TS0_0_0 =>
     typeof arg === "object" && zS0_0_0.safeParse(arg).success;
 
-const S0_0_02S0_1_0 = z.preprocess((arg) => {
+const convertS0_0_02S0_1_0 = z.preprocess((arg) => {
     if (isTS0_0_0(arg)) {
         const discoverMoreInTimeline = () => {
             const ret = {
@@ -80,7 +86,7 @@ const S0_0_02S0_1_0 = z.preprocess((arg) => {
             }[arg.twitterIcon] as TTwitterIcon;
             return ret ? ret : "default";
         };
-        const obj: TZSettings = {
+        const obj: TS0_1_0 = {
             ...arg,
             version: [0, 1, 0],
             button: {
@@ -110,6 +116,6 @@ const S0_0_02S0_1_0 = z.preprocess((arg) => {
     } else {
         return undefined;
     }
-}, zSettings);
+}, zS0_1_0);
 
-export { S0_0_02S0_1_0, zS0_0_0 };
+export { convertS0_0_02S0_1_0, zS0_0_0, TS0_0_0 };

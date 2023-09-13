@@ -1,5 +1,5 @@
-import { TZSettings, TDiscoverMoreInTimeline, TTwitterIcon } from "./defines";
-const defaultSettings: TZSettings = {
+import { TSettings } from "./defines";
+const defaultSettings: TSettings = {
     version: [0, 1, 0],
     button: {
         color: {
