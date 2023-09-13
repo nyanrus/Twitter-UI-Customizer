@@ -1,4 +1,9 @@
 import { TSettings } from "./defines";
+
+/**
+ * Zodでデフォルト設定したら
+ * .shapeを取得できなくなった
+ */
 const defaultSettings: TSettings = {
     version: [0, 1, 0],
     button: {
@@ -30,7 +35,6 @@ const defaultSettings: TSettings = {
         "moremenu",
     ],
     invisibleItems: {
-        osusumeUserTimeline: false,
         twitterProPromotionBtn: false,
         discoverMore: false,
         subscribeProfile: false,

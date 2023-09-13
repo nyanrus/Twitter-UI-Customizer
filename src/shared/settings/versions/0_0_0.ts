@@ -6,6 +6,9 @@ const zS0_0_0 = z.preprocess(
         // 値だけ移しとけば削除はZodが勝手にやってくれる
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const temp = arg as any;
+        if (temp.otherBoolSetting.clientInfo === true) {
+            temp.clientInfo.clientInfoVisible = true;
+        }
         if (temp.invisibleItems["osusume-user-timeline"] === true) {
             temp.timeline["osusume-user-timeline"] = true;
         }
@@ -27,7 +30,16 @@ const zS0_0_0 = z.preprocess(
         if (temp.otherBoolSetting.PostToTweet === true) {
             temp.XToTwitter.PostToTweet = true;
         }
-
+        if (temp.visibleButtons.includes("downvote-button")) {
+            temp.visibleButtons = temp.visibleButtons.filter(
+                (arg: string) => arg !== "downvote-button",
+            );
+        }
+        if (temp.visibleButtons.includes("verified-orgs-signup")) {
+            temp.visibleButtons = temp.visibleButtons.filter(
+                (arg: string) => arg !== "verified-orgs-signup",
+            );
+        }
         return temp;
     },
     z.object({

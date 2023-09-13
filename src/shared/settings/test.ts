@@ -70,4 +70,13 @@ const def = {
     "timeline-discoverMore": "discoverMore_nomal",
 };
 
-console.log(convertS0_0_02S0_1_0.parse(def));
+console.log();
+
+// const settings = convertS0_0_02S0_1_0.parse(def);
+
+// import { TUICPref } from "../../content/library";
+// if (TUICPref.get("otherBoolSetting.clientInfo") == true) {
+//     TUICPref.set("clientInfo", { clientInfoVisible: true });
+// }
+
+// if (settings.others.) settings.clientInfo.clientInfoVisible = true;

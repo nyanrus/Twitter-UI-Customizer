@@ -1,26 +1,30 @@
 import { applySystemCss } from "./applyCSS.js";
 import { TUICData } from "./data.js";
 import { TUICObserver } from "./observer.js";
+import { TUICPref } from "../shared/settings.js";
 
-// NOTE: mjsへの置き換えがさらに進んだとき、ここはTUICPrefと同じファイルに移行します
-function getPointerFromKey(object, key) {
-    const keys = ["o", ...key.split(".").filter((k) => k !== "")];
-    let pointer = { o: object };
-    for (let i = 0; i < keys.length; i++) {
-        const k = keys[i];
-        if (i === keys.length - 1) {
-            return {
-                object: pointer,
-                key: k,
-            };
-        } else {
-            if (!(k in pointer)) {
-                pointer[k] = {};
-            }
-            pointer = pointer[k];
-        }
-    }
-}
+// // NOTE: mjsへの置き換えがさらに進んだとき、ここはTUICPrefと同じファイルに移行します
+// function getPointerFromKey(object, key) {
+//     const keys = ["o", ...key.split(".").filter((k) => k !== "")];
+//     let pointer = { o: object };
+//     for (let i = 0; i < keys.length; i++) {
+//         const k = keys[i];
+//         if (i === keys.length - 1) {
+//             return {
+//                 object: pointer,
+//                 key: k,
+//             };
+//         } else {
+//             if (!(k in pointer)) {
+//                 pointer[k] = {};
+//             }
+//             pointer = pointer[k];
+//         }
+//     }
+// }
+
+const Pref = TUICPref.getInstance();
+const settings = Pref.settings;
 
 export const TUICLibrary = {
     color: {
@@ -37,6 +41,7 @@ export const TUICLibrary = {
                 return parseInt(str, 16);
             });
         },
+        // old to new
         getColorFromPref: function (name, type, mode_) {
             let mode = "";
             if ((mode_ ?? "unknwon") == "unknwon") {
@@ -75,18 +80,20 @@ export const TUICLibrary = {
                 this.parallelToSerial();
             }
 
-            if (TUICPref.get("otherBoolSetting.clientInfo") == true) {
-                TUICPref.set("clientInfo", { clientInfoVisible: true });
-            }
-            TUICPref.delete("otherBoolSetting.clientInfo");
+            /**
+             * shared/settings/versions/0_0_0.tsに処理移した
+             */
+            // if (TUICPref.get("otherBoolSetting.clientInfo") == true) {
+            //     TUICPref.set("clientInfo", { clientInfoVisible: true });
+            // }
+            // TUICPref.delete("otherBoolSetting.clientInfo");
 
-            if (typeof TUICPref.get("timeline") != "object") TUICPref.set("timeline", {});
+            // if (typeof TUICPref.get("timeline") != "object") TUICPref.set("timeline", {});
 
-            if (typeof TUICPref.get("rightSidebar") != "object") TUICPref.set("rightSidebar", {});
+            // if (typeof TUICPref.get("rightSidebar") != "object") TUICPref.set("rightSidebar", {});
 
-            if (typeof TUICPref.get("XToTwitter") != "object") TUICPref.set("XToTwitter", {});
+            // if (typeof TUICPref.get("XToTwitter") != "object") TUICPref.set("XToTwitter", {});
 
-            /** shared/settings/versions/0_0_0.tsに処理移した */
             // /**
             //  * boolean 値の設定キーを変更します。
             //  *
@@ -144,40 +151,48 @@ export const TUICLibrary = {
                     image.src = localStorage.getItem(`TUIC_IconImg`);
                 });
             }
+            /** -------------------------------------------- */
+            // if (
+            //     typeof TUICPref.get("visibleButtons") == "object" &&
+            //     ~TUICPref.get("visibleButtons").indexOf("downvote-button")
+            // ) {
+            //     TUICPref.set(
+            //         "visibleButtons",
+            //         TUICPref.get("visibleButtons").filter((elem) => elem != "downvote-button"),
+            //     );
+            // }
+            // if (
+            //     typeof TUICPref.get("sidebarButtons") == "object" &&
+            //     ~TUICPref.get("sidebarButtons").indexOf("verified-orgs-signup")
+            // ) {
+            //     TUICPref.set(
+            //         "sidebarButtons",
+            //         TUICPref.get("sidebarButtons").filter((elem) => elem != "verified-orgs-signup"),
+            //     );
+            // }
+            /** -------------------------------------------- */
 
-            if (
-                typeof TUICPref.get("visibleButtons") == "object" &&
-                ~TUICPref.get("visibleButtons").indexOf("downvote-button")
-            ) {
-                TUICPref.set(
-                    "visibleButtons",
-                    TUICPref.get("visibleButtons").filter((elem) => elem != "downvote-button"),
-                );
-            }
-            if (
-                typeof TUICPref.get("sidebarButtons") == "object" &&
-                ~TUICPref.get("sidebarButtons").indexOf("verified-orgs-signup")
-            ) {
-                TUICPref.set(
-                    "sidebarButtons",
-                    TUICPref.get("sidebarButtons").filter((elem) => elem != "verified-orgs-signup"),
-                );
-            }
-
-            TUICPref.set(
-                "",
-                this.merge(
-                    structuredClone(TUICData.defaultPref),
-                    structuredClone(TUICPref.get("")),
-                ),
-            );
+            /**
+             * Settingsをバージョンで管理するようになるとmergeが必要無くなる
+             */
+            // TUICPref.set(
+            //     "",
+            //     this.merge(
+            //         structuredClone(TUICData.defaultPref),
+            //         structuredClone(TUICPref.get("")),
+            //     ),
+            // );
         },
+        // old to new
         parallelToSerial: function () {
             TUICPref.set("CSS", localStorage.getItem("CSS"));
-            TUICPref.set(
-                "invisibleItems.osusume-user-timeline",
-                (localStorage.getItem("osusume-user-timeline") ?? "0") === "1",
-            );
+            settings.timeline.osusumeUserTimeline =
+                (localStorage.getItem("osusume-user-timeline") ?? "0") === "1";
+
+            // TUICPref.set(
+            //     "invisibleItems.osusume-user-timeline",
+            //     (localStorage.getItem("osusume-user-timeline") ?? "0") === "1",
+            // );
             TUICPref.set("visibleButtons", JSON.parse(localStorage.getItem("visible-button")));
             for (const i of TUICData.settings.colors.id) {
                 const a = localStorage.getItem(`${i}-background`) ?? "unknown";
@@ -225,14 +240,17 @@ export const TUICLibrary = {
             localStorage.removeItem("osusume-user-timeline");
             localStorage.removeItem("CSS");
 
-            TUICPref.save();
+            Pref.save();
         },
         /**
          * `target` に `source` をマージします。 `target` オブジェクトは上書きされます。
          * @param {object} source マージ元
          * @param {object} target マージ先
          */
-        merge: function (source, target) {
+
+        //TODO: any使わないようにする
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        merge: function (source: any, target: any) {
             for (const i in source) {
                 if (!(i in target)) {
                     target[i] = source[i];
@@ -243,7 +261,7 @@ export const TUICLibrary = {
             return target;
         },
     },
-    backgroundColorCheck: function () {
+    backgroundColorCheck: () => {
         const bodyStyle = document.querySelector("body").style.backgroundColor.toString();
         if (bodyStyle == "rgb(0, 0, 0)") {
             return "dark";
@@ -279,12 +297,12 @@ export const TUICLibrary = {
                 : x2;
         }
     },
-    HTMLParse: function (elem) {
+    HTMLParse: (elem: string) => {
         return new DOMParser().parseFromString(elem, "text/html").body.children;
     },
-    escapeToUseHTML: function (text) {
+    escapeToUseHTML: (text: string) => {
         return text
-            .replace(/[&'`"<>=;]/g, function (match) {
+            .replace(/[&'`"<>=;]/g, (match) => {
                 return {
                     "&": "&amp;",
                     "'": "&#x27;",
@@ -294,11 +312,11 @@ export const TUICLibrary = {
                     ">": "&gt;",
                     "=": "&equals;",
                     ";": "&semi;",
-                }[match];
+                }[match] as string;
             })
             .replaceAll("\\r", "\r");
     },
-    waitForElement: async function (selector) {
+    waitForElement: async (selector) => {
         if (document.querySelectorAll(selector).length !== 0) {
             return Array.from(document.querySelectorAll(selector));
         } else {
@@ -319,47 +337,47 @@ export const TUICLibrary = {
     },
 };
 
-export const TUICPref = {
-    config: null,
-    get: function (identifier) {
-        this.getConfig();
-        const { object, key } = getPointerFromKey(this.config, identifier);
-        return object[key];
-    },
-    set: function (identifier, value) {
-        this.getConfig();
-        if (identifier == "") {
-            this.config = value;
-        } else {
-            const { object, key } = getPointerFromKey(this.config, identifier);
-            object[key] = value;
-        }
-    },
-    delete: function (identifier) {
-        this.getConfig();
-        const { object, key } = getPointerFromKey(this.config, identifier);
-        delete object[key];
-    },
-    save: function () {
-        this.getConfig();
-        localStorage.setItem("TUIC", JSON.stringify(this.config));
-    },
-    import: function (object) {
-        if (typeof object === "string") {
-            this.config = JSON.parse(object);
-        } else {
-            this.config = object;
-        }
-    },
-    export: function () {
-        this.getConfig();
-        return JSON.stringify(this.config);
-    },
-    getConfig: function () {
-        if (this.config == null) {
-            this.config = JSON.parse(
-                localStorage.getItem("TUIC") ?? JSON.stringify(TUICData.defaultPref),
-            );
-        }
-    },
-};
+// export const TUICPref = {
+//     config: null,
+//     get: function (identifier) {
+//         this.getConfig();
+//         const { object, key } = getPointerFromKey(this.config, identifier);
+//         return object[key];
+//     },
+//     set: function (identifier, value) {
+//         this.getConfig();
+//         if (identifier == "") {
+//             this.config = value;
+//         } else {
+//             const { object, key } = getPointerFromKey(this.config, identifier);
+//             object[key] = value;
+//         }
+//     },
+//     delete: function (identifier) {
+//         this.getConfig();
+//         const { object, key } = getPointerFromKey(this.config, identifier);
+//         delete object[key];
+//     },
+//     save: function () {
+//         this.getConfig();
+//         localStorage.setItem("TUIC", JSON.stringify(this.config));
+//     },
+//     import: function (object) {
+//         if (typeof object === "string") {
+//             this.config = JSON.parse(object);
+//         } else {
+//             this.config = object;
+//         }
+//     },
+//     export: function () {
+//         this.getConfig();
+//         return JSON.stringify(this.config);
+//     },
+//     getConfig: function () {
+//         if (this.config == null) {
+//             this.config = JSON.parse(
+//                 localStorage.getItem("TUIC") ?? JSON.stringify(TUICData.defaultPref),
+//             );
+//         }
+//     },
+// };
