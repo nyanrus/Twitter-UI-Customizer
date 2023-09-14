@@ -1,6 +1,7 @@
 import { zSettings, TSettings, defaultSettings } from "./settings/defines";
 import { legacy } from "./settings/legacy";
 import { convertS0_0_02S0_1_0, zS0_0_0 } from "./settings/versions/0-0-0";
+import z from "zod";
 
 export class TUICPref {
     private static instance: TUICPref = new TUICPref();
@@ -22,7 +23,18 @@ export class TUICPref {
                 result = { success: true, data: defaultSettings };
             }
 
-            if (!("version" in settings)) {
+            const withVersion = z
+                .object({
+                    version: z.string().optional(),
+                })
+                .passthrough()
+                .safeParse(settings);
+
+            if (!withVersion.success) {
+                throw Error("idk how this error happened1");
+            }
+
+            if (withVersion.data.version === undefined) {
                 // versionが存在しない設定は 0.0.0設定ファイルと仮定します。
                 const result000 = zS0_0_0.safeParse(settings);
                 if (result000.success) {
@@ -36,9 +48,11 @@ export class TUICPref {
                 } else {
                     result = result000;
                 }
-            } else {
+            } else if (withVersion.data.version === "0.1.0") {
                 //TODO: 設定のバージョンが増えるとバージョンチェックが必要
                 result = zSettings.safeParse(settings);
+            } else {
+                throw Error("idk how this error happened2");
             }
         }
 
@@ -52,10 +66,7 @@ export class TUICPref {
             console.error("RESULT_ERROR");
             console.error(result.error);
 
-            // TSのコンストラクタエラー対処
-            // saveされないとこれは意味がない
-            this.settingsMut = defaultSettings;
-            return;
+            throw Error("idk how this error happened3");
             //this.settingsMut = defaultSettings;
         }
     }

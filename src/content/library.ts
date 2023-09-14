@@ -2,8 +2,6 @@ import { applySystemCss } from "./applyCSS.js";
 import { TUICData } from "./data.js";
 import { TUICObserver } from "./observer.js";
 import { TUICPref } from "../shared/settings.js";
-import { zSettings } from "../shared/settings/defines.js";
-import { zS0_0_0 } from "../shared/settings/versions/0_0_0.js";
 
 // // NOTE: mjsへの置き換えがさらに進んだとき、ここはTUICPrefと同じファイルに移行します
 // function getPointerFromKey(object, key) {
@@ -44,9 +42,9 @@ export const TUICLibrary = {
             });
         },
         // old to new
-        getColorFromPref: function (name, type, mode_) {
+        getColorFromPref: function (name: string, type: string, mode_: string = "unknwon") {
             let mode = "";
-            if ((mode_ ?? "unknwon") == "unknwon") {
+            if (mode_ == "unknwon") {
                 mode = TUICLibrary.backgroundColorCheck() == "light" ? "light" : "dark";
             } else {
                 mode = mode_;
@@ -148,48 +146,3 @@ export const TUICLibrary = {
         }
     },
 };
-
-// export const TUICPref = {
-//     config: null,
-//     get: function (identifier) {
-//         this.getConfig();
-//         const { object, key } = getPointerFromKey(this.config, identifier);
-//         return object[key];
-//     },
-//     set: function (identifier, value) {
-//         this.getConfig();
-//         if (identifier == "") {
-//             this.config = value;
-//         } else {
-//             const { object, key } = getPointerFromKey(this.config, identifier);
-//             object[key] = value;
-//         }
-//     },
-//     delete: function (identifier) {
-//         this.getConfig();
-//         const { object, key } = getPointerFromKey(this.config, identifier);
-//         delete object[key];
-//     },
-//     save: function () {
-//         this.getConfig();
-//         localStorage.setItem("TUIC", JSON.stringify(this.config));
-//     },
-//     import: function (object) {
-//         if (typeof object === "string") {
-//             this.config = JSON.parse(object);
-//         } else {
-//             this.config = object;
-//         }
-//     },
-//     export: function () {
-//         this.getConfig();
-//         return JSON.stringify(this.config);
-//     },
-//     getConfig: function () {
-//         if (this.config == null) {
-//             this.config = JSON.parse(
-//                 localStorage.getItem("TUIC") ?? JSON.stringify(TUICData.defaultPref),
-//             );
-//         }
-//     },
-// };

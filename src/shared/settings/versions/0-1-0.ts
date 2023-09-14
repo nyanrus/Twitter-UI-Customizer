@@ -11,8 +11,10 @@ const zS0_1_0 = z.object({
      * minor: 前の設定とある程度互換性がある場合、新しい設定が追加されたなど
      * patch: 名前変更等実際の設定には影響がない場合
      * たぶん主にminorをいじると思う
+     *
+     * stringにしといたほうがBeta版とかにいいかも？
      * */
-    version: z.array(z.number().int().nonnegative()).length(3),
+    version: z.string(),
     button: z.object({
         color: z.object({
             default: z.any(),
@@ -79,7 +81,7 @@ const zS0_1_0 = z.object({
 });
 
 const zDefaultS0_1_0 = zS0_1_0.default({
-    version: [0, 1, 0],
+    version: "0.1.0",
     button: {
         color: {
             default: {},

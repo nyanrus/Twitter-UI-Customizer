@@ -173,7 +173,7 @@ const convertS0_0_02S0_1_0 = z.preprocess((arg) => {
         };
         const obj: TS0_1_0 = {
             ...arg,
-            version: [0, 1, 0],
+            version: "0.1.0",
             button: {
                 color: {
                     default: arg.buttonColor,
