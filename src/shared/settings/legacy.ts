@@ -1,12 +1,15 @@
 import { TUICData } from "../../content/data";
 import { zSettings } from "./defines";
-import { TS0_0_0 } from "./versions/0_0_0";
+import { TS0_0_0 } from "./versions/0-0-0";
 
 export const legacy = {
     //from parallelToSerial
     localStorageToSettings: (settings: TS0_0_0) => {
         const lCSS = localStorage.getItem("CSS");
-        if (lCSS !== null) settings.CSS = lCSS;
+        if (lCSS !== null) {
+            settings.CSS = lCSS;
+            localStorage.removeItem("CSS");
+        }
         if (settings.CSS !== null) localStorage.setItem("TUIC_CSS", settings.CSS);
 
         settings.timeline["osusume-user-timeline"] =
@@ -21,7 +24,7 @@ export const legacy = {
 
         for (const i of TUICData.settings.colors.id) {
             const a = localStorage.getItem(`${i}-background`) ?? "unknown";
-            if (a != "unknown") {
+            if (a !== "unknown") {
                 settings.buttonColor[i] = {
                     background: a,
                     border: localStorage.getItem(`${i}-border`),

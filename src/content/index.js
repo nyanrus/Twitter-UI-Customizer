@@ -19,9 +19,17 @@ import { isSafemode, runSafemode } from "./safemode.js";
     TUICObserver.titleObserverFunction();
 
     console.log(
-        `%cTwitter UI Customizer${isSafemode ? " (Safe Mode)" : ""}%cby kaonasi_biwa\n\nTwitter を思いのままに。⧸ Language: ${TUICI18N.get("@JapaneseLanguageName")}`,
-        `font-family: system-ui, -apple-system, sans-serif, monospace; font-size: 1.2em; font-weight: bold; text-align: center; background: ${isSafemode ? "#5a9e1b" : "#1da1f2"}; color: #ffffff; padding: 0.5em 2em; margin-top: 0.5em; margin-left: 0.5em;`,
-        `font-family: system-ui, -apple-system, sans-serif, monospace; margin: 0.5em; color: ${isSafemode ? "#5a9e1b" : "#1da1f2"};`,
+        `%cTwitter UI Customizer${
+            isSafemode ? " (Safe Mode)" : ""
+        }%cby kaonasi_biwa\n\nTwitter を思いのままに。⧸ Language: ${TUICI18N.get(
+            "@JapaneseLanguageName",
+        )}`,
+        `font-family: system-ui, -apple-system, sans-serif, monospace; font-size: 1.2em; font-weight: bold; text-align: center; background: ${
+            isSafemode ? "#5a9e1b" : "#1da1f2"
+        }; color: #ffffff; padding: 0.5em 2em; margin-top: 0.5em; margin-left: 0.5em;`,
+        `font-family: system-ui, -apple-system, sans-serif, monospace; margin: 0.5em; color: ${
+            isSafemode ? "#5a9e1b" : "#1da1f2"
+        };`,
     );
 
     if (document.querySelector("#twitter_ui_customizer_query") == null) {
@@ -43,7 +51,14 @@ import { isSafemode, runSafemode } from "./safemode.js";
 
     addCssElement();
     if (document.querySelector(`#placeholder > svg`)) {
-        TUICObserver.functions.twitterIcon(document.querySelector(`#placeholder > svg:not(.${"NOT_" + TUICLibrary.getClasses.getClass("TUIC_DISPNONE")}):not(.${TUICLibrary.getClasses.getClass("TUIC_DISPNONE")}`), document.querySelector(`#placeholder`));
+        TUICObserver.functions.twitterIcon(
+            document.querySelector(
+                `#placeholder > svg:not(.${
+                    "NOT_" + TUICLibrary.getClasses.getClass("TUIC_DISPNONE")
+                }):not(.${TUICLibrary.getClasses.getClass("TUIC_DISPNONE")}`,
+            ),
+            document.querySelector(`#placeholder`),
+        );
     }
 
     chrome.runtime.sendMessage({
@@ -51,10 +66,11 @@ import { isSafemode, runSafemode } from "./safemode.js";
         updateType: "openTwitter",
     });
 
-    // 旧バージョンからのアップデート
-    await TUICLibrary.updatePref.update();
+    // // 旧バージョンからのアップデート
+    // await TUICLibrary.updatePref.update();
 
-    (TUICObserver.target = document.querySelector("body")), TUICObserver.observer.observe(TUICObserver.target, TUICObserver.config);
+    (TUICObserver.target = document.querySelector("body")),
+        TUICObserver.observer.observe(TUICObserver.target, TUICObserver.config);
     TUICObserver.observerFunction();
 
     const bodyAttributeObserver = new MutationObserver(addCssElement);

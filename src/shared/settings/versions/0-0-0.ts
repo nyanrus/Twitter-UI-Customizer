@@ -1,5 +1,5 @@
 import z from "zod";
-import { zS0_1_0, TS0_1_0, TDiscoverMoreInTimeline, TTwitterIcon } from "./0_1_0";
+import { zS0_1_0, TS0_1_0, TDiscoverMoreInTimeline, TTwitterIcon } from "./0-1-0";
 
 const zS0_0_0 = z.preprocess(
     async (arg) => {
