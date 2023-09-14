@@ -2,10 +2,50 @@ import z from "zod";
 import { zS0_1_0, TS0_1_0, TDiscoverMoreInTimeline, TTwitterIcon } from "./0_1_0";
 
 const zS0_0_0 = z.preprocess(
-    (arg) => {
+    async (arg) => {
         // 値だけ移しとけば削除はZodが勝手にやってくれる
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const temp = arg as any;
+
+        let promise;
+        if (
+            localStorage.getItem("TUIC_IconImg") != null &&
+            localStorage.getItem("TUIC_IconImg_Favicon") == null
+        ) {
+            promise = new Promise((resolve, reject) => {
+                const element = document.createElement("canvas");
+                element.height = 200;
+                element.width = 200;
+                const context = element.getContext("2d");
+                if (context !== null) {
+                    context.beginPath();
+                    context.arc(100, 100, 100, (0 * Math.PI) / 180, (360 * Math.PI) / 180);
+                    context.clip();
+                    const image = new Image();
+                    image.onload = function () {
+                        context.beginPath();
+                        context.drawImage(
+                            image,
+                            0,
+                            0,
+                            image.naturalHeight,
+                            image.naturalWidth,
+                            0,
+                            0,
+                            200,
+                            200,
+                        );
+                        localStorage.setItem("TUIC_IconImg_Favicon", element.toDataURL());
+                        resolve(null);
+                    };
+                    const tuicIconImg = localStorage.getItem(`TUIC_IconImg`);
+                    if (tuicIconImg !== null) image.src = tuicIconImg;
+                }
+            });
+        }
+
+        if (temp["CSS"]) localStorage.setItem("TUIC_CSS", temp["CSS"]);
+
         if (temp.otherBoolSetting.clientInfo === true) {
             temp.clientInfo.clientInfoVisible = true;
         }
@@ -39,6 +79,9 @@ const zS0_0_0 = z.preprocess(
             temp.visibleButtons = temp.visibleButtons.filter(
                 (arg: string) => arg !== "verified-orgs-signup",
             );
+        }
+        if (promise !== null) {
+            await promise;
         }
         return temp;
     },
@@ -93,6 +136,8 @@ const zS0_0_0 = z.preprocess(
             relevantPeople: z.boolean(),
         }),
         "timeline-discoverMore": z.string(),
+        //互換性
+        CSS: z.any().optional(),
     }),
 );
 type TS0_0_0 = z.infer<typeof zS0_0_0>;

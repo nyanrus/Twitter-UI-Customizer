@@ -2,6 +2,8 @@ import { applySystemCss } from "./applyCSS.js";
 import { TUICData } from "./data.js";
 import { TUICObserver } from "./observer.js";
 import { TUICPref } from "../shared/settings.js";
+import { zSettings } from "../shared/settings/defines.js";
+import { zS0_0_0 } from "../shared/settings/versions/0_0_0.js";
 
 // // NOTE: mjsへの置き換えがさらに進んだとき、ここはTUICPrefと同じファイルに移行します
 // function getPointerFromKey(object, key) {
@@ -116,41 +118,9 @@ export const TUICLibrary = {
             // changeBooleanKey("otherBoolSetting.PostToTweet", "XToTwitter.PostToTweet");
             /** -------------------------------------------- */
 
-            if (TUICPref.get("CSS")) localStorage.setItem("TUIC_CSS", TUICPref.get("CSS"));
-            TUICPref.set("CSS");
+            // if (TUICPref.get("CSS")) localStorage.setItem("TUIC_CSS", TUICPref.get("CSS"));
+            // TUICPref.set("CSS");
 
-            if (
-                localStorage.getItem("TUIC_IconImg") != null &&
-                localStorage.getItem("TUIC_IconImg_Favicon") == null
-            ) {
-                await new Promise((resolve, reject) => {
-                    const element = document.createElement("canvas");
-                    element.height = 200;
-                    element.width = 200;
-                    const context = element.getContext("2d");
-                    context.beginPath();
-                    context.arc(100, 100, 100, (0 * Math.PI) / 180, (360 * Math.PI) / 180);
-                    context.clip();
-                    const image = new Image();
-                    image.onload = function () {
-                        context.beginPath();
-                        context.drawImage(
-                            this,
-                            0,
-                            0,
-                            this.naturalHeight,
-                            this.naturalWidth,
-                            0,
-                            0,
-                            200,
-                            200,
-                        );
-                        localStorage.setItem("TUIC_IconImg_Favicon", element.toDataURL());
-                        resolve();
-                    };
-                    image.src = localStorage.getItem(`TUIC_IconImg`);
-                });
-            }
             /** -------------------------------------------- */
             // if (
             //     typeof TUICPref.get("visibleButtons") == "object" &&
@@ -185,62 +155,66 @@ export const TUICLibrary = {
         },
         // old to new
         parallelToSerial: function () {
-            TUICPref.set("CSS", localStorage.getItem("CSS"));
-            settings.timeline.osusumeUserTimeline =
-                (localStorage.getItem("osusume-user-timeline") ?? "0") === "1";
-
-            // TUICPref.set(
-            //     "invisibleItems.osusume-user-timeline",
-            //     (localStorage.getItem("osusume-user-timeline") ?? "0") === "1",
+            // Pref.set("CSS", localStorage.getItem("CSS"));
+            // if (TUICPref.get("CSS")) localStorage.setItem("TUIC_CSS", TUICPref.get("CSS"));
+            // TUICPref.set("CSS");
+            // settings.timeline.osusumeUserTimeline =
+            //     (localStorage.getItem("osusume-user-timeline") ?? "0") === "1";
+            // // TUICPref.set(
+            // //     "invisibleItems.osusume-user-timeline",
+            // //     (localStorage.getItem("osusume-user-timeline") ?? "0") === "1",
+            // // );
+            // const result = zSettings.shape.visibleButtons.safeParse(
+            //     JSON.parse(localStorage.getItem("visible-button") ?? ""),
             // );
-            TUICPref.set("visibleButtons", JSON.parse(localStorage.getItem("visible-button")));
-            for (const i of TUICData.settings.colors.id) {
-                const a = localStorage.getItem(`${i}-background`) ?? "unknown";
-                if (a != "unknown") {
-                    settings.button.color.default[i] = {
-                        background: a,
-                        border: localStorage.getItem(`${i}-border`),
-                        color: localStorage.getItem(`${i}-color`),
-                    };
-                }
-            }
-
-            localStorage.removeItem("unsent-tweet-background");
-            localStorage.removeItem("unsent-tweet-border");
-            localStorage.removeItem("unsent-tweet-color");
-            localStorage.removeItem("not-following-background");
-            localStorage.removeItem("not-following-border");
-            localStorage.removeItem("not-following-color");
-            localStorage.removeItem("following-background");
-            localStorage.removeItem("following-border");
-            localStorage.removeItem("following-color");
-            localStorage.removeItem("un-following-background");
-            localStorage.removeItem("un-following-border");
-            localStorage.removeItem("un-following-color");
-            localStorage.removeItem("profile-background");
-            localStorage.removeItem("profile-border");
-            localStorage.removeItem("profile-color");
-            localStorage.removeItem("profile-save-background");
-            localStorage.removeItem("profile-save-border");
-            localStorage.removeItem("profile-save-color");
-            localStorage.removeItem("birthday-background");
-            localStorage.removeItem("birthday-border");
-            localStorage.removeItem("birthday-color");
-            localStorage.removeItem("profile-link-background");
-            localStorage.removeItem("profile-link-border");
-            localStorage.removeItem("profile-link-color");
-
-            localStorage.removeItem("reply-button");
-            localStorage.removeItem("retweet-button");
-            localStorage.removeItem("like-button");
-            localStorage.removeItem("downvote-button");
-            localStorage.removeItem("share-button");
-            localStorage.removeItem("tweet_analytics");
-            localStorage.removeItem("visible-button");
-            localStorage.removeItem("osusume-user-timeline");
-            localStorage.removeItem("CSS");
-
-            Pref.save();
+            // if (result.success) {
+            //     settings.visibleButtons = result.data;
+            // }
+            // //TUICPref.set("visibleButtons", JSON.parse(localStorage.getItem("visible-button")));
+            // for (const i of TUICData.settings.colors.id) {
+            //     const a = localStorage.getItem(`${i}-background`) ?? "unknown";
+            //     if (a != "unknown") {
+            //         settings.button.color.default[i] = {
+            //             background: a,
+            //             border: localStorage.getItem(`${i}-border`),
+            //             color: localStorage.getItem(`${i}-color`),
+            //         };
+            //     }
+            // }
+            // localStorage.removeItem("unsent-tweet-background");
+            // localStorage.removeItem("unsent-tweet-border");
+            // localStorage.removeItem("unsent-tweet-color");
+            // localStorage.removeItem("not-following-background");
+            // localStorage.removeItem("not-following-border");
+            // localStorage.removeItem("not-following-color");
+            // localStorage.removeItem("following-background");
+            // localStorage.removeItem("following-border");
+            // localStorage.removeItem("following-color");
+            // localStorage.removeItem("un-following-background");
+            // localStorage.removeItem("un-following-border");
+            // localStorage.removeItem("un-following-color");
+            // localStorage.removeItem("profile-background");
+            // localStorage.removeItem("profile-border");
+            // localStorage.removeItem("profile-color");
+            // localStorage.removeItem("profile-save-background");
+            // localStorage.removeItem("profile-save-border");
+            // localStorage.removeItem("profile-save-color");
+            // localStorage.removeItem("birthday-background");
+            // localStorage.removeItem("birthday-border");
+            // localStorage.removeItem("birthday-color");
+            // localStorage.removeItem("profile-link-background");
+            // localStorage.removeItem("profile-link-border");
+            // localStorage.removeItem("profile-link-color");
+            // localStorage.removeItem("reply-button");
+            // localStorage.removeItem("retweet-button");
+            // localStorage.removeItem("like-button");
+            // localStorage.removeItem("downvote-button");
+            // localStorage.removeItem("share-button");
+            // localStorage.removeItem("tweet_analytics");
+            // localStorage.removeItem("visible-button");
+            // localStorage.removeItem("osusume-user-timeline");
+            // localStorage.removeItem("CSS");
+            // Pref.save();
         },
         /**
          * `target` に `source` をマージします。 `target` オブジェクトは上書きされます。

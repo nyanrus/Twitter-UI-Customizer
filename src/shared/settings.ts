@@ -1,11 +1,12 @@
 import { zSettings, TSettings, defaultSettings } from "./settings/defines";
 
 export class TUICPref {
+    private static instance: TUICPref = new TUICPref();
+
     static getInstance() {
         return TUICPref.instance;
     }
-    private static instance: TUICPref = new TUICPref();
-    public settings: TSettings;
+
     private constructor() {
         let result;
 
@@ -17,9 +18,9 @@ export class TUICPref {
         }
 
         if (result.success) {
-            this.settings = result.data;
+            this.settingsMut = result.data;
         } else {
-            this.settings = defaultSettings;
+            this.settingsMut = defaultSettings;
         }
     }
     public save() {
@@ -29,11 +30,17 @@ export class TUICPref {
     public import(object: string) {
         const result = zSettings.safeParse(object);
         if (result.success) {
-            this.settings = result.data;
+            this.settingsMut = result.data;
             return null;
         } else {
             return result.error;
         }
+    }
+
+    public settingsMut: TSettings;
+    // できるだけこのgetterをお使いください
+    get settings(): Readonly<TSettings> {
+        return this.settingsMut;
     }
 }
 

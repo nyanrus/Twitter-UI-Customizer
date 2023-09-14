@@ -11,4 +11,4 @@ type TSettings = TS0_1_0;
 const zDefaultSettings = zDefaultS0_1_0;
 const defaultSettings = zDefaultS0_1_0.parse(undefined);
 
-export { zSettings, TSettings, zDefaultS0_1_0, defaultSettings };
+export { zSettings, TSettings, zDefaultSettings, defaultSettings };
