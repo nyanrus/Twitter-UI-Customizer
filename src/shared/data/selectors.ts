@@ -1,3 +1,5 @@
+// WORK IN PROGRESS 👷‍♂
+
 export const selectors = {
     icon: {
         favicon: `link[rel="shortcut icon"]`,

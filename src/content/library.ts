@@ -3,26 +3,6 @@ import { TUICData } from "./data.js";
 import { TUICObserver } from "./observer.js";
 import { TUICPref } from "../shared/settings.js";
 
-// // NOTE: mjsへの置き換えがさらに進んだとき、ここはTUICPrefと同じファイルに移行します
-// function getPointerFromKey(object, key) {
-//     const keys = ["o", ...key.split(".").filter((k) => k !== "")];
-//     let pointer = { o: object };
-//     for (let i = 0; i < keys.length; i++) {
-//         const k = keys[i];
-//         if (i === keys.length - 1) {
-//             return {
-//                 object: pointer,
-//                 key: k,
-//             };
-//         } else {
-//             if (!(k in pointer)) {
-//                 pointer[k] = {};
-//             }
-//             pointer = pointer[k];
-//         }
-//     }
-// }
-
 const Pref = TUICPref.getInstance();
 const settings = Pref.settings;
 
@@ -72,7 +52,7 @@ export const TUICLibrary = {
         query: "",
     },
     backgroundColorCheck: () => {
-        const bodyStyle = document.querySelector("body").style.backgroundColor.toString();
+        const bodyStyle = document.body.style.backgroundColor.toString();
         if (bodyStyle == "rgb(0, 0, 0)") {
             return "dark";
         } else if (bodyStyle == "rgb(21, 32, 43)") {
@@ -92,7 +72,7 @@ export const TUICLibrary = {
         }
     },
     fontSizeClass: function (x1, x2, x3, x4, x5) {
-        const fontSize = document.querySelector("html").style.fontSize.toString();
+        const fontSize = document.querySelector("html")?.style.fontSize.toString();
         if (fontSize == "17px") {
             return x4;
         } else if (fontSize == "18px") {
