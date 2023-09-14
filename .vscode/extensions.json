@@ -1,3 +1,13 @@
 {
-    "recommendations": ["dbaeumer.vscode-eslint", "esbenp.prettier-vscode", "stylelint.vscode-stylelint", "bradlc.vscode-tailwindcss"]
+    "recommendations": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "stylelint.vscode-stylelint",
+        "bradlc.vscode-tailwindcss",
+        "usernamehw.errorlens",
+        "aaron-bond.better-comments",
+        "ms-vscode.vscode-typescript-next",
+        "csstools.postcss",
+        "shardulm94.trailing-spaces"
+    ]
 }
