@@ -1074,36 +1074,7 @@ ${this.checkboxList("rightSidebar", "rightSidebar-settingTitle", "rightSidebar")
         TUICColors += "</div>";
         return TUICColors;
     },
-    //チェックボックスの一行。(id:設定のid value:Boolで値 name:設定の名前 type:設定の分類)
-    checkbox: function (id, value, name, type) {
-        return `
-        <div class="TUICCheckBoxParent">
-            <input id=${id} ${value ? "checked" : ""} type="checkbox" class="${type}"></input>
-            <div>
-            <label class="TUIC_setting_text" for="${id}">${TUICI18N.get(name)}</label>
-            </div>
-        </div>
-        `;
-    },
-    //チェックボックスリスト(id:ID title:Stringでタイトル)
-    checkboxList: function (id, title, type, otherSetting) {
-        let TUICInvisibleCheckBox = "";
-        for (const i of TUICData[id].all) {
-            TUICInvisibleCheckBox += this.checkbox(i, settings[id][i], TUICData[id].i18n[i], type);
-        }
-        return `
-        <details class="TUICDetails">
-            <summary class="r-jwli3a r-1tl8opc r-qvutc0 r-bcqeeo TUIC_setting_title">${TUICI18N.get(
-                title,
-            )}</summary>
-          <div class="TUIC_col_setting_container">
-              ${TUICInvisibleCheckBox}
-          </div>
-          <br>
-          ${otherSetting ?? ""}
-        </details>
-          `;
-    },
+
     radioButton: function (id, valueName, value, name, type) {
         return `
         <div class="TUICCheckBoxParent">
@@ -1163,86 +1134,5 @@ ${this.checkboxList("rightSidebar", "rightSidebar-settingTitle", "rightSidebar")
         return `<button class="TUIC_icon_button_con ${btnAction}" title="${TUICI18N.get(
             tooltiptag,
         )}">${src}</button>`;
-    },
-    //アップダウンリスト(id:設定のID。TUICPref直下 title:設定の名前, option:下に表示する設定)
-    /**
-     *
-     * @param id TUICDataの設定key
-     * @param title 設定のi18nkey
-     * @param option オプションのhtml
-     * @returns
-     */
-    upDownList: function (id: keyof typeof TUICData.settings, title: string, option) {
-        const UDAllValue = TUICData.settings[id].all;
-        const [TUICVisibleButtons, TUICInvisibleButtons] = this.upDownListItem(id);
-        let contentCount = 5;
-        if (UDAllValue.length >= 5) {
-            contentCount = UDAllValue.length;
-        }
-        const UpdownButtonFuncs = [
-            {
-                iconSrc: ARROW_LEFT,
-                btnAction: "TUIC_up_down_list_to_left",
-                tooltiptag: "settingUI-upDownList-toLeft",
-            },
-            {
-                iconSrc: ARROW_UP,
-                btnAction: "TUIC_up_down_list_to_up",
-                tooltiptag: "settingUI-upDownList-toUp",
-            },
-            {
-                iconSrc: ARROW_DOWN,
-                btnAction: "TUIC_up_down_list_to_down",
-                tooltiptag: "settingUI-upDownList-toDown",
-            },
-            {
-                iconSrc: ARROW_RIGHT,
-                btnAction: "TUIC_up_down_list_to_right",
-                tooltiptag: "settingUI-upDownList-toRight",
-            },
-            {
-                iconSrc: RESET,
-                btnAction: "TUIC_up_down_list_to_default",
-                tooltiptag: "settingUI-upDownList-restoreDefault",
-            },
-        ];
-
-        const upDownButtons = UpdownButtonFuncs.map((btn) => {
-            return this.iconButton(btn.iconSrc, btn.btnAction, btn.tooltiptag);
-        }).join("");
-
-        return upDownList
-            .replace("${contentCount}", contentCount)
-            .replace("${TUICVisibleButtons}", TUICVisibleButtons)
-            .replace("${TUICInvisibleButtons}", TUICInvisibleButtons)
-            .replace("${upDownButtons}", upDownButtons)
-            .replace("${option}", option)
-            .replace("${title}", title);
-    },
-    //アップダウンリストの内容(id:設定のID)
-    upDownListItem: function (id: keyof typeof TUICData.settings) {
-        let TUICVisibleButtons = "";
-        let TUICInvisibleButtons = "";
-        for (const i of settings[id]) {
-            TUICVisibleButtons += `<div value="${i}" id="${i}" class="TUICUpDownContent"><span>${TUICI18N.get(
-                TUICData.settings[id].i18n[i],
-            )}</span></div>`;
-        }
-        for (const i of TUICData.settings[id].all) {
-            if (!settings[id].includes(i)) {
-                TUICInvisibleButtons += `<div value="${i}" id="${i}" class="TUICUpDownContent"><span>${TUICI18N.get(
-                    TUICData.settings[id].i18n[i],
-                )}</span></div>`;
-            }
-        }
-        return [TUICVisibleButtons, TUICInvisibleButtons];
-    },
-    uploadImageFile: function (title: string, id: string) {
-        return `<h3 class="r-jwli3a r-1tl8opc r-qvutc0 r-bcqeeo css-901oao TUIC_setting_title">${TUICI18N.get(
-            title,
-        )}</h3><br>
-        <input type="file" accept="image/*" class="TUIC_setting_text TUICSelectImg" TUICImgID="${id}" />
-        <p class="TUIC_setting_text">${TUICI18N.get("twitterIcon-nowIcon")}</p>
-        <span id="TUICIcon_${id}" class="TUICUploadedImg">`;
     },
 };
