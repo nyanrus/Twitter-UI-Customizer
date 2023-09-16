@@ -452,7 +452,6 @@ export const TUICObserver = {
 
                             if (settings.others.placeEngagementsLink) {
                                 const engageentsTypeList = TUICPref.get("fixEngagements");
-                                //TODO
                                 const shortName = settings.others.placeEngagementsLinkShort;
                                 const engagementsFixList = [];
                                 const engageFixListFunc = (count) => {
@@ -1563,7 +1562,7 @@ export const TUICObserver = {
 
         if (isSafemode) {
             document.title = TUICI18N.get("safemode-title");
-        } else if (TUICPref.get("XToTwitter.XToTwitter")) {
+        } else if (settings.XToTwitter.XToTwitter) {
             if (document.title == "X") {
                 document.title = "Twitter";
             } else if (
