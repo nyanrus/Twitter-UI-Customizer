@@ -4,9 +4,9 @@
  */
 
 import { TUICObserver } from "./observer.js";
-import { TUICLibrary } from "./library.js";
+import { TUICLibrary } from "./library.ts";
 import { TUICI18N } from "./i18n.js";
-import { addCssElement } from "./applyCSS.js";
+import { addCssElement } from "./applyCSS.ts";
 import { isSafemode, runSafemode } from "./safemode.js";
 
 (async () => {
@@ -36,13 +36,13 @@ import { isSafemode, runSafemode } from "./safemode.js";
         const queryElem = document.createElement("meta");
         queryElem.id = "twitter_ui_customizer_query";
         queryElem.setAttribute("query", "");
-        document.querySelector("head").appendChild(queryElem);
+        document.querySelector("head")?.appendChild(queryElem);
     } else {
         const queryElem = document.querySelector("#twitter_ui_customizer_query");
-        const query = queryElem.getAttribute("query") + "A";
+        const query = queryElem?.getAttribute("query") + "A";
 
         TUICLibrary.getClasses.query = query;
-        queryElem.setAttribute("query", query);
+        queryElem?.setAttribute("query", query);
     }
 
     for (const elem of document.querySelectorAll(".TUICOriginalContent")) {
