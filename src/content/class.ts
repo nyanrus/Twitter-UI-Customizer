@@ -1,6 +1,6 @@
-import { TUICLibrary } from "./library.js";
-import { EMPTY, TWITTER, DOG, X } from "./data/icons.js";
-import { zS0_1_0 } from "../shared/settings/versions/0-1-0.js";
+import { TUICLibrary } from "./library.ts";
+import { EMPTY, TWITTER, DOG, X } from "./data/icons.ts";
+import { zS0_1_0 } from "../shared/settings/versions/0-1-0.ts";
 
 const twitterIcon = function (elem: HTMLElement, base) {
     const elem_class_add: string[] = [];

@@ -1,4 +1,5 @@
 import "bootstrap-icons/font/bootstrap-icons.css";
+import { TUICI18N } from "../content/i18n";
 
 const isFirefox = "browser" in window;
 
@@ -33,7 +34,9 @@ window.onload = async () => {
 
     const $link5 = document.getElementById("link5");
     if (isFirefox && $link5 instanceof HTMLAnchorElement) {
-        fetch("https://api.github.com/repos/kaonasi-biwa/Twitter-UI-Customizer/releases/latest", { cache: "no-store" })
+        fetch("https://api.github.com/repos/kaonasi-biwa/Twitter-UI-Customizer/releases/latest", {
+            cache: "no-store",
+        })
             .then((res) => res.json())
             .then((json) => json.tag_name)
             .then((version) => {
@@ -47,7 +50,9 @@ window.onload = async () => {
 
     chrome.storage.sync.get("TUIC", async (settingT) => {
         const updateUrl = chrome.runtime.getManifest().update_url;
-        const isWebstore = !(typeof updateUrl === "string" ? updateUrl.includes("google.com") : undefined);
+        const isWebstore = !(typeof updateUrl === "string"
+            ? updateUrl.includes("google.com")
+            : undefined);
         setting = settingT.TUIC ?? {
             iconClick: isWebstore,
             runBrowser: isWebstore,

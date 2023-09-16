@@ -1,11 +1,11 @@
-import { addCssElement } from "./applyCSS.js";
-import { TUICData } from "./data.js";
-import { DOG, EMPTY, TWITTER, X } from "./data/icons.js";
-import { TUICI18N } from "./i18n.js";
-import { TUICLibrary } from "./library.js";
-import { TUICOptionHTML } from "./option.js";
-import { isSafemode } from "./safemode.js";
-import { TUICPref } from "../shared/settings.js";
+import { addCssElement } from "./applyCSS";
+import { TUICData } from "./data";
+import { DOG, EMPTY, TWITTER, X } from "./data/icons";
+import { TUICI18N } from "./i18n";
+import { TUICLibrary } from "./library";
+import { TUICOptionHTML } from "./option";
+import { isSafemode } from "./safemode";
+import { TUICPref } from "../shared/settings";
 
 const Pref = TUICPref.getInstance();
 const settings = Pref.settings;

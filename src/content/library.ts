@@ -1,7 +1,7 @@
-import { applySystemCss } from "./applyCSS.js";
-import { TUICData } from "./data.js";
-import { TUICObserver } from "./observer.js";
-import { TUICPref } from "../shared/settings.js";
+import { applySystemCss } from "./applyCSS.ts";
+import { TUICData } from "./data.ts";
+import { TUICObserver } from "./observer.ts";
+import { TUICPref } from "../shared/settings.ts";
 
 const Pref = TUICPref.getInstance();
 const settings = Pref.settings;
@@ -30,10 +30,10 @@ export const TUICLibrary = {
                 mode = mode_;
             }
             return (
-                settings.button.color[mode][name][type] ??
+                settings.button.color[mode]?.[name]?.[type] ??
                 TUICData?.["colors-" + mode]?.[name]?.[type] ??
-                settings.button.color.default[name][type] ??
-                TUICData.colors[name][type]
+                settings.button.color.default[name]?.[type] ??
+                TUICData.colors[name]?.[type]
             ).escapeToUseHTML();
         },
     },

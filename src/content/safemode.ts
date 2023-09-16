@@ -1,5 +1,5 @@
-import { TUICI18N } from "./i18n.js";
-import { TUICOptionHTML } from "./option.js";
+import { TUICI18N } from "./i18n.ts";
+import { TUICOptionHTML } from "./option.ts";
 
 export const isSafemode = location.pathname === "/tuic/safemode";
 

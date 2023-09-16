@@ -12,7 +12,7 @@ export const TUICI18N = {
         return true;
     },
     get: function (key) {
-        const lang = document.querySelector("html").getAttribute("lang");
+        const lang = document.querySelector("html")?.getAttribute("lang");
         if (lang in i18nData && key in i18nData[lang]) {
             return i18nData[lang][key].escapeToUseHTML();
         } else if (key in i18nData.en) {

@@ -1,3 +1,5 @@
+import { TUICI18N } from "../content/i18n";
+
 let setting = {};
 
 function i18nApply() {
@@ -14,7 +16,7 @@ const checkbox = (event) => {
 
 window.onload = () => {
     chrome.storage.sync.get("TUIC", async (settingT) => {
-        const isWebstore = !(await chrome.runtime.getManifest()).update_url?.includes("google.com");
+        const isWebstore = !chrome.runtime.getManifest().update_url?.includes("google.com");
         setting = settingT.TUIC ?? {
             iconClick: isWebstore,
             runBrowser: isWebstore,

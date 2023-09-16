@@ -18,18 +18,13 @@ export class TUICPref {
             //ローカルデバッグ用
             result = zSettings.safeParse(defaultSettings);
         } else {
-            const settings = JSON.parse(localStorage.getItem("TUIC") ?? "");
-            if (settings === null) {
-                result = { success: true, data: defaultSettings };
-            }
-
             const withVersion = z
                 .object({
                     version: z.string().optional(),
                 })
                 .passthrough()
                 .optional()
-                .parse(settings);
+                .parse(localStorage.getItem("TUIC") ?? undefined);
 
             if (withVersion === undefined) {
                 result = { success: true, data: defaultSettings };
@@ -57,12 +52,14 @@ export class TUICPref {
         if (result.success) {
             this.settingsMut = result.data;
         } else {
-            console.error("設定ファイルを正常にパースできませんでした。");
-            console.error("下記のログと共にバグ報告をお願いします。");
-            console.error("LOCALSTORAGE_TUIC");
-            console.error(localStorage.getItem("TUIC"));
-            console.error("RESULT_ERROR");
-            console.error(result.error);
+            console.error(`
+設定ファイルを正常にパースできませんでした。
+下記のログと共にバグ報告をお願いします。
+LOCALSTORAGE_TUIC
+${localStorage.getItem("TUIC")}
+RESULT_ERROR
+${result.error}
+`);
 
             throw Error("idk how this error happened3");
             //this.settingsMut = defaultSettings;

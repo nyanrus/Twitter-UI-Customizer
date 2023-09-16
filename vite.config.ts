@@ -11,6 +11,11 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
     let json: UserConfig = {};
     json = {
         root,
+        assetsInclude: [
+            "**/*.html",
+            "**/*.css",
+            "**/*.pcss"
+        ]
         // base: "/",
         build: {
             outDir,
@@ -31,7 +36,7 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
                 input: {
                     "ent-options_html": resolve(__dirname, "src/options/options.html"),
                     "ent-popup_html": resolve(__dirname, "src/popup/popup.html"),
-                    index: resolve(__dirname, "src/content/index.js"),
+                    index: resolve(__dirname, "src/content/index.ts"),
                     background: resolve(__dirname, "./src/background.ts"),
                     inject: resolve(__dirname, "src/inject.js"),
                 },
@@ -49,7 +54,14 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
         //         "@content": "/",
         //     },
         // },
-        plugins: [vitePluginWebExt(__dirname, path.resolve(__dirname, "dist"), path.resolve(__dirname, "dist"), mode)],
+        plugins: [
+            vitePluginWebExt(
+                __dirname,
+                path.resolve(__dirname, "dist"),
+                path.resolve(__dirname, "dist"),
+                mode,
+            ),
+        ],
         // };
         // break;
         // case "content":

@@ -1,5 +1,5 @@
-import { TUICI18N } from "./i18n.js";
-import { TUICLibrary } from "./library.js";
+import { TUICI18N } from "./i18n.ts";
+import { TUICLibrary } from "./library.ts";
 
 export const TUICData = {
     defaultPref: {
@@ -274,7 +274,13 @@ export const TUICData = {
             likeAndRT: `[TUICButton="likeAndRT"]`,
         },
         buttonHTML: {
-            _base: function (id, svg, isBigArticle, disable = false, redButton = false) {
+            _base: function (
+                id: string,
+                svg: string,
+                isBigArticle: boolean,
+                disable = false,
+                redButton = false,
+            ) {
                 return `
         <div class="css-1dbjc4n TUICButtonUnderTweet TUICOriginalContent" style="display: inline-grid;justify-content: inherit;transform: rotate(0deg) scale(1) translate3d(0px, 0px, 0px);-moz-box-pack: inherit;">
             <div class="css-1dbjc4n r-18u37iz r-1h0z5md">
@@ -321,21 +327,21 @@ export const TUICData = {
             </div>
         </div>`;
             },
-            boolkmark: function (isBigArticle) {
+            boolkmark: function (isBigArticle: boolean) {
                 return TUICData.visibleButtons.buttonHTML._base(
                     "bookmark",
                     `<path d="M4 4.5C4 3.12 5.119 2 6.5 2h11C18.881 2 20 3.12 20 4.5v18.44l-8-5.71-8 5.71V4.5zM6.5 4c-.276 0-.5.22-.5.5v14.56l6-4.29 6 4.29V4.5c0-.28-.224-.5-.5-.5h-11z" class="TUIC_BOOKMARK"></path>`,
                     isBigArticle,
                 );
             },
-            "url-copy": function (isBigArticle) {
+            "url-copy": function (isBigArticle: boolean) {
                 return TUICData.visibleButtons.buttonHTML._base(
                     "urlCopy",
                     `<path d="M18.36 5.64c-1.95-1.96-5.11-1.96-7.07 0L9.88 7.05 8.46 5.64l1.42-1.42c2.73-2.73 7.16-2.73 9.9 0 2.73 2.74 2.73 7.17 0 9.9l-1.42 1.42-1.41-1.42 1.41-1.41c1.96-1.96 1.96-5.12 0-7.07zm-2.12 3.53l-7.07 7.07-1.41-1.41 7.07-7.07 1.41 1.41zm-12.02.71l1.42-1.42 1.41 1.42-1.41 1.41c-1.96 1.96-1.96 5.12 0 7.07 1.95 1.96 5.11 1.96 7.07 0l1.41-1.41 1.42 1.41-1.42 1.42c-2.73 2.73-7.16 2.73-9.9 0-2.73-2.74-2.73-7.17 0-9.9z" class="TUIC_URL"></path>`,
                     isBigArticle,
                 );
             },
-            userBlock: function (isBigArticle, isMe) {
+            userBlock: function (isBigArticle: boolean, isMe: boolean) {
                 return TUICData.visibleButtons.buttonHTML._base(
                     "userBlock",
                     `<path d="M12 3.75c-4.55 0-8.25 3.69-8.25 8.25 0 1.92.66 3.68 1.75 5.08L17.09 5.5C15.68 4.4 13.92 3.75 12 3.75zm6.5 3.17L6.92 18.5c1.4 1.1 3.16 1.75 5.08 1.75 4.56 0 8.25-3.69 8.25-8.25 0-1.92-.65-3.68-1.75-5.08zM1.75 12C1.75 6.34 6.34 1.75 12 1.75S22.25 6.34 22.25 12 17.66 22.25 12 22.25 1.75 17.66 1.75 12z" class="TUIC_USERBLOCK"></path>`,
@@ -343,7 +349,7 @@ export const TUICData = {
                     isMe,
                 );
             },
-            userMute: function (isBigArticle, isMe) {
+            userMute: function (isBigArticle: boolean, isMe: boolean) {
                 return TUICData.visibleButtons.buttonHTML._base(
                     "userMute",
                     `<path d="M18 6.59V1.2L8.71 7H5.5C4.12 7 3 8.12 3 9.5v5C3 15.88 4.12 17 5.5 17h2.09l-2.3 2.29 1.42 1.42 15.5-15.5-1.42-1.42L18 6.59zm-8 8V8.55l6-3.75v3.79l-6 6zM5 9.5c0-.28.22-.5.5-.5H8v6H5.5c-.28 0-.5-.22-.5-.5v-5zm6.5 9.24l1.45-1.45L16 19.2V14l2 .02v8.78l-6.5-4.06z" class="TUIC_USERMUTE"></path>`,
@@ -351,7 +357,7 @@ export const TUICData = {
                     isMe,
                 );
             },
-            quoteTweet: function (isBigArticle, locked) {
+            quoteTweet: function (isBigArticle: boolean, locked: boolean) {
                 return TUICData.visibleButtons.buttonHTML._base(
                     "quoteTweet",
                     `<path d="M14.23 2.854c.98-.977 2.56-.977 3.54 0l3.38 3.378c.97.977.97 2.559 0 3.536L9.91 21H3v-6.914L14.23 2.854zm2.12 1.414c-.19-.195-.51-.195-.7 0L5 14.914V19h4.09L19.73 8.354c.2-.196.2-.512 0-.708l-3.38-3.378zM14.75 19l-2 2H21v-2h-6.25z" class="TUIC_QuoteTweet"></path>`,
@@ -359,7 +365,7 @@ export const TUICData = {
                     locked,
                 );
             },
-            likeAndRT: function (isBigArticle, disable) {
+            likeAndRT: function (isBigArticle: boolean, disable: boolean) {
                 return `
         <div class="css-1dbjc4n TUICButtonUnderTweet TUICOriginalContent" style="display: inline-grid;justify-content: inherit;transform: rotate(0deg) scale(1) translate3d(0px, 0px, 0px);-moz-box-pack: inherit;">
             <div class="css-1dbjc4n r-18u37iz r-1h0z5md">
@@ -416,7 +422,7 @@ export const TUICData = {
             </div>
         </div>`;
             },
-            deleteButton: function (isBigArticle, isMe) {
+            deleteButton: function (isBigArticle: boolean, isMe: boolean) {
                 return TUICData.visibleButtons.buttonHTML._base(
                     "deleteButton",
                     `<path d="M16 6V4.5C16 3.12 14.88 2 13.5 2h-3C9.11 2 8 3.12 8 4.5V6H3v2h1.06l.81 11.21C4.98 20.78 6.28 22 7.86 22h8.27c1.58 0 2.88-1.22 3-2.79L19.93 8H21V6h-5zm-6-1.5c0-.28.22-.5.5-.5h3c.27 0 .5.22.5.5V6h-4V4.5zm7.13 14.57c-.04.52-.47.93-1 .93H7.86c-.53 0-.96-.41-1-.93L6.07 8h11.85l-.79 11.07zM9 17v-6h2v6H9zm4 0v-6h2v6h-2z" class="TUIC_DeleteButton"></path>`,
@@ -425,7 +431,7 @@ export const TUICData = {
                     true,
                 );
             },
-            sendDM: function (isBigArticle, cannotShare) {
+            sendDM: function (isBigArticle: boolean, cannotShare: boolean) {
                 return TUICData.visibleButtons.buttonHTML._base(
                     "sendDM",
                     `<path d="M1.998 5.5c0-1.381 1.119-2.5 2.5-2.5h15c1.381 0 2.5 1.119 2.5 2.5v13c0 1.381-1.119 2.5-2.5 2.5h-15c-1.381 0-2.5-1.119-2.5-2.5v-13zm2.5-.5c-.276 0-.5.224-.5.5v2.764l8 3.638 8-3.636V5.5c0-.276-.224-.5-.5-.5h-15zm15.5 5.463l-8 3.636-8-3.638V18.5c0 .276.224.5.5.5h15c.276 0 .5-.224.5-.5v-8.037z" class="TUIC_sendDM"></path>`,
@@ -435,10 +441,10 @@ export const TUICData = {
             },
         },
         buttonFunction: {
-            _cancelButton: function (elem) {
+            _cancelButton: function (elem: HTMLElement) {
                 elem.click();
             },
-            boolkmark: function (e) {
+            boolkmark: function (e: HTMLElement) {
                 for (let i = 0; i <= 2; i++) {
                     const urlCopyButton = document.querySelector(
                         `[d="M23.074 3.35H20.65V.927c0-.414-.337-.75-.75-.75s-.75.336-.75.75V3.35h-2.426c-.414 0-.75.337-.75.75s.336.75.75.75h2.425v2.426c0 .414.335.75.75.75s.75-.336.75-.75V4.85h2.424c.414 0 .75-.335.75-.75s-.336-.75-.75-.75zM19.9 10.744c-.415 0-.75.336-.75.75v9.782l-6.71-4.883c-.13-.095-.285-.143-.44-.143s-.31.048-.44.144l-6.71 4.883V5.6c0-.412.337-.75.75-.75h6.902c.414 0 .75-.335.75-.75s-.336-.75-.75-.75h-6.9c-1.242 0-2.25 1.01-2.25 2.25v17.15c0 .282.157.54.41.668.25.13.553.104.78-.062L12 17.928l7.458 5.43c.13.094.286.143.44.143.117 0 .234-.026.34-.08.252-.13.41-.387.41-.67V11.495c0-.414-.335-.75-.75-.75z"]:not(.TUIC_BOOKMARK),
@@ -449,12 +455,12 @@ export const TUICData = {
                     if (urlCopyButton == null) {
                         e.click();
                     } else {
-                        urlCopyButton.parentNode.parentNode.parentNode.parentNode.click();
+                        urlCopyButton.parentNode?.parentNode?.parentNode?.parentNode?.click();
                         break;
                     }
                 }
             },
-            sendDM: function (e) {
+            sendDM: function (e: HTMLElement) {
                 for (let i = 0; i <= 2; i++) {
                     const urlCopyButton = document.querySelector(
                         `[role="menu"] [role="menuitem"] [d="M1.998 5.5c0-1.381 1.119-2.5 2.5-2.5h15c1.381 0 2.5 1.119 2.5 2.5v13c0 1.381-1.119 2.5-2.5 2.5h-15c-1.381 0-2.5-1.119-2.5-2.5v-13zm2.5-.5c-.276 0-.5.224-.5.5v2.764l8 3.638 8-3.636V5.5c0-.276-.224-.5-.5-.5h-15zm15.5 5.463l-8 3.636-8-3.638V18.5c0 .276.224.5.5.5h15c.276 0 .5-.224.5-.5v-8.037z"]:not(.TUIC_sendDM)`,
@@ -462,12 +468,12 @@ export const TUICData = {
                     if (urlCopyButton == null) {
                         e.click();
                     } else {
-                        urlCopyButton.parentNode.parentNode.parentNode.parentNode.click();
+                        urlCopyButton.parentNode?.parentNode?.parentNode?.parentNode?.click();
                         break;
                     }
                 }
             },
-            "url-copy": function (e) {
+            "url-copy": function (e: HTMLElement) {
                 for (let i = 0; i <= 2; i++) {
                     const urlCopyButton =
                         document.querySelector(`[role="menuitem"] :is([d="M11.96 14.945c-.067 0-.136-.01-.203-.027-1.13-.318-2.097-.986-2.795-1.932-.832-1.125-1.176-2.508-.968-3.893s.942-2.605 2.068-3.438l3.53-2.608c2.322-1.716 5.61-1.224 7.33 1.1.83 1.127 1.175 2.51.967 3.895s-.943 2.605-2.07 3.438l-1.48 1.094c-.333.246-.804.175-1.05-.158-.246-.334-.176-.804.158-1.05l1.48-1.095c.803-.592 1.327-1.463 1.476-2.45.148-.988-.098-1.975-.69-2.778-1.225-1.656-3.572-2.01-5.23-.784l-3.53 2.608c-.802.593-1.326 1.464-1.475 2.45-.15.99.097 1.975.69 2.778.498.675 1.187 1.15 1.992 1.377.4.114.633.528.52.928-.092.33-.394.547-.722.547z"],
@@ -480,7 +486,7 @@ export const TUICData = {
                     }
                 }
             },
-            "url-copy-cannotCopy": function (elem) {
+            "url-copy-cannotCopy": function (elem: HTMLAnchorElement) {
                 navigator.clipboard.writeText(elem.href);
 
                 const baseElem = document.querySelector(`#layers`);
@@ -529,7 +535,7 @@ export const TUICData = {
                     /* eslint-enable indent */
                     baseElem.appendChild(layerElem);
                     window.setTimeout(() => {
-                        layerElem.remove();
+                        layerElem?.remove();
                     }, 3000);
                 }
             },
@@ -1038,7 +1044,7 @@ export const TUICData = {
                 TUICData.sidebarButtons.buttonClickInMoreMenu(e, `[href$="/lists"]`);
             },
             circles: async function (e) {
-                document.querySelector(`[href="/compose/tweet"]`).click();
+                document.querySelector<HTMLAnchorElement>(`[href="/compose/tweet"]`)?.click();
                 await TUICData.sidebarButtons.waitSetElement(
                     `[data-viewportview="true"] [role="button"][aria-haspopup="menu"]`,
                 );
@@ -1058,7 +1064,7 @@ export const TUICData = {
             },
             display: async function (e) {
                 if (
-                    TUICData.sidebarButtons.buttonClickInMoreMenu(
+                    await TUICData.sidebarButtons.buttonClickInMoreMenu(
                         e,
                         `:is([role="group"],[data-testid="Dropdown"]) [data-testid="settingsAndSupport"]`,
                     )
@@ -1078,7 +1084,7 @@ export const TUICData = {
                                 `:is([role="group"],[data-testid="Dropdown"]) [data-testid="settingsAndSupport"]`,
                             )
                             .click();
-                        document.querySelector(`[href="/settings"]`)?.click();
+                        document.querySelector<HTMLAnchorElement>(`[href="/settings"]`)?.click();
                         await TUICData.sidebarButtons.waitSetElement(
                             `[href="/settings/privacy_and_safety"]`,
                         );
@@ -1088,7 +1094,7 @@ export const TUICData = {
                     }, 150);
                 }
             },
-            bookmarks: function (e) {
+            bookmarks: function (e: HTMLElement) {
                 TUICData.sidebarButtons.buttonClickInMoreMenu(e, `[href="/i/bookmarks"]`);
             },
         },

@@ -3,11 +3,11 @@
  * << Twitter を思いのままに。 >>
  */
 
-import { TUICObserver } from "./observer.js";
+import { TUICObserver } from "./observer.ts";
 import { TUICLibrary } from "./library.ts";
-import { TUICI18N } from "./i18n.js";
+import { TUICI18N } from "./i18n.ts";
 import { addCssElement } from "./applyCSS.ts";
-import { isSafemode, runSafemode } from "./safemode.js";
+import { isSafemode, runSafemode } from "./safemode.ts";
 
 (async () => {
     await TUICI18N.fetch();
