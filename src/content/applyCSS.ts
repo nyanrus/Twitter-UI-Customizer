@@ -1,7 +1,12 @@
 import { TUICData } from "./data.js";
 import { DOG, TWITTER, X } from "./data/icons.js";
-import { TUICLibrary, TUICPref } from "./library.js";
+import { TUICLibrary } from "./library.js";
 import { isSafemode } from "./safemode.js";
+import { TUICPref } from "../shared/settings.js";
+import { BtnColors, zBtnColors } from "../shared/data/type.js";
+
+const Pref = TUICPref.getInstance();
+const settings = Pref.settings;
 
 export function addCssElement() {
     document.querySelector("#twitter_ui_customizer_css")?.remove();
@@ -11,13 +16,13 @@ export function addCssElement() {
 
     const systemCssElement = document.createElement("style");
     systemCssElement.id = "twitter_ui_customizer";
-    twitterHead.appendChild(systemCssElement);
+    twitterHead?.appendChild(systemCssElement);
     applySystemCss();
 
     if (!isSafemode) {
         const customCssElement = document.createElement("style");
         customCssElement.id = "twitter_ui_customizer_css";
-        twitterHead.appendChild(customCssElement);
+        twitterHead?.appendChild(customCssElement);
         applyCustomCss();
     }
 }
@@ -27,14 +32,21 @@ export function applySystemCss() {
 
     let prefColors = "";
     for (const elem in TUICData.colors) {
-        for (const el of ["background", "border", "color"]) {
-            if ((TUICData.colors[elem][el] ?? "unknwon") != "unknwon") {
-                prefColors += `--twitter-${elem}-${el}:${TUICLibrary.color.getColorFromPref(elem, el)};`;
-            }
+        const result = zBtnColors.safeParse(elem);
+        if (result.success) {
+            const arrEl: Array<keyof BtnColors> = ["background", "border", "color"];
+            arrEl.forEach((el) => {
+                prefColors += `--twitter-${elem}-${el}:${TUICLibrary.color.getColorFromPref(
+                    elem,
+                    el,
+                )};`;
+            });
         }
     }
+    const QTuic = document.querySelector("#twitter_ui_customizer");
+
     /* eslint-disable indent */
-    document.querySelector("#twitter_ui_customizer").textContent = `
+    (QTuic as HTMLElement).textContent = `
 :root{
     ${prefColors}
 
@@ -44,9 +56,19 @@ export function applySystemCss() {
     --TUIC-container-background2: ${TUICData.styleColor[backgroundColor].containerBackground2};
     --TUIC-color-hover-efect: ${TUICData.styleColor[backgroundColor].colorHover};
 
-    --TUIC-sidebar-hover-color: ${TUICLibrary.backgroundColorCheck() == "light" ? "rgba(15,20,25,0.1)" : "rgba(247,249,249,0.1)"};
-    --TUIC-sidebar-active-color: ${TUICLibrary.backgroundColorCheck() == "light" ? "rgba(15,20,25,0.2)" : "rgba(247,249,249,0.2)"};
-    --TUIC-sidebar-focus-color: ${TUICLibrary.backgroundColorCheck() == "light" ? "rgb(135,138,140)" : "rgb(251,252,252)"};
+    --TUIC-sidebar-hover-color: ${
+        TUICLibrary.backgroundColorCheck() == "light"
+            ? "rgba(15,20,25,0.1)"
+            : "rgba(247,249,249,0.1)"
+    };
+    --TUIC-sidebar-active-color: ${
+        TUICLibrary.backgroundColorCheck() == "light"
+            ? "rgba(15,20,25,0.2)"
+            : "rgba(247,249,249,0.2)"
+    };
+    --TUIC-sidebar-focus-color: ${
+        TUICLibrary.backgroundColorCheck() == "light" ? "rgb(135,138,140)" : "rgb(251,252,252)"
+    };
 
     --TUIC-detail-border:${TUICData.styleColor[backgroundColor].detailBorder};
 }
@@ -460,12 +482,16 @@ padding-bottom:16px;
 margin-bottom:-16px;
 }
 .${TUICLibrary.getClasses.getClass("TUICScrollBottom")},
-.${TUICLibrary.getClasses.getClass("TUICItIsBigArticlePhoto")} .${TUICLibrary.getClasses.getClass("TUICScrollBottom")} > div {
+.${TUICLibrary.getClasses.getClass("TUICItIsBigArticlePhoto")} .${TUICLibrary.getClasses.getClass(
+        "TUICScrollBottom",
+    )} > div {
     overflow-x:auto;
     scrollbar-width:thin;
 
 }
-:is(.${TUICLibrary.getClasses.getClass("TUICItIsBigArticlePhoto")} .${TUICLibrary.getClasses.getClass("TUICScrollBottom")} > div,
+:is(.${TUICLibrary.getClasses.getClass(
+        "TUICItIsBigArticlePhoto",
+    )} .${TUICLibrary.getClasses.getClass("TUICScrollBottom")} > div,
 .${TUICLibrary.getClasses.getClass("TUICScrollBottom")})::-webkit-scrollbar {
 height:8px
 }
@@ -489,18 +515,24 @@ height:8px
 :is(.${TUICLibrary.getClasses.getClass("TUICTwitterIcon_Twitter")},
 .${TUICLibrary.getClasses.getClass("TUICTwitterIcon_Dog")},
 .${TUICLibrary.getClasses.getClass("TUICTwitterIcon_IconImg")},
-.${TUICLibrary.getClasses.getClass("TUICTwitterIcon_X")}):not([role="alertdialog"] [data-testid="confirmationSheetDialog"] *){
+.${TUICLibrary.getClasses.getClass(
+        "TUICTwitterIcon_X",
+    )}):not([role="alertdialog"] [data-testid="confirmationSheetDialog"] *){
     height:inherit !important;
 }
 
-[role="alertdialog"] [data-testid="confirmationSheetDialog"] .${TUICLibrary.getClasses.getClass("TUICTwitterIcon_IconImg")}{
+[role="alertdialog"] [data-testid="confirmationSheetDialog"] .${TUICLibrary.getClasses.getClass(
+        "TUICTwitterIcon_IconImg",
+    )}{
     height:40px;
     width:40px;
     margin-left:auto;
     margin-right:auto;
 }
 
-[role="alertdialog"] [data-testid="confirmationSheetDialog"] :is(.${TUICLibrary.getClasses.getClass("TUICTwitterIcon_Twitter")},
+[role="alertdialog"] [data-testid="confirmationSheetDialog"] :is(.${TUICLibrary.getClasses.getClass(
+        "TUICTwitterIcon_Twitter",
+    )},
 .${TUICLibrary.getClasses.getClass("TUICTwitterIcon_Dog")},
 .${TUICLibrary.getClasses.getClass("TUICTwitterIcon_IconImg")},
 .${TUICLibrary.getClasses.getClass("TUICTwitterIcon_X")}){
@@ -518,7 +550,11 @@ height:8px
     background-image:url('${DOG}');
 }
 
-:is(.${TUICLibrary.getClasses.getClass("TUICTwitterIcon_Twitter")},.${TUICLibrary.getClasses.getClass("TUICTwitterIcon_X")}):not([role="alertdialog"] [data-testid="confirmationSheetDialog"] *){
+:is(.${TUICLibrary.getClasses.getClass(
+        "TUICTwitterIcon_Twitter",
+    )},.${TUICLibrary.getClasses.getClass(
+        "TUICTwitterIcon_X",
+    )}):not([role="alertdialog"] [data-testid="confirmationSheetDialog"] *){
     mask-size: cover !important;
     -webkit-mask-size: cover !important;
 }
@@ -540,7 +576,7 @@ height:8px
 #TUICIcon_IconImg{
     background-image:url('${localStorage.getItem("TUIC_IconImg") ?? ""}');
     ${
-        TUICPref.get("otherBoolSetting.roundIcon") ?? TUICData.defaultPref.otherBoolSetting.roundIcon
+        settings.others.roundIcon ?? TUICData.defaultPref.otherBoolSetting.roundIcon
             ? `
     border-radius:9999px !important;
     `
@@ -548,7 +584,9 @@ height:8px
     }
 }
 
-#layers [data-testid="TopNavBar"] div+.${TUICLibrary.getClasses.getClass("TUICTwitterIcon_IconImg")}{
+#layers [data-testid="TopNavBar"] div+.${TUICLibrary.getClasses.getClass(
+        "TUICTwitterIcon_IconImg",
+    )}{
     background-size:contain !important;
     background-repeat:no-repeat !important;
     background-position:center;
@@ -665,7 +703,8 @@ display:none !important;
     color:rgb(139, 152, 165);
 }
 ${
-    TUICPref.get("otherBoolSetting.smallerSidebarContent") ?? TUICData.defaultPref.otherBoolSetting.smallerSidebarContent
+    settings.others.smallerSidebarContent ??
+    TUICData.defaultPref.otherBoolSetting.smallerSidebarContent
         ? `
 [role="navigation"] .${"NOT_" + TUICLibrary.getClasses.getClass("TUIC_DISPNONE")}{
     padding-bottom:0px !important;
@@ -676,23 +715,25 @@ ${
 }
 
 ${
-    TUICPref.get("invisibleItems.subscribe-profile") ?? TUICData.defaultPref.otherBoolSetting["subscribe-profile"]
+    settings.invisibleItems.subscribeProfile ??
+    TUICData.defaultPref.otherBoolSetting["subscribe-profile"]
         ? `[data-testid="userActions"]+[style*="border-color"][style*="rgb(201, 54, 204)"]{
     display:none !important;
     }`
         : ""
 }
-${TUICPref.get("invisibleItems.hideBelowDM") ? `[data-testid="DMDrawer"]{display:none !important;}` : ""}
+${settings.invisibleItems.hideBelowDM ? `[data-testid="DMDrawer"]{display:none !important;}` : ""}
 
 ${
-    TUICPref.get("otherBoolSetting.bottomSpace") ?? TUICData.defaultPref.otherBoolSetting.bottomSpace
+    settings.others.bottomScroll ?? TUICData.defaultPref.otherBoolSetting.bottomSpace
         ? `
 .${TUICLibrary.getClasses.getClass("TUIC_NONE_SPACE_BOTTOM_TWEET")}{margin-top:0px !important;}
 `
         : ""
 }
 ${
-    TUICPref.get("otherBoolSetting.sidebarNoneScrollbar") ?? TUICData.defaultPref.otherBoolSetting.sidebarNoneScrollbar
+    settings.others.sidebarNoneScrollbar ??
+    TUICData.defaultPref.otherBoolSetting.sidebarNoneScrollbar
         ? `
 header > div > div > div > div.r-1rnoaur{overflow:clip;}
 `
@@ -700,9 +741,12 @@ header > div > div > div > div.r-1rnoaur{overflow:clip;}
 }
 
 ${
-    TUICPref.get("otherBoolSetting.noNumberBottomTweetButtons") ?? TUICData.defaultPref.otherBoolSetting.noNumberBottomTweetButtons
+    settings.others.noNumberBottomTweetButtons ??
+    TUICData.defaultPref.otherBoolSetting.noNumberBottomTweetButtons
         ? `
-.${TUICLibrary.getClasses.getClass("TUICItIsBigArticle")} [data-testid="app-text-transition-container"]{
+.${TUICLibrary.getClasses.getClass(
+              "TUICItIsBigArticle",
+          )} [data-testid="app-text-transition-container"]{
     display:none !important;
 }
 `
@@ -714,5 +758,6 @@ ${
 }
 
 export function applyCustomCss() {
-    document.querySelector("#twitter_ui_customizer_css").textContent = localStorage.getItem("TUIC_CSS");
+    document.querySelector("#twitter_ui_customizer_css").textContent =
+        localStorage.getItem("TUIC_CSS");
 }

@@ -1,13 +1,35 @@
 import { TUICI18N } from "./i18n.js";
-import { TUICLibrary, TUICPref } from "./library.js";
+import { TUICLibrary } from "./library.js";
+import { TUICPref } from "../shared/settings.js";
+
+import { BtnColors, IcnColors } from "../shared/data/type.js";
 
 export const TUICData = {
     defaultPref: {
         buttonColor: {},
         buttonColorLight: {},
         buttonColorDark: {},
-        visibleButtons: ["reply-button", "retweet-button", "like-button", "share-button", "tweet_analytics", "boolkmark", "url-copy"],
-        sidebarButtons: ["home", "explore", "communities", "notifications", "messages", "lists", "bookmarks", "twiter-blue", "profile", "moremenu"],
+        visibleButtons: [
+            "reply-button",
+            "retweet-button",
+            "like-button",
+            "share-button",
+            "tweet_analytics",
+            "boolkmark",
+            "url-copy",
+        ],
+        sidebarButtons: [
+            "home",
+            "explore",
+            "communities",
+            "notifications",
+            "messages",
+            "lists",
+            "bookmarks",
+            "twiter-blue",
+            "profile",
+            "moremenu",
+        ],
         fixEngagements: ["likes", "retweets", "quotes"],
         invisibleItems: {
             "twitter-pro-promotion-btn": false,
@@ -52,7 +74,21 @@ export const TUICData = {
     },
     settings: {
         visibleButtons: {
-            all: ["reply-button", "retweet-button", "quoteTweet", "like-button", "share-button", "tweet_analytics", "boolkmark", "url-copy", "userBlock", "userMute", "deleteButton", "sendDM", "likeAndRT"],
+            all: [
+                "reply-button",
+                "retweet-button",
+                "quoteTweet",
+                "like-button",
+                "share-button",
+                "tweet_analytics",
+                "boolkmark",
+                "url-copy",
+                "userBlock",
+                "userMute",
+                "deleteButton",
+                "sendDM",
+                "likeAndRT",
+            ],
             i18n: {
                 "reply-button": "bottomTweetButtons-reply",
                 "retweet-button": "bottomTweetButtons-retweet",
@@ -70,7 +106,26 @@ export const TUICData = {
             },
         },
         sidebarButtons: {
-            all: ["home", "explore", "communities", "notifications", "messages", "bookmarks", "twiter-blue", "profile", "moremenu", "topics", "lists", "circles", "drafts", "connect", "communitynotes", "verified-choose", "display", "muteAndBlock"],
+            all: [
+                "home",
+                "explore",
+                "communities",
+                "notifications",
+                "messages",
+                "bookmarks",
+                "twiter-blue",
+                "profile",
+                "moremenu",
+                "topics",
+                "lists",
+                "circles",
+                "drafts",
+                "connect",
+                "communitynotes",
+                "verified-choose",
+                "display",
+                "muteAndBlock",
+            ],
             i18n: {
                 home: "sidebarButtons-home",
                 explore: "sidebarButtons-explore",
@@ -101,7 +156,20 @@ export const TUICData = {
             },
         },
         colors: {
-            id: ["unsent-tweet", "not-following", "willFollow", "following", "un-following", "blocking", "blocking-unlock", "profile", "profile-save", "birthday", "twitterIcon", "twitterIconFavicon"],
+            id: [
+                "unsent-tweet",
+                "not-following",
+                "willFollow",
+                "following",
+                "un-following",
+                "blocking",
+                "blocking-unlock",
+                "profile",
+                "profile-save",
+                "birthday",
+                "twitterIcon",
+                "twitterIconFavicon",
+            ],
             i18n: {
                 "unsent-tweet": "settingColors-editUnsetTweet",
                 willFollow: "settingColors-willFollowButton",
@@ -123,61 +191,61 @@ export const TUICData = {
             background: "rgba(29,161,242,1)",
             border: "rgba(29,161,242,1)",
             color: "rgba(255,255,255,1)",
-        },
+        } as BtnColors,
         "not-following": {
             background: "rgba(255,255,255,0)",
             border: "rgba(29,161,242,1)",
             color: "rgba(29,161,242,1)",
-        },
+        } as BtnColors,
         willFollow: {
             background: "rgba(29,161,242,1)",
             border: "rgba(29,161,242,1)",
             color: "rgba(255,255,255,1)",
-        },
+        } as BtnColors,
         following: {
             background: "rgba(29,161,242,1)",
             border: "rgba(29,161,242,1)",
             color: "rgba(255,255,255,1)",
-        },
+        } as BtnColors,
         "un-following": {
             background: "rgba(255,0,0,1)",
             border: "rgba(255,0,0,1)",
             color: "rgba(255,255,255,1)",
-        },
+        } as BtnColors,
         profile: {
             background: "rgba(255,255,255,0)",
             border: "rgba(29,161,242,1)",
             color: "rgba(29,161,242,1)",
-        },
+        } as BtnColors,
         "profile-save": {
             background: "rgba(29,161,242,1)",
             border: "rgba(29,161,242,1)",
             color: "rgba(255,255,255,1)",
-        },
+        } as BtnColors,
         birthday: {
             background: "rgba(255,0,0,1)",
             border: "rgba(255,0,0,1)",
             color: "rgba(255,255,255,1)",
-        },
+        } as BtnColors,
         blocking: {
             background: "rgba(244, 33, 46,1)",
             border: "rgba(244, 33, 46,1)",
             color: "rgba(255, 255, 255,1)",
-        },
+        } as BtnColors,
         "blocking-unlock": {
             background: "rgba(220, 30, 41,1)",
             border: "rgba(220, 30, 41,1)",
             color: "rgba(255, 255, 255,1)",
-        },
+        } as BtnColors,
         twitterIcon: {
             color: "rgba(29,161,242,1)",
             typeColor: "imageColor",
             ldColor: true,
-        },
+        } as IcnColors,
         twitterIconFavicon: {
             color: "rgba(29,161,242,1)",
             typeColor: "imageColor",
-        },
+        } as IcnColors,
     },
     "colors-buttonColorDark": {
         twitterIcon: {
@@ -192,10 +260,13 @@ export const TUICData = {
     visibleButtons: {
         selectors: {
             "reply-button": '[data-testid$="reply"]:not([data-testid*="UserAvatar-Container-"])',
-            "retweet-button": '[data-testid$="retweet"]:not([data-testid*="UserAvatar-Container-"])',
+            "retweet-button":
+                '[data-testid$="retweet"]:not([data-testid*="UserAvatar-Container-"])',
             "like-button": '[data-testid$="like"]:not([data-testid*="UserAvatar-Container-"])',
-            "share-button": '[aria-haspopup="menu"]:not([data-testid="retweet"]):not([data-testid="unretweet"])',
-            tweet_analytics: '[href$="/analytics"],[d="M8.75 21V3h2v18h-2zM18 21V8.5h2V21h-2zM4 21l.004-10h2L6 21H4zm9.248 0v-7h2v7h-2z"]',
+            "share-button":
+                '[aria-haspopup="menu"]:not([data-testid="retweet"]):not([data-testid="unretweet"])',
+            tweet_analytics:
+                '[href$="/analytics"],[d="M8.75 21V3h2v18h-2zM18 21V8.5h2V21h-2zM4 21l.004-10h2L6 21H4zm9.248 0v-7h2v7h-2z"]',
             boolkmark: `[TUICButton="bookmark"],[data-testid="bookmark"]:not([data-testid*="UserAvatar-Container-"]),[data-testid="removeBookmark"]:not([data-testid*="UserAvatar-Container-"])`,
             "url-copy": `[TUICButton="urlCopy"]`,
             userBlock: `[TUICButton="userBlock"]`,
@@ -214,11 +285,19 @@ export const TUICData = {
                 TUICButton="${id}"
                 role="button"
                 tabindex="${disable ? -1 : 0}"
-                class="css-1dbjc4n r-1777fci r-bt1l66 r-1ny4l3l r-bztko3 r-lrvibr ${disable ? "r-icoktb" : "css-18t94o4"}"
+                class="css-1dbjc4n r-1777fci r-bt1l66 r-1ny4l3l r-bztko3 r-lrvibr ${
+                    disable ? "r-icoktb" : "css-18t94o4"
+                }"
               >
                 <div
                   dir="ltr"
-                  class="css-901oao r-1awozwy r-6koalj r-37j5jr r-a023e6 r-16dba41 r-1h0z5md r-bcqeeo r-o7ynqc r-clp7b1 r-3s2u2q r-qvutc0 ${TUICLibrary.fontSizeClass("r-1b43r93", "r-hjklzo", "r-rjixqe", "r-1inkyih", "r-1i10wst")} TUIC_ButtonHover2"
+                  class="css-901oao r-1awozwy r-6koalj r-37j5jr r-a023e6 r-16dba41 r-1h0z5md r-bcqeeo r-o7ynqc r-clp7b1 r-3s2u2q r-qvutc0 ${TUICLibrary.fontSizeClass(
+                      "r-1b43r93",
+                      "r-hjklzo",
+                      "r-rjixqe",
+                      "r-1inkyih",
+                      "r-1i10wst",
+                  )} TUIC_ButtonHover2"
                 >
                   <div class="css-1dbjc4n r-xoduu5 TUIC_ButtonHover">
                     <div
@@ -227,7 +306,13 @@ export const TUICData = {
                     <svg
                       viewBox="0 0 24 24"
                       aria-hidden="true"
-                      class="r-4qtqp9 r-yyyyoo r-1q142lx r-dnmrzs r-bnwqim r-1plcrui r-lrvibr ${isBigArticle ? "r-1srniue r-50lct3" : "r-1xvli5t"}${redButton ? " r-9l7dzd" : ""} ${TUICLibrary.backgroundColorClass("r-1bwzh9t", "r-115tad6", "r-14j79pv")}"
+                      class="r-4qtqp9 r-yyyyoo r-1q142lx r-dnmrzs r-bnwqim r-1plcrui r-lrvibr ${
+                          isBigArticle ? "r-1srniue r-50lct3" : "r-1xvli5t"
+                      }${redButton ? " r-9l7dzd" : ""} ${TUICLibrary.backgroundColorClass(
+                          "r-1bwzh9t",
+                          "r-115tad6",
+                          "r-14j79pv",
+                      )}"
                     >
                       <g>
                         ${svg}
@@ -240,7 +325,11 @@ export const TUICData = {
         </div>`;
             },
             boolkmark: function (isBigArticle) {
-                return TUICData.visibleButtons.buttonHTML._base("bookmark", `<path d="M4 4.5C4 3.12 5.119 2 6.5 2h11C18.881 2 20 3.12 20 4.5v18.44l-8-5.71-8 5.71V4.5zM6.5 4c-.276 0-.5.22-.5.5v14.56l6-4.29 6 4.29V4.5c0-.28-.224-.5-.5-.5h-11z" class="TUIC_BOOKMARK"></path>`, isBigArticle);
+                return TUICData.visibleButtons.buttonHTML._base(
+                    "bookmark",
+                    `<path d="M4 4.5C4 3.12 5.119 2 6.5 2h11C18.881 2 20 3.12 20 4.5v18.44l-8-5.71-8 5.71V4.5zM6.5 4c-.276 0-.5.22-.5.5v14.56l6-4.29 6 4.29V4.5c0-.28-.224-.5-.5-.5h-11z" class="TUIC_BOOKMARK"></path>`,
+                    isBigArticle,
+                );
             },
             "url-copy": function (isBigArticle) {
                 return TUICData.visibleButtons.buttonHTML._base(
@@ -281,11 +370,19 @@ export const TUICData = {
                 TUICButton="likeAndRT"
                 role="button"
                 tabindex="${disable ? -1 : 0}"
-                class="css-1dbjc4n r-1777fci r-bt1l66 r-1ny4l3l r-bztko3 r-lrvibr ${disable ? "r-icoktb" : "css-18t94o4"}"
+                class="css-1dbjc4n r-1777fci r-bt1l66 r-1ny4l3l r-bztko3 r-lrvibr ${
+                    disable ? "r-icoktb" : "css-18t94o4"
+                }"
               >
                 <div
                   dir="ltr"
-                  class="css-901oao r-1awozwy r-6koalj r-37j5jr r-a023e6 r-16dba41 r-1h0z5md r-bcqeeo r-o7ynqc r-clp7b1 r-3s2u2q r-qvutc0 ${TUICLibrary.fontSizeClass("r-1b43r93", "r-hjklzo", "r-rjixqe", "r-1inkyih", "r-1i10wst")} TUIC_ButtonHover2"
+                  class="css-901oao r-1awozwy r-6koalj r-37j5jr r-a023e6 r-16dba41 r-1h0z5md r-bcqeeo r-o7ynqc r-clp7b1 r-3s2u2q r-qvutc0 ${TUICLibrary.fontSizeClass(
+                      "r-1b43r93",
+                      "r-hjklzo",
+                      "r-rjixqe",
+                      "r-1inkyih",
+                      "r-1i10wst",
+                  )} TUIC_ButtonHover2"
                 >
                   <div class="css-1dbjc4n r-xoduu5 TUIC_ButtonHover">
                     <div
@@ -294,7 +391,9 @@ export const TUICData = {
                     <svg
                       viewBox="0 0 24 24"
                       aria-hidden="true"
-                      class="r-4qtqp9 r-yyyyoo r-1q142lx r-dnmrzs r-bnwqim r-1plcrui r-lrvibr ${isBigArticle ? "r-1srniue r-50lct3" : "r-1xvli5t"} ${TUICLibrary.backgroundColorClass("r-1bwzh9t", "r-115tad6", "r-14j79pv")}"
+                      class="r-4qtqp9 r-yyyyoo r-1q142lx r-dnmrzs r-bnwqim r-1plcrui r-lrvibr ${
+                          isBigArticle ? "r-1srniue r-50lct3" : "r-1xvli5t"
+                      } ${TUICLibrary.backgroundColorClass("r-1bwzh9t", "r-115tad6", "r-14j79pv")}"
                     >
                     <g
                     id="layer1"
@@ -395,20 +494,34 @@ export const TUICData = {
                     <div class="css-1dbjc4n r-12vffkv">
                       <div class="css-1dbjc4n r-12vffkv">
                         <div class="css-1dbjc4n r-1jgb5lz r-1ye8kvj r-633pao r-13qz1uu">
-                          <div role="alert" class="css-1dbjc4n r-1awozwy r-1kihuf0 r-l5o3uw r-z2wwpe r-18u37iz r-1wtj0ep r-105ug2t r-dkhcqf r-axxi2z r-18jm5s1 ${TUICLibrary.fontSizeClass("r-1vxqurs", "r-1yflyrw", "r-zd98yo", "r-1v456y7", "r-sr82au")}  ${TUICLibrary.fontSizeClass(
+                          <div role="alert" class="css-1dbjc4n r-1awozwy r-1kihuf0 r-l5o3uw r-z2wwpe r-18u37iz r-1wtj0ep r-105ug2t r-dkhcqf r-axxi2z r-18jm5s1 ${TUICLibrary.fontSizeClass(
+                              "r-1vxqurs",
+                              "r-1yflyrw",
+                              "r-zd98yo",
+                              "r-1v456y7",
+                              "r-sr82au",
+                          )}  ${TUICLibrary.fontSizeClass(
                               "r-q81ovl",
                               "r-q81ovl",
                               "r-xyw6el",
                               "r-kq9wsh",
                               "r-1slz7xr",
                           )}" data-testid="toast" style="transform: translate3d(0px, 0px, 0px) translateY(0px);">
-                            <div dir="ltr" class="css-901oao r-jwli3a r-1wbh5a2 r-1tl8opc r-a023e6 r-16dba41 r-rjixqe r-bcqeeo r-1e081e0 r-qvutc0 ${TUICLibrary.fontSizeClass("r-1b43r93", "r-1b43r93", "r-a023e6", "r-1inkyih", "r-1i10wst")} ${TUICLibrary.fontSizeClass(
+                            <div dir="ltr" class="css-901oao r-jwli3a r-1wbh5a2 r-1tl8opc r-a023e6 r-16dba41 r-rjixqe r-bcqeeo r-1e081e0 r-qvutc0 ${TUICLibrary.fontSizeClass(
+                                "r-1b43r93",
+                                "r-1b43r93",
+                                "r-a023e6",
+                                "r-1inkyih",
+                                "r-1i10wst",
+                            )} ${TUICLibrary.fontSizeClass(
                                 "r-1qfz7tf",
                                 "r-1qfz7tf",
                                 "r-1e081e0",
                                 "r-1orpq53",
                                 "r-779j7e",
-                            )}"><span class="css-901oao css-16my406 r-1tl8opc r-bcqeeo r-qvutc0">${TUICI18N.get("bottomTweetButtons-urlCopy-layer")}</span></div>
+                            )}"><span class="css-901oao css-16my406 r-1tl8opc r-bcqeeo r-qvutc0">${TUICI18N.get(
+                                "bottomTweetButtons-urlCopy-layer",
+                            )}</span></div>
                             <div aria-hidden="true" class="css-1dbjc4n r-18u37iz"></div>
                           </div>
                         </div>
@@ -425,20 +538,32 @@ export const TUICData = {
             },
             userBlock: function (article) {
                 for (let i = 0; i <= 2; i++) {
-                    const blockButton = document.querySelector(`[data-testid="block"][role="menuitem"]`);
+                    const blockButton = document.querySelector(
+                        `[data-testid="block"][role="menuitem"]`,
+                    );
                     if (blockButton == null) {
                         article.querySelector(`[data-testid="caret"]`).click();
                     } else {
                         blockButton.click();
                         if (TUICPref.get("otherBoolSetting.noModalbottomTweetButtons")) {
-                            document.querySelector(`[data-testid="confirmationSheetConfirm"]`).click();
+                            document
+                                .querySelector(`[data-testid="confirmationSheetConfirm"]`)
+                                .click();
                         } else {
-                            document.querySelector(`[data-testid="confirmationSheetCancel"]`).addEventListener("click", (e) => {
-                                this._cancelButton(article.querySelector(`[data-testid="caret"]`));
-                            });
-                            document.querySelector(`[data-testid="mask"]`).addEventListener("click", (e) => {
-                                this._cancelButton(article.querySelector(`[data-testid="caret"]`));
-                            });
+                            document
+                                .querySelector(`[data-testid="confirmationSheetCancel"]`)
+                                .addEventListener("click", (e) => {
+                                    this._cancelButton(
+                                        article.querySelector(`[data-testid="caret"]`),
+                                    );
+                                });
+                            document
+                                .querySelector(`[data-testid="mask"]`)
+                                .addEventListener("click", (e) => {
+                                    this._cancelButton(
+                                        article.querySelector(`[data-testid="caret"]`),
+                                    );
+                                });
                         }
                         break;
                     }
@@ -454,14 +579,24 @@ export const TUICData = {
                     } else {
                         deleteButtonButton.parentElement.parentElement.parentElement.parentElement.click();
                         if (TUICPref.get("otherBoolSetting.noModalbottomTweetButtons")) {
-                            document.querySelector(`[data-testid="confirmationSheetConfirm"]`).click();
+                            document
+                                .querySelector(`[data-testid="confirmationSheetConfirm"]`)
+                                .click();
                         } else {
-                            document.querySelector(`[data-testid="confirmationSheetCancel"]`).addEventListener("click", (e) => {
-                                this._cancelButton(article.querySelector(`[data-testid="caret"]`));
-                            });
-                            document.querySelector(`[data-testid="mask"]`).addEventListener("click", (e) => {
-                                this._cancelButton(article.querySelector(`[data-testid="caret"]`));
-                            });
+                            document
+                                .querySelector(`[data-testid="confirmationSheetCancel"]`)
+                                .addEventListener("click", (e) => {
+                                    this._cancelButton(
+                                        article.querySelector(`[data-testid="caret"]`),
+                                    );
+                                });
+                            document
+                                .querySelector(`[data-testid="mask"]`)
+                                .addEventListener("click", (e) => {
+                                    this._cancelButton(
+                                        article.querySelector(`[data-testid="caret"]`),
+                                    );
+                                });
                         }
                         break;
                     }
@@ -482,7 +617,9 @@ export const TUICData = {
             },
             quoteTweet: function (retButton) {
                 for (let i = 0; i <= 2; i++) {
-                    const quoteButton = document.querySelector(`[role="menuitem"]:is([data-testid="unretweetConfirm"],[data-testid="retweetConfirm"])+[role="menuitem"]`);
+                    const quoteButton = document.querySelector(
+                        `[role="menuitem"]:is([data-testid="unretweetConfirm"],[data-testid="retweetConfirm"])+[role="menuitem"]`,
+                    );
                     if (quoteButton == null) {
                         retButton.click();
                     } else {
@@ -497,7 +634,9 @@ export const TUICData = {
                     retButton.click();
                 } else {
                     for (let i = 0; i <= 2; i++) {
-                        const quoteButton = document.querySelector(`[role="menuitem"]:is([data-testid="unretweetConfirm"],[data-testid="retweetConfirm"])`);
+                        const quoteButton = document.querySelector(
+                            `[role="menuitem"]:is([data-testid="unretweetConfirm"],[data-testid="retweetConfirm"])`,
+                        );
                         if (quoteButton == null) {
                             retButton.click();
                         } else {
@@ -510,89 +649,157 @@ export const TUICData = {
             "retweet-button": function () {
                 if (TUICPref.get("otherBoolSetting.RTNotQuote")) {
                     window.setTimeout(() => {
-                        TUICData.sidebarButtons.waitSetElement(`[role="menuitem"]:is([data-testid="retweetConfirm"],[data-testid="unretweetConfirm"])`);
+                        TUICData.sidebarButtons.waitSetElement(
+                            `[role="menuitem"]:is([data-testid="retweetConfirm"],[data-testid="unretweetConfirm"])`,
+                        );
                     }, 100);
                 }
             },
         },
         buttonElement: {
             _handleEvent: function (elem, eventFunc, twitterButton) {
-                (twitterButton ? elem.children[0].children[0] : elem.children[0]).addEventListener("keydown", (e) => {
-                    if (e.keyCode === 13) {
-                        eventFunc();
-                    }
-                });
+                (twitterButton ? elem.children[0].children[0] : elem.children[0]).addEventListener(
+                    "keydown",
+                    (e) => {
+                        if (e.keyCode === 13) {
+                            eventFunc();
+                        }
+                    },
+                );
                 elem.children[0].addEventListener("click", (e) => {
                     eventFunc();
                 });
             },
             boolkmark: function (val) {
-                const elem = TUICLibrary.HTMLParse(TUICData.visibleButtons.buttonHTML["boolkmark"](val.option.isBigArticle)).item(0);
+                const elem = TUICLibrary.HTMLParse(
+                    TUICData.visibleButtons.buttonHTML["boolkmark"](val.option.isBigArticle),
+                ).item(0);
                 TUICData.visibleButtons.buttonElement._handleEvent(elem, () => {
-                    TUICData.visibleButtons.buttonFunction["boolkmark"](val.elements.buttonBarBase.querySelector(TUICData.visibleButtons.selectors["share-button"]));
+                    TUICData.visibleButtons.buttonFunction["boolkmark"](
+                        val.elements.buttonBarBase.querySelector(
+                            TUICData.visibleButtons.selectors["share-button"],
+                        ),
+                    );
                 });
                 return elem;
             },
             sendDM: function (val) {
-                const elem = TUICLibrary.HTMLParse(TUICData.visibleButtons.buttonHTML["sendDM"](val.option.isBigArticle, val.option.cannotRT || val.option.cannotShare || val.option.isLockedAccount)).item(0);
-                if (!(val.option.cannotRT || val.option.cannotShare || val.option.isLockedAccount)) {
+                const elem = TUICLibrary.HTMLParse(
+                    TUICData.visibleButtons.buttonHTML["sendDM"](
+                        val.option.isBigArticle,
+                        val.option.cannotRT || val.option.cannotShare || val.option.isLockedAccount,
+                    ),
+                ).item(0);
+                if (
+                    !(val.option.cannotRT || val.option.cannotShare || val.option.isLockedAccount)
+                ) {
                     TUICData.visibleButtons.buttonElement._handleEvent(elem, () => {
-                        TUICData.visibleButtons.buttonFunction["sendDM"](val.elements.buttonBarBase.querySelector(TUICData.visibleButtons.selectors["share-button"]));
+                        TUICData.visibleButtons.buttonFunction["sendDM"](
+                            val.elements.buttonBarBase.querySelector(
+                                TUICData.visibleButtons.selectors["share-button"],
+                            ),
+                        );
                     });
                 }
                 return elem;
             },
             "url-copy": function (val) {
-                const elem = TUICLibrary.HTMLParse(TUICData.visibleButtons.buttonHTML["url-copy"](val.option.isBigArticle)).item(0);
+                const elem = TUICLibrary.HTMLParse(
+                    TUICData.visibleButtons.buttonHTML["url-copy"](val.option.isBigArticle),
+                ).item(0);
                 if (val.option.isLockedAccount || val.option.cannotRT) {
                     if (val.elements.statusButton != null) {
                         TUICData.visibleButtons.buttonElement._handleEvent(elem, () => {
-                            TUICData.visibleButtons.buttonFunction["url-copy-cannotCopy"](val.elements.statusButton);
+                            TUICData.visibleButtons.buttonFunction["url-copy-cannotCopy"](
+                                val.elements.statusButton,
+                            );
                         });
                     }
                 } else {
                     TUICData.visibleButtons.buttonElement._handleEvent(elem, () => {
-                        TUICData.visibleButtons.buttonFunction["url-copy"](val.elements.buttonBarBase.querySelector(TUICData.visibleButtons.selectors["share-button"]));
+                        TUICData.visibleButtons.buttonFunction["url-copy"](
+                            val.elements.buttonBarBase.querySelector(
+                                TUICData.visibleButtons.selectors["share-button"],
+                            ),
+                        );
                     });
                 }
                 return elem;
             },
             userBlock: function (val) {
-                const elem = TUICLibrary.HTMLParse(TUICData.visibleButtons.buttonHTML["userBlock"](val.option.isBigArticle, val.option.isMe)).item(0);
+                const elem = TUICLibrary.HTMLParse(
+                    TUICData.visibleButtons.buttonHTML["userBlock"](
+                        val.option.isBigArticle,
+                        val.option.isMe,
+                    ),
+                ).item(0);
                 TUICData.visibleButtons.buttonElement._handleEvent(elem, () => {
                     TUICData.visibleButtons.buttonFunction["userBlock"](val.elements.article);
                 });
                 return elem;
             },
             userMute: function (val) {
-                const elem = TUICLibrary.HTMLParse(TUICData.visibleButtons.buttonHTML["userMute"](val.option.isBigArticle, val.option.isMe)).item(0);
+                const elem = TUICLibrary.HTMLParse(
+                    TUICData.visibleButtons.buttonHTML["userMute"](
+                        val.option.isBigArticle,
+                        val.option.isMe,
+                    ),
+                ).item(0);
                 TUICData.visibleButtons.buttonElement._handleEvent(elem, () => {
                     TUICData.visibleButtons.buttonFunction["userMute"](val.elements.article);
                 });
                 return elem;
             },
             deleteButton: function (val) {
-                const elem = TUICLibrary.HTMLParse(TUICData.visibleButtons.buttonHTML["deleteButton"](val.option.isBigArticle, val.option.isMe)).item(0);
+                const elem = TUICLibrary.HTMLParse(
+                    TUICData.visibleButtons.buttonHTML["deleteButton"](
+                        val.option.isBigArticle,
+                        val.option.isMe,
+                    ),
+                ).item(0);
                 if (val.option.isMe) {
                     TUICData.visibleButtons.buttonElement._handleEvent(elem, () => {
-                        TUICData.visibleButtons.buttonFunction["deleteButton"](val.elements.article);
+                        TUICData.visibleButtons.buttonFunction["deleteButton"](
+                            val.elements.article,
+                        );
                     });
                 }
                 return elem;
             },
             quoteTweet: function (val) {
-                const elem = TUICLibrary.HTMLParse(TUICData.visibleButtons.buttonHTML["quoteTweet"](val.option.isBigArticle, val.option.cannotRT)).item(0);
+                const elem = TUICLibrary.HTMLParse(
+                    TUICData.visibleButtons.buttonHTML["quoteTweet"](
+                        val.option.isBigArticle,
+                        val.option.cannotRT,
+                    ),
+                ).item(0);
                 if (!val.option.cannotRT)
                     TUICData.visibleButtons.buttonElement._handleEvent(elem, () => {
-                        TUICData.visibleButtons.buttonFunction["quoteTweet"](val.elements.buttonBarBase.querySelector(TUICData.visibleButtons.selectors["retweet-button"]));
+                        TUICData.visibleButtons.buttonFunction["quoteTweet"](
+                            val.elements.buttonBarBase.querySelector(
+                                TUICData.visibleButtons.selectors["retweet-button"],
+                            ),
+                        );
                     });
                 return elem;
             },
             likeAndRT: function (val) {
-                const elem = TUICLibrary.HTMLParse(TUICData.visibleButtons.buttonHTML["likeAndRT"](val.option.isBigArticle, val.option.cannotRT)).item(0);
+                const elem = TUICLibrary.HTMLParse(
+                    TUICData.visibleButtons.buttonHTML["likeAndRT"](
+                        val.option.isBigArticle,
+                        val.option.cannotRT,
+                    ),
+                ).item(0);
                 if (!val.option.cannotRT)
                     TUICData.visibleButtons.buttonElement._handleEvent(elem, () => {
-                        TUICData.visibleButtons.buttonFunction["likeAndRT"](val.elements.buttonBarBase.querySelector(TUICData.visibleButtons.selectors["retweet-button"]), val.elements.buttonBarBase.querySelector(TUICData.visibleButtons.selectors["like-button"]));
+                        TUICData.visibleButtons.buttonFunction["likeAndRT"](
+                            val.elements.buttonBarBase.querySelector(
+                                TUICData.visibleButtons.selectors["retweet-button"],
+                            ),
+                            val.elements.buttonBarBase.querySelector(
+                                TUICData.visibleButtons.selectors["like-button"],
+                            ),
+                        );
                     });
                 return elem;
             },
@@ -611,13 +818,38 @@ export const TUICData = {
         },
         fixEngagements: {
             engagementsBox: () => {
-                return TUICLibrary.HTMLParse(`<div class="TUICEngagementsBox css-1dbjc4n r-1awozwy r-1efd50x r-5kkj8d r-18u37iz ${TUICLibrary.backgroundColorClass("r-2sztyj", "r-1kfrmmb", "r-1dgieki")}"></div>`, "text/html").item(0);
+                return TUICLibrary.HTMLParse(
+                    `<div class="TUICEngagementsBox css-1dbjc4n r-1awozwy r-1efd50x r-5kkj8d r-18u37iz ${TUICLibrary.backgroundColorClass(
+                        "r-2sztyj",
+                        "r-1kfrmmb",
+                        "r-1dgieki",
+                    )}"></div>`,
+                    "text/html",
+                ).item(0);
             },
             links: (id, article) => {
                 const returnELem = TUICLibrary.HTMLParse(
-                    `<div dir="ltr" class="css-901oao r-1tl8opc r-a023e6 r-16dba41 r-rjixqe r-bcqeeo r-qvutc0 ${TUICLibrary.fontSizeClass("r-23eiwj", "r-9qu9m4", "r-1yzf0co", "r-w0qc3r", "r-18scu15")}" style="cursor: pointer;margin-right:1em;">
-                           <span class="css-901oao css-16my406 r-1tl8opc r-1cwl3u0 r-bcqeeo r-qvutc0 ${TUICLibrary.fontSizeClass("r-1b43r93", "r-1b43r93", "r-a023e6", "r-1inkyih", "r-1i10wst")} ${TUICLibrary.backgroundColorClass("r-1bwzh9t", "r-115tad6", "r-1bwzh9t")}">
-                             <span class="css-901oao css-16my406 r-1tl8opc r-bcqeeo r-qvutc0">${TUICI18N.get("bottomTweetButtons-setting-placeEngagementsLink-" + id)}</span>
+                    `<div dir="ltr" class="css-901oao r-1tl8opc r-a023e6 r-16dba41 r-rjixqe r-bcqeeo r-qvutc0 ${TUICLibrary.fontSizeClass(
+                        "r-23eiwj",
+                        "r-9qu9m4",
+                        "r-1yzf0co",
+                        "r-w0qc3r",
+                        "r-18scu15",
+                    )}" style="cursor: pointer;margin-right:1em;">
+                           <span class="css-901oao css-16my406 r-1tl8opc r-1cwl3u0 r-bcqeeo r-qvutc0 ${TUICLibrary.fontSizeClass(
+                               "r-1b43r93",
+                               "r-1b43r93",
+                               "r-a023e6",
+                               "r-1inkyih",
+                               "r-1i10wst",
+                           )} ${TUICLibrary.backgroundColorClass(
+                               "r-1bwzh9t",
+                               "r-115tad6",
+                               "r-1bwzh9t",
+                           )}">
+                             <span class="css-901oao css-16my406 r-1tl8opc r-bcqeeo r-qvutc0">${TUICI18N.get(
+                                 "bottomTweetButtons-setting-placeEngagementsLink-" + id,
+                             )}</span>
                            </span>
                          </div>`.replace(/( |\n|\r)( |\n|\r)+/g, ""),
                     "text/html",
@@ -658,10 +890,20 @@ export const TUICData = {
             __base: (id, svg) => {
                 /* eslint-disable indent */
                 return `
-        <a id="TUICSidebar_${id}" role="link" tabindex="0" class="css-4rbku5 css-18t94o4 css-1dbjc4n r-1habvwh r-1loqt21 r-6koalj r-eqz5dr r-16y2uox r-1ny4l3l r-rjfia r-13qz1uu TUICOriginalContent TUICSidebarButton ${location.pathname.endsWith("/topics") ? "TUICSidebarSelected" : ""}">
-          <div class="css-1dbjc4n r-1awozwy r-sdzlij r-18u37iz r-1777fci r-dnmrzs r-o7ynqc r-6416eg ${TUICLibrary.fontSizeClass("r-q81ovl", "r-q81ovl", "r-xyw6el", "r-kq9wsh", "r-1slz7xr")}">
+        <a id="TUICSidebar_${id}" role="link" tabindex="0" class="css-4rbku5 css-18t94o4 css-1dbjc4n r-1habvwh r-1loqt21 r-6koalj r-eqz5dr r-16y2uox r-1ny4l3l r-rjfia r-13qz1uu TUICOriginalContent TUICSidebarButton ${
+            location.pathname.endsWith("/topics") ? "TUICSidebarSelected" : ""
+        }">
+          <div class="css-1dbjc4n r-1awozwy r-sdzlij r-18u37iz r-1777fci r-dnmrzs r-o7ynqc r-6416eg ${TUICLibrary.fontSizeClass(
+              "r-q81ovl",
+              "r-q81ovl",
+              "r-xyw6el",
+              "r-kq9wsh",
+              "r-1slz7xr",
+          )}">
             <div class="css-1dbjc4n">
-              <svg viewBox="0 0 24 24" aria-hidden="true" class="r-4qtqp9 r-yyyyoo r-lwhw9o r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-cnnz9e ${TUICLibrary.backgroundColorCheck() == "light" ? "r-18jsvk2" : "r-vlxjld r-1nao33i"}">
+              <svg viewBox="0 0 24 24" aria-hidden="true" class="r-4qtqp9 r-yyyyoo r-lwhw9o r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-cnnz9e ${
+                  TUICLibrary.backgroundColorCheck() == "light" ? "r-18jsvk2" : "r-vlxjld r-1nao33i"
+              }">
                 <g>${svg}</g>
               </svg>
             </div>
@@ -671,8 +913,17 @@ export const TUICData = {
                 "r-adyw6z r-135wba7 r-1joea0r r-88pszg",
                 "r-evnaw r-16dba41 r-eaezby r-uzqwk8 r-12e0a8i",
                 "r-1x35g6 r-16dba41 r-1h1c4di r-6uxfom r-le9fof",
-            )} r-bcqeeo r-qvutc0 ${TUICLibrary.backgroundColorCheck() == "light" ? "r-18jsvk2" : "r-vlxjld r-1nao33i"}" style="${document.querySelector(TUICData.sidebarButtons.selectors.moremenu).children[0].childNodes.length == 2 ? "" : "none"}" >
-              <span class="css-901oao css-16my406 r-1tl8opc r-bcqeeo r-qvutc0">${TUICI18N.get("sidebarButtons-" + id)}</span>
+            )} r-bcqeeo r-qvutc0 ${
+                TUICLibrary.backgroundColorCheck() == "light" ? "r-18jsvk2" : "r-vlxjld r-1nao33i"
+            }" style="${
+                document.querySelector(TUICData.sidebarButtons.selectors.moremenu).children[0]
+                    .childNodes.length == 2
+                    ? ""
+                    : "none"
+            }" >
+              <span class="css-901oao css-16my406 r-1tl8opc r-bcqeeo r-qvutc0">${TUICI18N.get(
+                  "sidebarButtons-" + id,
+              )}</span>
             </div>
           </div>
         </a>`;
@@ -722,14 +973,23 @@ export const TUICData = {
                 );
             },
             bookmarks: function () {
-                return TUICData.sidebarButtons.html.__base("bookmarks", `<path d="M4 4.5C4 3.12 5.119 2 6.5 2h11C18.881 2 20 3.12 20 4.5v18.44l-8-5.71-8 5.71V4.5zM6.5 4c-.276 0-.5.22-.5.5v14.56l6-4.29 6 4.29V4.5c0-.28-.224-.5-.5-.5h-11z"></path>`);
+                return TUICData.sidebarButtons.html.__base(
+                    "bookmarks",
+                    `<path d="M4 4.5C4 3.12 5.119 2 6.5 2h11C18.881 2 20 3.12 20 4.5v18.44l-8-5.71-8 5.71V4.5zM6.5 4c-.276 0-.5.22-.5.5v14.56l6-4.29 6 4.29V4.5c0-.28-.224-.5-.5-.5h-11z"></path>`,
+                );
             },
         },
         buttonClickInMoreMenu: async (e, selector) => {
-            await TUICData.sidebarButtons.waitSetElement(`[data-testid="AppTabBar_More_Menu"] > div > div`);
-            const foundElem = await TUICData.sidebarButtons.waitSetElement(`:is([role="group"],[data-testid="Dropdown"]) ${selector}`);
+            await TUICData.sidebarButtons.waitSetElement(
+                `[data-testid="AppTabBar_More_Menu"] > div > div`,
+            );
+            const foundElem = await TUICData.sidebarButtons.waitSetElement(
+                `:is([role="group"],[data-testid="Dropdown"]) ${selector}`,
+            );
             if (!foundElem) {
-                await TUICData.sidebarButtons.waitSetElement(`[data-testid="AppTabBar_More_Menu"] > div > div`);
+                await TUICData.sidebarButtons.waitSetElement(
+                    `[data-testid="AppTabBar_More_Menu"] > div > div`,
+                );
                 return false;
             }
             return true;
@@ -756,13 +1016,23 @@ export const TUICData = {
         buttonFunctions: {
             topics: async function (e) {
                 if (!location.pathname.endsWith("/topics")) {
-                    const moreMenu = document.querySelector(`[data-testid="AppTabBar_More_Menu"] > div > div`);
+                    const moreMenu = document.querySelector(
+                        `[data-testid="AppTabBar_More_Menu"] > div > div`,
+                    );
                     if (document.querySelector(`[role="menu"]`) == null) moreMenu.click();
                     setTimeout(async () => {
-                        document.querySelector(`:is([role="group"],[data-testid="Dropdown"]) [data-testid="settingsAndSupport"]`).click();
+                        document
+                            .querySelector(
+                                `:is([role="group"],[data-testid="Dropdown"]) [data-testid="settingsAndSupport"]`,
+                            )
+                            .click();
                         document.querySelector(`[href="/settings"]`)?.click();
-                        await TUICData.sidebarButtons.waitSetElement(`[href="/settings/privacy_and_safety"]`);
-                        await TUICData.sidebarButtons.waitSetElement(`[href="/settings/content_you_see"]`);
+                        await TUICData.sidebarButtons.waitSetElement(
+                            `[href="/settings/privacy_and_safety"]`,
+                        );
+                        await TUICData.sidebarButtons.waitSetElement(
+                            `[href="/settings/content_you_see"]`,
+                        );
                         await TUICData.sidebarButtons.waitSetElement(`[href$="/topics"]`);
                     }, 150);
                 }
@@ -772,32 +1042,52 @@ export const TUICData = {
             },
             circles: async function (e) {
                 document.querySelector(`[href="/compose/tweet"]`).click();
-                await TUICData.sidebarButtons.waitSetElement(`[data-viewportview="true"] [role="button"][aria-haspopup="menu"]`);
+                await TUICData.sidebarButtons.waitSetElement(
+                    `[data-viewportview="true"] [role="button"][aria-haspopup="menu"]`,
+                );
                 await TUICData.sidebarButtons.waitSetElement(`span+[role="button"]`);
             } /*
       "communities": function (e) {
         TUICData.sidebarButtons.buttonClickInMoreMenu(e, `[href$="/communities"]`)
       },*/,
             drafts: function (e) {
-                TUICData.sidebarButtons.buttonClickInMoreMenu(e, `[href="/compose/tweet/unsent/drafts"]`);
+                TUICData.sidebarButtons.buttonClickInMoreMenu(
+                    e,
+                    `[href="/compose/tweet/unsent/drafts"]`,
+                );
             },
             connect: function (e) {
                 TUICData.sidebarButtons.buttonClickInMoreMenu(e, `[href="/i/connect_people"]`);
             },
             display: async function (e) {
-                if (TUICData.sidebarButtons.buttonClickInMoreMenu(e, `:is([role="group"],[data-testid="Dropdown"]) [data-testid="settingsAndSupport"]`)) {
+                if (
+                    TUICData.sidebarButtons.buttonClickInMoreMenu(
+                        e,
+                        `:is([role="group"],[data-testid="Dropdown"]) [data-testid="settingsAndSupport"]`,
+                    )
+                ) {
                     await TUICData.sidebarButtons.waitSetElement(`[href="/i/display"]`);
                 }
             },
             muteAndBlock: async function (e) {
                 if (!location.pathname.endsWith("/settings/privacy_and_safety")) {
-                    const moreMenu = document.querySelector(`[data-testid="AppTabBar_More_Menu"] > div > div`);
+                    const moreMenu = document.querySelector(
+                        `[data-testid="AppTabBar_More_Menu"] > div > div`,
+                    );
                     if (document.querySelector(`[role="menu"]`) == null) moreMenu.click();
                     setTimeout(async () => {
-                        document.querySelector(`:is([role="group"],[data-testid="Dropdown"]) [data-testid="settingsAndSupport"]`).click();
+                        document
+                            .querySelector(
+                                `:is([role="group"],[data-testid="Dropdown"]) [data-testid="settingsAndSupport"]`,
+                            )
+                            .click();
                         document.querySelector(`[href="/settings"]`)?.click();
-                        await TUICData.sidebarButtons.waitSetElement(`[href="/settings/privacy_and_safety"]`);
-                        await TUICData.sidebarButtons.waitSetElement(`[href="/settings/mute_and_block"]`);
+                        await TUICData.sidebarButtons.waitSetElement(
+                            `[href="/settings/privacy_and_safety"]`,
+                        );
+                        await TUICData.sidebarButtons.waitSetElement(
+                            `[href="/settings/mute_and_block"]`,
+                        );
                     }, 150);
                 }
             },
@@ -818,7 +1108,14 @@ export const TUICData = {
         },
     },
     invisibleItems: {
-        all: ["twitter-pro-promotion-btn", "config-premium", "subscribe-tweets", "subscribe-profile", "profileHighlights", "hideBelowDM"],
+        all: [
+            "twitter-pro-promotion-btn",
+            "config-premium",
+            "subscribe-tweets",
+            "subscribe-profile",
+            "profileHighlights",
+            "hideBelowDM",
+        ],
         i18n: {
             "twitter-pro-promotion-btn": "invisibleItems-twitterProPromotionBtn",
             "config-premium": "invisibleItems-configPremium",
@@ -857,7 +1154,12 @@ export const TUICData = {
         },
     },
     "timeline-discoverMore": {
-        all: ["discoverMore_nomal", "discoverMore_detailOpen", "discoverMore_detailClose", "discoverMore_invisible"],
+        all: [
+            "discoverMore_nomal",
+            "discoverMore_detailOpen",
+            "discoverMore_detailClose",
+            "discoverMore_invisible",
+        ],
         i18n: {
             discoverMore_nomal: "timeline-discoverMore-nomal",
             discoverMore_detailOpen: "timeline-discoverMore-detailOpen",

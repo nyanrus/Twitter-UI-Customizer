@@ -54,6 +54,8 @@ const zS0_1_0 = z.object({
         sidebarNoneScrollbar: z.boolean(),
         noModalbottomTweetButtons: z.boolean(),
         faviconSet: z.boolean(),
+        noNumberBottomTweetButtons: z.boolean(),
+        placeEngagementsLink: z.boolean(),
     }),
     XToTwitter: z.object({
         XToTwitter: z.boolean(),
@@ -127,6 +129,8 @@ const zDefaultS0_1_0 = zS0_1_0.default({
         sidebarNoneScrollbar: false,
         noModalbottomTweetButtons: false,
         faviconSet: false,
+        noNumberBottomTweetButtons: false,
+        placeEngagementsLink: false,
     },
     XToTwitter: {
         XToTwitter: false,

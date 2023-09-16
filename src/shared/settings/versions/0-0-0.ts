@@ -2,6 +2,7 @@ import z from "zod";
 import { zS0_1_0, TS0_1_0, TDiscoverMoreInTimeline, TTwitterIcon } from "./0-1-0";
 
 const zS0_0_0 = z.preprocess(
+    //from update
     async (arg) => {
         // 値だけ移しとけば削除はZodが勝手にやってくれる
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -112,6 +113,8 @@ const zS0_0_0 = z.preprocess(
             sidebarNoneScrollbar: z.boolean(),
             noModalbottomTweetButtons: z.boolean(),
             faviconSet: z.boolean(),
+            noNumberBottomTweetButtons: z.boolean(),
+            placeEngagementsLink: z.boolean(),
         }),
         XToTwitter: z.object({
             XToTwitter: z.boolean(),

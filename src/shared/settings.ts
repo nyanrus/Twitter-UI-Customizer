@@ -28,13 +28,12 @@ export class TUICPref {
                     version: z.string().optional(),
                 })
                 .passthrough()
-                .safeParse(settings);
+                .optional()
+                .parse(settings);
 
-            if (!withVersion.success) {
-                throw Error("idk how this error happened1");
-            }
-
-            if (withVersion.data.version === undefined) {
+            if (withVersion === undefined) {
+                result = { success: true, data: defaultSettings };
+            } else if (withVersion.version === undefined) {
                 // versionが存在しない設定は 0.0.0設定ファイルと仮定します。
                 const result000 = zS0_0_0.safeParse(settings);
                 if (result000.success) {
@@ -48,8 +47,7 @@ export class TUICPref {
                 } else {
                     result = result000;
                 }
-            } else if (withVersion.data.version === "0.1.0") {
-                //TODO: 設定のバージョンが増えるとバージョンチェックが必要
+            } else if (withVersion.version === "0.1.0") {
                 result = zSettings.safeParse(settings);
             } else {
                 throw Error("idk how this error happened2");
@@ -84,7 +82,7 @@ export class TUICPref {
         }
     }
 
-    // できるだけこのgetterをお使いください
+    //* できるだけこのgetterをお使いください
     get settings(): Readonly<TSettings> {
         return this.settingsMut;
     }
