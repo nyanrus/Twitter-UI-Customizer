@@ -56,13 +56,11 @@ const zS0_1_0 = z.object({
         faviconSet: z.boolean(),
         noNumberBottomTweetButtons: z.boolean(),
         placeEngagementsLink: z.boolean(),
+        placeEngagementsLinkShort: z.boolean(),
     }),
     XToTwitter: z.object({
         XToTwitter: z.boolean(),
         PostToTweet: z.boolean(),
-    }),
-    clientInfo: z.object({
-        clientInfoVisible: z.boolean(),
     }),
     timeline: z.object({
         osusumeUserTimeline: z.boolean(),
@@ -131,13 +129,11 @@ const zDefaultS0_1_0 = zS0_1_0.default({
         faviconSet: false,
         noNumberBottomTweetButtons: false,
         placeEngagementsLink: false,
+        placeEngagementsLinkShort: false,
     },
     XToTwitter: {
         XToTwitter: false,
         PostToTweet: false,
-    },
-    clientInfo: {
-        clientInfoVisible: false,
     },
     timeline: {
         osusumeUserTimeline: false,

@@ -1,8 +1,5 @@
 import { TUICI18N } from "./i18n.js";
 import { TUICLibrary } from "./library.js";
-import { TUICPref } from "../shared/settings.js";
-
-import { BtnColors, IcnColors } from "../shared/data/type.js";
 
 export const TUICData = {
     defaultPref: {
@@ -191,61 +188,61 @@ export const TUICData = {
             background: "rgba(29,161,242,1)",
             border: "rgba(29,161,242,1)",
             color: "rgba(255,255,255,1)",
-        } as BtnColors,
+        },
         "not-following": {
             background: "rgba(255,255,255,0)",
             border: "rgba(29,161,242,1)",
             color: "rgba(29,161,242,1)",
-        } as BtnColors,
+        },
         willFollow: {
             background: "rgba(29,161,242,1)",
             border: "rgba(29,161,242,1)",
             color: "rgba(255,255,255,1)",
-        } as BtnColors,
+        },
         following: {
             background: "rgba(29,161,242,1)",
             border: "rgba(29,161,242,1)",
             color: "rgba(255,255,255,1)",
-        } as BtnColors,
+        },
         "un-following": {
             background: "rgba(255,0,0,1)",
             border: "rgba(255,0,0,1)",
             color: "rgba(255,255,255,1)",
-        } as BtnColors,
+        },
         profile: {
             background: "rgba(255,255,255,0)",
             border: "rgba(29,161,242,1)",
             color: "rgba(29,161,242,1)",
-        } as BtnColors,
+        },
         "profile-save": {
             background: "rgba(29,161,242,1)",
             border: "rgba(29,161,242,1)",
             color: "rgba(255,255,255,1)",
-        } as BtnColors,
+        },
         birthday: {
             background: "rgba(255,0,0,1)",
             border: "rgba(255,0,0,1)",
             color: "rgba(255,255,255,1)",
-        } as BtnColors,
+        },
         blocking: {
             background: "rgba(244, 33, 46,1)",
             border: "rgba(244, 33, 46,1)",
             color: "rgba(255, 255, 255,1)",
-        } as BtnColors,
+        },
         "blocking-unlock": {
             background: "rgba(220, 30, 41,1)",
             border: "rgba(220, 30, 41,1)",
             color: "rgba(255, 255, 255,1)",
-        } as BtnColors,
+        },
         twitterIcon: {
             color: "rgba(29,161,242,1)",
             typeColor: "imageColor",
             ldColor: true,
-        } as IcnColors,
+        },
         twitterIconFavicon: {
             color: "rgba(29,161,242,1)",
             typeColor: "imageColor",
-        } as IcnColors,
+        },
     },
     "colors-buttonColorDark": {
         twitterIcon: {

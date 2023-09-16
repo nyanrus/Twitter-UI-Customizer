@@ -47,9 +47,6 @@ const zS0_0_0 = z.preprocess(
 
         if (temp["CSS"]) localStorage.setItem("TUIC_CSS", temp["CSS"]);
 
-        if (temp.otherBoolSetting.clientInfo === true) {
-            temp.clientInfo.clientInfoVisible = true;
-        }
         if (temp.invisibleItems["osusume-user-timeline"] === true) {
             temp.timeline["osusume-user-timeline"] = true;
         }
@@ -115,13 +112,11 @@ const zS0_0_0 = z.preprocess(
             faviconSet: z.boolean(),
             noNumberBottomTweetButtons: z.boolean(),
             placeEngagementsLink: z.boolean(),
+            placeEngagementsLinkShort: z.boolean(),
         }),
         XToTwitter: z.object({
             XToTwitter: z.boolean(),
             PostToTweet: z.boolean(),
-        }),
-        clientInfo: z.object({
-            clientInfoVisible: z.boolean(),
         }),
         timeline: z.object({
             "osusume-user-timeline": z.boolean(),
