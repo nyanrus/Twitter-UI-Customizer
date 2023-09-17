@@ -92,6 +92,7 @@ const zS0_0_0 = z.preprocess(
         //
         visibleButtons: z.array(z.string()),
         sidebarButtons: z.array(z.string()),
+        fixEngagements: z.array(z.string()),
         //
         invisibleItems: z.object({
             "twitter-pro-promotion-btn": z.boolean(),
@@ -100,6 +101,7 @@ const zS0_0_0 = z.preprocess(
             "subscribe-tweets": z.boolean(),
             profileHighlights: z.boolean(),
             hideBelowDM: z.boolean(),
+            "config-premium": z.boolean(),
         }),
         otherBoolSetting: z.object({
             bottomScroll: z.boolean(),

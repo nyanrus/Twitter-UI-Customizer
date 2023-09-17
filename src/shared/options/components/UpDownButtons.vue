@@ -6,8 +6,8 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { TUICI18N } from "../../content/i18n";
-import { TUICData } from "../../content/data";
+import { TUICI18N } from "../../../content/i18n";
+import { TUICData } from "../../../content/data";
 
 // //アップダウンリストの内容(id:設定のID)
 // upDownListItem: function (id: keyof typeof TUICData.settings) {

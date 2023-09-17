@@ -37,6 +37,7 @@ const zS0_1_0 = z.object({
             "profile",
             "moremenu",
         ]),
+    fixEngagements: z.array(z.string()),
     invisibleItems: z.object({
         twitterProPromotionBtn: z.boolean(),
         discoverMore: z.boolean(),
@@ -44,6 +45,7 @@ const zS0_1_0 = z.object({
         subscribeTweets: z.boolean(),
         profileHighlights: z.boolean(),
         hideBelowDM: z.boolean(),
+        configPremium: z.boolean(),
     }),
     others: z.object({
         bottomScroll: z.boolean(),
@@ -110,6 +112,7 @@ const zDefaultS0_1_0 = zS0_1_0.default({
         "profile",
         "moremenu",
     ],
+    fixEngagements: ["likes", "retweets", "quotes"],
     invisibleItems: {
         twitterProPromotionBtn: false,
         discoverMore: false,
@@ -117,6 +120,7 @@ const zDefaultS0_1_0 = zS0_1_0.default({
         subscribeTweets: false,
         profileHighlights: false,
         hideBelowDM: false,
+        configPremium: false,
     },
     others: {
         bottomScroll: false,

@@ -13,7 +13,7 @@
             />
         </div>
         <br />
-        {{ otherSetting ?? "" }}
+        <slot></slot>
     </details>
 </template>
 
@@ -21,12 +21,15 @@
 import { defineComponent, PropType } from "vue";
 import Checkbox from "./Checkbox.vue";
 
-import { TUICI18N } from "../../content/i18n";
-import { TUICData } from "../../content/data";
+import { TUICI18N } from "../../../content/i18n";
+import { TUICData } from "../../../content/data";
+import { TUICPref } from "../../settings";
+const Pref = TUICPref.getInstance();
+const settings = Pref.settings;
 
 export default defineComponent({
     setup() {
-        return { TUICI18N, TUICData };
+        return { TUICI18N, TUICData, settings };
     },
     // //チェックボックスリスト(id:ID title:Stringでタイトル)
     props: {
@@ -34,13 +37,8 @@ export default defineComponent({
             type: String,
             required: true,
         },
-        otherSetting: { type: String, required: true },
         id: {
             type: String as PropType<keyof typeof TUICData>,
-            required: true,
-        },
-        settings: {
-            type: Object,
             required: true,
         },
         type: {

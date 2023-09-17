@@ -58,7 +58,7 @@
                 </div>
             </div>
             <br />
-            {{ option }}
+            <slot></slot>
         </div>
         <br />
     </details>
@@ -66,11 +66,12 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+
 import UpDownButtons from "./UpDownButtons.vue";
 
-import { ARROW_LEFT, ARROW_UP, ARROW_DOWN, ARROW_RIGHT, RESET } from "../../content/data/icons";
-import { TUICI18N } from "../../content/i18n";
-import { TUICData } from "../../content/data";
+import { ARROW_LEFT, ARROW_UP, ARROW_DOWN, ARROW_RIGHT, RESET } from "../../../content/data/icons";
+import { TUICI18N } from "../../../content/i18n";
+import { TUICData } from "../../../content/data";
 
 export default defineComponent({
     setup(props) {
@@ -110,7 +111,6 @@ export default defineComponent({
         "contentCount",
         "TUICInvisibleButtons",
         "id",
-        "option",
         "settings",
     ],
     components: { UpDownButtons },

@@ -1,8 +1,9 @@
 import { resolve } from "path";
 import { UserConfig, defineConfig } from "vite";
-import vitePluginWebExt from "./npm-scripts/vite-plugin/vite-plugin-web-ext";
+import vitePluginWebExt from "./npm-scripts/vite-plugin/vite-plugin-web-ext.ts";
 import path from "path";
 import tailwindcss from "tailwindcss";
+import vue from "@vitejs/plugin-vue";
 
 const root = resolve(__dirname, "src");
 const outDir = resolve(__dirname, "dist");
@@ -11,11 +12,7 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
     let json: UserConfig = {};
     json = {
         root,
-        assetsInclude: [
-            "**/*.html",
-            "**/*.css",
-            "**/*.pcss"
-        ]
+        assetsInclude: ["**/*.html", "**/*.css", "**/*.pcss"],
         // base: "/",
         build: {
             outDir,
@@ -39,6 +36,7 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
                     index: resolve(__dirname, "src/content/index.ts"),
                     background: resolve(__dirname, "./src/background.ts"),
                     inject: resolve(__dirname, "src/inject.js"),
+                    option: resolve(__dirname, "src/shared/options/injectOptions.ts"),
                 },
                 output: {
                     dynamicImportInCjs: true,
@@ -55,6 +53,7 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
         //     },
         // },
         plugins: [
+            vue(),
             vitePluginWebExt(
                 __dirname,
                 path.resolve(__dirname, "dist"),

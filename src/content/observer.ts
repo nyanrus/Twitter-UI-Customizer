@@ -451,7 +451,7 @@ export const TUICObserver = {
                             }
 
                             if (settings.others.placeEngagementsLink) {
-                                const engageentsTypeList = TUICPref.get("fixEngagements");
+                                const engageentsTypeList = settings.fixEngagements;
                                 const shortName = settings.others.placeEngagementsLinkShort;
                                 const engagementsFixList = [];
                                 const engageFixListFunc = (count) => {
@@ -1520,7 +1520,7 @@ export const TUICObserver = {
                     '[href="/settings/monetization"], [href="/i/premium_sign_up"], [href="/settings/manage_subscriptions"]',
                 )
                 .forEach((e) => {
-                    if (TUICPref.get("invisibleItems.config-premium")) {
+                    if (settings.invisibleItems.configPremium) {
                         e.classList.add(TUICLibrary.getClasses.getClass("TUIC_DISPNONE"));
                     } else {
                         e.classList.remove(TUICLibrary.getClasses.getClass("TUIC_DISPNONE"));
