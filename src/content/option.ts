@@ -1130,9 +1130,4 @@ ${this.checkboxList("rightSidebar", "rightSidebar-settingTitle", "rightSidebar")
         </div>
         <br>`;
     },
-    iconButton: function (src, btnAction, tooltiptag) {
-        return `<button class="TUIC_icon_button_con ${btnAction}" title="${TUICI18N.get(
-            tooltiptag,
-        )}">${src}</button>`;
-    },
 };

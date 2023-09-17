@@ -18,8 +18,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import checkbox from "./checkbox.vue";
+import { defineComponent, PropType } from "vue";
+import Checkbox from "./Checkbox.vue";
 
 import { TUICI18N } from "../../content/i18n";
 import { TUICData } from "../../content/data";
@@ -29,8 +29,14 @@ export default defineComponent({
         return { TUICI18N, TUICData };
     },
     // //チェックボックスリスト(id:ID title:Stringでタイトル)
-    props: ["title", "otherSetting", "id", "settings", "type"],
-    components: { checkbox },
+    props: {
+        title: { type: String, required: true },
+        otherSetting: { type: String },
+        id: { type: String as PropType<keyof typeof TUICData>, required: true },
+        settings: { type: Object, required: true },
+        type: { type: String, required: true },
+    },
+    components: { Checkbox },
 });
 </script>
 
