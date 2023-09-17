@@ -49,7 +49,7 @@
                         <UpDownButtons
                             :settings="
                                 TUICData.settings[id].all.filter(
-                                    (value) => !settings.includes(value),
+                                    (value) => !Object.keys(settings).includes(value),
                                 )
                             "
                         />
@@ -72,9 +72,14 @@ import UpDownButtons from "./UpDownButtons.vue";
 import { ARROW_LEFT, ARROW_UP, ARROW_DOWN, ARROW_RIGHT, RESET } from "../../../content/data/icons";
 import { TUICI18N } from "../../../content/i18n";
 import { TUICData } from "../../../content/data";
+import { TUICPref } from "../../settings";
+
+const Pref = TUICPref.getInstance();
+const settings = Pref.settings;
 
 export default defineComponent({
     setup(props) {
+        console.log(props.id);
         const UpdownButtonFuncs = [
             {
                 iconSrc: ARROW_LEFT,
@@ -102,7 +107,7 @@ export default defineComponent({
                 tooltiptag: "settingUI-upDownList-restoreDefault",
             },
         ];
-        return { UpdownButtonFuncs, TUICI18N, TUICData };
+        return { UpdownButtonFuncs, TUICI18N, TUICData, settings };
     },
     //アップダウンリスト(id:設定のID。TUICPref直下 title:設定の名前, option:下に表示する設定)
     props: [

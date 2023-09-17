@@ -16,19 +16,17 @@
         <div>
             <br /><br />
             <h2
-                class="r-jwli3a r-1tl8opc r-qvutc0 r-bcqeeo css-901oao TUIC_setting_title i18n"
-                i18n-id="settingUI-easySetting"
+                class="r-jwli3a r-1tl8opc r-qvutc0 r-bcqeeo css-901oao TUIC_setting_title"
                 style="font-size: 18px; margin-bottom: 1px"
             >
-                settingUI-easySetting
+                {{ TUICI18N.get("settingUI-easySetting") }}
             </h2>
             <br />
             <h2
-                class="r-jwli3a r-1tl8opc r-qvutc0 r-bcqeeo css-901oao TUIC_setting_title i18n"
-                i18n-id="settingUI-easySetting-detail"
+                class="r-jwli3a r-1tl8opc r-qvutc0 r-bcqeeo css-901oao TUIC_setting_title"
                 style="font-size: 14px"
             >
-                settingUI-easySetting-detail
+                {{ TUICI18N.get("settingUI-easySetting-detail") }}
             </h2>
             <br />
             <div class="TUICEasySetting" style="margin-top: 15px">
@@ -144,7 +142,7 @@
                         </span>
                     </div>
                     <br />
-                    ${this.colorsList()}
+                    <ColorsList />
                 </div>
             </details>
 
@@ -336,6 +334,7 @@ import RadioButtonList from "./components/RadioButtonList.vue";
 import UploadImageFile from "./components/UploadImageFile.vue";
 import CheckboxList from "./components/CheckboxList.vue";
 import RadioButtonListSub from "./components/RadioButtonListSub.vue";
+import ColorsList from "./components/ColorsList.vue";
 
 const Pref = TUICPref.getInstance();
 const settings = Pref.settings;
@@ -350,6 +349,7 @@ export default defineComponent({
         UploadImageFile,
         CheckboxList,
         RadioButtonListSub,
+        ColorsList,
     },
 });
 </script>

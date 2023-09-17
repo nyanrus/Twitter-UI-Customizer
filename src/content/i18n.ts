@@ -14,11 +14,11 @@ export const TUICI18N = {
     get: function (key) {
         const lang = document.querySelector("html")?.getAttribute("lang");
         if (lang in i18nData && key in i18nData[lang]) {
-            return i18nData[lang][key].escapeToUseHTML();
+            return i18nData[lang][key];
         } else if (key in i18nData.en) {
-            return i18nData.en[key].escapeToUseHTML();
+            return i18nData.en[key];
         } else if (key in i18nData.ja) {
-            return i18nData.ja[key].escapeToUseHTML();
+            return i18nData.ja[key];
         } else {
             return "404";
         }

@@ -1,5 +1,5 @@
 <template>
-    <div v-if="isBtnColors">
+    <template v-if="isBtnColors">
         <ColorSetting
             :id="id"
             type="background"
@@ -24,8 +24,8 @@
             :isDefault="settings[editingColorType]?.[id].color === true"
             :color-kind="editingColorType"
         />
-    </div>
-    <div v-else-if="isIcnColors">
+    </template>
+    <template v-else-if="isIcnColors">
         <ColorSetting
             :id="id"
             type="color"
@@ -34,15 +34,22 @@
             :isDefault="settings[editingColorType]?.[id].color === true"
             :color-kind="editingColorType"
         />
-    </div>
+    </template>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { zBtnColors, zIcnColors } from "../data/type";
-import { TUICData } from "../../content/data";
+
+import { zBtnColors, zIcnColors } from "../../data/type";
+
+import { TUICData } from "../../../content/data";
+import { TUICLibrary } from "../../../content/library";
+import { TUICPref } from "../../settings";
+
+const Pref = TUICPref.getInstance();
+const settings = Pref.settings;
+
 import ColorSetting from "./ColorSetting.vue";
-import { TUICLibrary } from "../../content/library";
 
 //色の設定のひとまとまり(id:色のID。種類・色はTUICPrefから自動補完される)
 // threeColorSetting: function (id: keyof typeof TUICData.colors) {
@@ -97,7 +104,8 @@ export default defineComponent({
     setup(props) {
         const isBtnColors = zBtnColors.safeParse(TUICData.colors[props.id]).success;
         const isIcnColors = zIcnColors.safeParse(TUICData.colors[props.id]).success;
-        return { isBtnColors, isIcnColors, TUICLibrary };
+        console.log(isBtnColors);
+        return { isBtnColors, isIcnColors, TUICLibrary, settings };
     },
     props: {
         id: {

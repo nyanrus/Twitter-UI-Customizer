@@ -27,6 +27,10 @@ import { defineComponent } from "vue";
 import { TUICI18N } from "../../../content/i18n";
 import RadioButton from "./RadioButton.vue";
 import { TUICData } from "../../../content/data";
+import { TUICPref } from "../../settings";
+
+const Pref = TUICPref.getInstance();
+const settings = Pref.settings;
 
 // radioButtonList: function (id, title, type, option) {
 //     let TUICInvisibleRadioBox = "";
@@ -54,12 +58,12 @@ import { TUICData } from "../../../content/data";
 
 export default defineComponent({
     setup() {
-        return { TUICI18N, TUICData };
+        return { TUICI18N, TUICData, settings };
     },
     components: {
         RadioButton,
     },
-    props: ["title", "id", "type", "settings"],
+    props: ["title", "id", "type"],
 });
 </script>
 
