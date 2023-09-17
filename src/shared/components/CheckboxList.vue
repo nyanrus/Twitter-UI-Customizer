@@ -30,11 +30,23 @@ export default defineComponent({
     },
     // //チェックボックスリスト(id:ID title:Stringでタイトル)
     props: {
-        title: { type: String, required: true },
-        otherSetting: { type: String },
-        id: { type: String as PropType<keyof typeof TUICData>, required: true },
-        settings: { type: Object, required: true },
-        type: { type: String, required: true },
+        title: {
+            type: String,
+            required: true,
+        },
+        otherSetting: { type: String, required: true },
+        id: {
+            type: String as PropType<keyof typeof TUICData>,
+            required: true,
+        },
+        settings: {
+            type: Object,
+            required: true,
+        },
+        type: {
+            type: String,
+            required: true,
+        },
     },
     components: { Checkbox },
 });
