@@ -146,64 +146,64 @@
                 </div>
             </details>
 
-            <UpDownList id="visibleButtons" title="buttomTweetButtons-settingTitle">
+            <UpDownList id="visibleButtons" title="bottomTweetButtons-settingTitle">
                 <Checkbox
                     id="buttomScroll"
                     :value="settings.others.bottomScroll"
-                    type="bottomTweetButtons-setting-visibleScrollBar"
-                    name="otherBoolSetting"
+                    name="bottomTweetButtons-setting-visibleScrollBar"
+                    type="otherBoolSetting"
                 />
                 <Checkbox
                     id="bottomSpace"
                     :value="settings.others.bottomSpace"
-                    type="bottomTweetButtons-setting-removeSpaceBottomTweet-v2"
-                    name="otherBoolSetting"
+                    name="bottomTweetButtons-setting-removeSpaceBottomTweet-v2"
+                    type="otherBoolSetting"
                 />
                 <Checkbox
                     id="RTNotQuote"
                     :value="settings.others.RTNotQuote"
-                    type="bottomTweetButtons-setting-RTNotQuote"
-                    name="otherBoolSetting"
+                    name="bottomTweetButtons-setting-RTNotQuote"
+                    type="otherBoolSetting"
                 />
                 <Checkbox
                     id="noModalbottomTweetButtons"
                     :value="settings.others.noModalbottomTweetButtons"
-                    type="bottomTweetButtons-setting-noModal"
-                    name="otherBoolSetting"
+                    name="bottomTweetButtons-setting-noModal"
+                    type="otherBoolSetting"
                 />
                 <Checkbox
                     id="noNumberBottomTweetButtons"
                     :value="settings.others.noNumberBottomTweetButtons"
-                    type="bottomTweetButtons-setting-noNumber"
-                    name="otherBoolSetting"
+                    name="bottomTweetButtons-setting-noNumber"
+                    type="otherBoolSetting"
                 />
             </UpDownList>
             <UpDownList id="fixEngagements" title="fixEngagements-settingTitle">
                 <Checkbox
                     id="placeEngagementsLink"
                     :value="settings.others.placeEngagementsLink"
-                    type="bottomTweetButtons-setting-placeEngagementsLink"
-                    name="otherBoolSetting"
+                    name="bottomTweetButtons-setting-placeEngagementsLink"
+                    type="otherBoolSetting"
                 />
                 <Checkbox
                     id="placeEngagementsLinkShort"
                     :value="settings.others.placeEngagementsLinkShort"
-                    type="fixEngagements-shortName"
-                    name="otherBoolSetting"
+                    name="fixEngagements-shortName"
+                    type="otherBoolSetting"
                 />
             </UpDownList>
             <UpDownList id="sidebarButtons" title="sidebarButton-settingTitle">
                 <Checkbox
                     id="smallerSidebarContent"
                     :value="settings.others.smallerSidebarContent ?? true"
-                    type="sidebarButton-setting-narrowBetweenButtons"
-                    name="otherBoolSetting"
+                    name="sidebarButton-setting-narrowBetweenButtons"
+                    type="otherBoolSetting"
                 />
                 <Checkbox
                     id="sidebarNoneScrollbar"
                     :value="settings.others.sidebarNoneScrollbar ?? false"
-                    type="sidebarButton-setting-sidebarNoneScrollbar"
-                    name="otherBoolSetting"
+                    name="sidebarButton-setting-sidebarNoneScrollbar"
+                    type="otherBoolSetting"
                 />
             </UpDownList>
             <RadioButtonList id="twitterIcon" title="twitterIcon-settingTitle" type="TUICRadio">
@@ -211,14 +211,14 @@
                 <Checkbox
                     id="faviconSet"
                     :value="settings.others.faviconSet ?? true"
-                    type="twitterIcon-favicon"
-                    name="otherBoolSetting"
+                    name="twitterIcon-favicon"
+                    type="otherBoolSetting"
                 />
                 <Checkbox
                     id="roundIcon"
                     :value="settings.others.roundIcon ?? true"
-                    type="twitterIcon-roundIcon"
-                    name="otherBoolSetting"
+                    name="twitterIcon-roundIcon"
+                    type="otherBoolSetting"
                 />
                 <UploadImageFile title="twitterIcon-usedIcon" id="IconImg" />
             </RadioButtonList>

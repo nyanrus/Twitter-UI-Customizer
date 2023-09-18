@@ -1,7 +1,7 @@
 <template>
     <details class="TUICDetails">
         <summary class="r-jwli3a r-1tl8opc r-qvutc0 r-bcqeeo TUIC_setting_title">
-            {{ TUICI18N.get(title) }}>
+            {{ TUICI18N.get(title) }}
         </summary>
         <div class="TUIC_col_setting_container">
             <div style="display: flex" :TUICUDBox="id" TUICSelectedItem="">
@@ -24,14 +24,12 @@
                 <div class="UpDownButtons" style="text-align: center; width: 30px">
                     <br />
                     <br />
-                    <!-- titleをどうにかする -->
                     <button
                         v-for="item in UpdownButtonFuncs"
                         :class="['TUIC_icon_button_con', item.btnAction]"
                         :title="TUICI18N.get(item.tooltiptag)"
-                    >
-                        {{ item.iconSrc }}
-                    </button>
+                        v-html="item.iconSrc"
+                    ></button>
                 </div>
                 <div style="flex: 1 2; width: 50px">
                     <h2
@@ -110,14 +108,7 @@ export default defineComponent({
         return { UpdownButtonFuncs, TUICI18N, TUICData, settings };
     },
     //アップダウンリスト(id:設定のID。TUICPref直下 title:設定の名前, option:下に表示する設定)
-    props: [
-        "title",
-        "TUICVisibleButtons",
-        "contentCount",
-        "TUICInvisibleButtons",
-        "id",
-        "settings",
-    ],
+    props: ["title", "TUICVisibleButtons", "contentCount", "TUICInvisibleButtons", "id"],
     components: { UpDownButtons },
 });
 </script>

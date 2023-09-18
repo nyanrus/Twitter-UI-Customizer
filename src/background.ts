@@ -57,7 +57,9 @@ const update1 = async (updateType) => {
     const settingT = await browser.storage.sync.get("TUIC");
 
     const updateUrl = chrome.runtime.getManifest().update_url;
-    const isWebstore = !(typeof updateUrl === "string" ? updateUrl.includes("google.com") : undefined);
+    const isWebstore = !(typeof updateUrl === "string"
+        ? updateUrl.includes("google.com")
+        : undefined);
     console.log(`isWebstore : ${isWebstore}`);
     const setting = settingT.TUIC ?? {
         iconClick: isWebstore,
@@ -105,6 +107,7 @@ const getI18n = async () => {
         cache: "no-store",
     }).then((res) => res.json());
     for (const elem of langList) {
+        console.log(elem);
         i18nObject[elem] = Object.assign(
             await fetch(browser.runtime.getURL(`./i18n/${elem}.json`), {
                 cache: "no-store",

@@ -7,10 +7,15 @@ import { Worker, workerData, isMainThread, parentPort } from "node:worker_thread
 // import { Args, WebExtRun } from "./wip/worker-web-ext";
 
 import dotenv from "dotenv";
-import { Args, WebExtRun } from "./web-ext";
+import { Args, WebExtRun } from "./web-ext.mts";
 dotenv.config({ path: ".env.local" });
 
-export default async (root: string, sourceDir: string, artifactsDir: string, mode: string): Promise<Plugin> => {
+export default async (
+    root: string,
+    sourceDir: string,
+    artifactsDir: string,
+    mode: string,
+): Promise<Plugin> => {
     const webExt = await import("web-ext");
     let watch = false;
     const firefox_executable = process.env["TUIC_WEBEXT_FIREFOX_EXECUTABLE"];
@@ -18,8 +23,10 @@ export default async (root: string, sourceDir: string, artifactsDir: string, mod
     const chromium_executable = process.env["TUIC_WEBEXT_CHROMIUM_EXECUTABLE"];
     const chromium_profile = process.env["TUIC_WEBEXT_CHROMIUM_PROFILE"];
 
-    const firefox_keep_profile_changes = process.env["TUIC_WEBEXT_FIREFOX_KEEP_PROFILE_CHANGES"] === "true";
-    const chromium_keep_profile_changes = process.env["TUIC_WEBEXT_CHROMIUM_KEEP_PROFILE_CHANGES"] === "true";
+    const firefox_keep_profile_changes =
+        process.env["TUIC_WEBEXT_FIREFOX_KEEP_PROFILE_CHANGES"] === "true";
+    const chromium_keep_profile_changes =
+        process.env["TUIC_WEBEXT_CHROMIUM_KEEP_PROFILE_CHANGES"] === "true";
     // let webExtRunner: MultiExtensionRunner | null = null;
 
     // let worker;
@@ -63,8 +70,16 @@ export default async (root: string, sourceDir: string, artifactsDir: string, mod
                 watch,
                 sourceDir,
                 artifactsDir,
-                firefox: { executable: firefox_executable, profile: firefox_profile, keep_profile_changes: firefox_keep_profile_changes },
-                chromium: { executable: chromium_executable, profile: chromium_profile, keep_profile_changes: chromium_keep_profile_changes },
+                firefox: {
+                    executable: firefox_executable,
+                    profile: firefox_profile,
+                    keep_profile_changes: firefox_keep_profile_changes,
+                },
+                chromium: {
+                    executable: chromium_executable,
+                    profile: chromium_profile,
+                    keep_profile_changes: chromium_keep_profile_changes,
+                },
             };
             if (!watch || mode !== "chromium") {
                 //TODO: この変数再利用＆Reload
@@ -84,18 +99,32 @@ export default async (root: string, sourceDir: string, artifactsDir: string, mod
                 }
                 if (!child) {
                     if (!args.chromium.keep_profile_changes) {
-                        console.warn("Chromiumで実行の場合、.env.localや環境変数にkeepProfileChangesを指定することをおすすめします。");
-                        console.warn("このオプションを有効にしない場合、プロファイルをコピーして実行されますが、");
-                        console.warn("ログイン情報が利用できません。詳細は.env.local.exampleファイルを参照してください。");
+                        console.warn(
+                            "Chromiumで実行の場合、.env.localや環境変数にkeepProfileChangesを指定することをおすすめします。",
+                        );
+                        console.warn(
+                            "このオプションを有効にしない場合、プロファイルをコピーして実行されますが、",
+                        );
+                        console.warn(
+                            "ログイン情報が利用できません。詳細は.env.local.exampleファイルを参照してください。",
+                        );
                     }
                     if (!args.chromium.profile) {
-                        console.error("Chromiumで実行の場合、.env.localや環境変数にプロファイルを指定してください。");
-                        console.error("defaultプロファイルで実行した場合、設定の汚染が起こるおそれがあります。");
+                        console.error(
+                            "Chromiumで実行の場合、.env.localや環境変数にプロファイルを指定してください。",
+                        );
+                        console.error(
+                            "defaultプロファイルで実行した場合、設定の汚染が起こるおそれがあります。",
+                        );
                         console.error("詳しくは.env.local.exampleファイルを参照してください。");
                         process.exit(-1);
                     }
 
-                    child = spawn(`web-ext`, [`run -s "./dist" -t chromium -u twitter.com ${com_args}`], { shell: true });
+                    child = spawn(
+                        `web-ext`,
+                        [`run -s "./dist" -t chromium -u twitter.com ${com_args}`],
+                        { shell: true },
+                    );
                     child.stdout.on("data", (data) => {
                         console.log(decodeURIComponent(data));
                     });

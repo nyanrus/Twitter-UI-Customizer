@@ -4,6 +4,7 @@ import { TUICLibrary } from "./library.ts";
 import { isSafemode } from "./safemode.ts";
 import { TUICPref } from "../shared/settings.ts";
 import { BtnColors, zBtnColors } from "../shared/data/type.ts";
+import postcss from "postcss";
 
 import global from "./global.pcss?raw";
 
@@ -263,7 +264,7 @@ ${
 `
         : ""
 }
-${global}
+${postcss.parse(global)}
 `;
     /* eslint-enable */
 }

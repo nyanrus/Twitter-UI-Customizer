@@ -26,11 +26,11 @@ export default defineComponent({
             type: Boolean,
             required: true,
         },
-        type: {
+        name: {
             type: String,
             required: true,
         },
-        name: {
+        type: {
             type: String,
             required: true,
         },

@@ -20,7 +20,7 @@
             :id="id"
             type="color"
             :color_="TUICLibrary.color.getColorFromPref(id, 'color', editingColorType)"
-            text="settingUI-colorPicker-color"
+            text="settingUI-colorPicker-textColor"
             :isDefault="settings[editingColorType]?.[id].color === true"
             :color-kind="editingColorType"
         />
@@ -30,7 +30,7 @@
             :id="id"
             type="color"
             :color_="TUICLibrary.color.getColorFromPref(id, 'color', editingColorType)"
-            text="settingUI-colorPicker-color"
+            text="settingUI-colorPicker-svgColor"
             :isDefault="settings[editingColorType]?.[id].color === true"
             :color-kind="editingColorType"
         />
