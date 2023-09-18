@@ -13,15 +13,15 @@
             {{ TUICI18N.get(text) }}
         </h4>
         <div class="TUIC_setting_input_container">
-            <div v-if="TUICData.colors[id]?.ldColor && editingColorType == 'buttonColor'">
+            <template v-if="TUICData.colors[id]?.ldColor && editingColorType == 'buttonColor'">
                 <label
                     class="r-jwli3a r-1tl8opc r-qvutc0 r-bcqeeo css-901oao TUIC_setting_text"
                     style="font-size: 10px"
                 >
                     {{ TUICI18N.get("settingColors-pleaseLD") }} </label
                 ><br />
-            </div>
-            <div v-else>
+            </template>
+            <template v-else>
                 <div class="TUIC_input_color_rounded__container">
                     <div class="TUIC_input_color_rounded">
                         <input
@@ -50,7 +50,7 @@
                     style="font-size: 15px"
                     >{{ TUICI18N.get("settingUI-colorPicker-transparent") }}</label
                 ><br />
-            </div>
+            </template>
         </div>
     </div>
     <button

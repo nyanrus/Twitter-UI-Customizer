@@ -18,7 +18,7 @@
                         class="TUIC_selectbox"
                         :style="{ '--contentCount': contentCount }"
                     >
-                        <UpDownButtons :settings="settings" />
+                        <UpDownButtons :id="id" :settings="settings[id]" />
                     </div>
                 </div>
                 <div class="UpDownButtons" style="text-align: center; width: 30px">
@@ -45,10 +45,20 @@
                         :style="{ '--contentCount': contentCount }"
                     >
                         <UpDownButtons
+                            :id="id"
                             :settings="
-                                TUICData.settings[id].all.filter(
-                                    (value) => !Object.keys(settings).includes(value),
-                                )
+                                TUICData.settings[id].all.filter((value) => {
+                                    // console.log(TUICData.settings[id].all);
+                                    // console.log(
+                                    //     TUICData.settings[id].all.filter((value) => {
+                                    //         console.log(!settings[id].includes(value));
+                                    //         return !settings[id].includes(value);
+                                    //     }),
+                                    // );
+                                    // // console.log(value);
+                                    // console.log(settings[id].includes(value));
+                                    return !settings[id].includes(value);
+                                })
                             "
                         />
                         {{ TUICInvisibleButtons }}

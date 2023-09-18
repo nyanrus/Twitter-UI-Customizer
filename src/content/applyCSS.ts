@@ -5,8 +5,9 @@ import { isSafemode } from "./safemode.ts";
 import { TUICPref } from "../shared/settings.ts";
 import { BtnColors, zBtnColors } from "../shared/data/type.ts";
 import postcss from "postcss";
+import postcssrc from "postcss-load-config";
 
-import global from "./global.pcss?raw";
+import global from "./global.pcss?inline";
 
 const Pref = TUICPref.getInstance();
 const settings = Pref.settings;
@@ -30,7 +31,7 @@ export function addCssElement() {
     }
 }
 
-export function applySystemCss() {
+export async function applySystemCss() {
     const backgroundColor = TUICLibrary.backgroundColorCheck();
 
     let prefColors = "";
@@ -46,6 +47,7 @@ export function applySystemCss() {
             });
         }
     }
+
     const QTuic = document.querySelector("#twitter_ui_customizer");
 
     /* eslint-disable indent */
@@ -264,7 +266,7 @@ ${
 `
         : ""
 }
-${postcss.parse(global)}
+${global}
 `;
     /* eslint-enable */
 }

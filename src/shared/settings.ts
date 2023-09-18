@@ -18,19 +18,33 @@ export class TUICPref {
             //ローカルデバッグ用
             result = zSettings.safeParse(defaultSettings);
         } else {
-            const withVersion = z
-                .object({
-                    version: z.string().optional(),
-                })
-                .passthrough()
-                .optional()
-                .parse(localStorage.getItem("TUIC") ?? undefined);
+            const raw = localStorage.getItem("TUIC");
+
+            let withVersion;
+            if (raw === null) {
+                withVersion = undefined;
+            } else {
+                console.warn(raw);
+                const withVersionResult = z
+                    .object({
+                        version: z.string().optional(),
+                    })
+                    .passthrough()
+                    .optional()
+                    .safeParse(JSON.parse(raw));
+                if (!withVersionResult.success) {
+                    console.log(withVersionResult.error);
+                    throw Error("aaaaaaaaa");
+                }
+                withVersion = withVersionResult.data;
+            }
+            console.log(localStorage.getItem("TUIC"));
 
             if (withVersion === undefined) {
                 result = { success: true, data: defaultSettings };
             } else if (withVersion.version === undefined) {
                 // versionが存在しない設定は 0.0.0設定ファイルと仮定します。
-                const result000 = zS0_0_0.safeParse(settings);
+                const result000 = zS0_0_0.safeParse(withVersion);
                 if (result000.success) {
                     if (localStorage.getItem("unsent-tweet-background")) {
                         legacy.localStorageToSettings(result000.data);
@@ -43,7 +57,7 @@ export class TUICPref {
                     result = result000;
                 }
             } else if (withVersion.version === "0.1.0") {
-                result = zSettings.safeParse(settings);
+                result = zSettings.safeParse(withVersion);
             } else {
                 throw Error("idk how this error happened2");
             }

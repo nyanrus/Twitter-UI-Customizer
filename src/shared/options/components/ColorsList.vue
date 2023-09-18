@@ -1,6 +1,6 @@
 <template>
     <div id="TUICColorSettingsDivBox">
-        <span v-for="i in TUICData.settings.colors.id">
+        <template v-for="i in TUICData.settings.colors.id">
             <h2
                 class="r-jwli3a r-1tl8opc r-qvutc0 r-bcqeeo css-901oao TUIC_setting_title TUIC_setting_text"
             >
@@ -9,7 +9,7 @@
             <div class="TUIC_col_setting_container_2">
                 <ThreeColorSetting :id="i" :editingColorType="editingColorType" />
             </div>
-        </span>
+        </template>
     </div>
 </template>
 
