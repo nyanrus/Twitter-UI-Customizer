@@ -8,18 +8,19 @@ import { ARROW_LEFT, ARROW_RIGHT, ARROW_UP, ARROW_DOWN, RESET, EMPTY } from "./d
 import { TUICPref } from "../shared/settings";
 let editingColorType = "buttonColor";
 
-import injectOptions from "../shared/options/injectOptions";
+//import { inject } from "../shared/options/injectOptions";
 
 const Pref = TUICPref.getInstance();
 const settings = Pref.settings;
 const settingsMut = Pref.settingsMut;
 
 export const TUICOptionHTML = {
-    displaySetting: function (rootElement) {
+    displaySetting: async function (rootElement) {
         const div = document.createElement("div");
         div.id = "TUICOptionMain";
         rootElement.appendChild(div);
-        injectOptions();
+        await import("../shared/options/injectOptions.ts");
+        //inject();
 
         // (div.querySelector("#css_textarea") as HTMLTextAreaElement).value =
         //     localStorage.getItem("TUIC_CSS");

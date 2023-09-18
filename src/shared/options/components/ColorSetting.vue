@@ -1,9 +1,8 @@
 <template>
     <div
         :class="
-            'TUIC_setting_color_colmn' + !isDefault
-                ? ' ' + TUICLibrary.getClasses.getClass('TUIC_ISNOTDEFAULT')
-                : ' '
+            'TUIC_setting_color_colmn' +
+            (!isDefault ? ' ' + TUICLibrary.getClasses.getClass('TUIC_ISNOTDEFAULT') : ' ')
         "
     >
         <h4

@@ -15,6 +15,8 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
             outDir,
             emptyOutDir: false,
             sourcemap: true,
+            modulePreload: false,
+            polyfillModulePreload: false,
 
             rollupOptions: {
                 input: {
@@ -23,6 +25,7 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
                     index: resolve(__dirname, "src/content/index.ts"),
                     background: resolve(__dirname, "./src/background.ts"),
                     inject: resolve(__dirname, "src/inject.js"),
+                    //twitterOption: resolve(__dirname, "src/shared/options/injectOptions.ts"),
                 },
                 output: {
                     format: "es",
@@ -32,6 +35,7 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
             },
             minify: false,
         },
+
         plugins: [
             vue(),
             vitePluginWebExt(

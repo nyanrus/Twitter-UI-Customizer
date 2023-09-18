@@ -13,11 +13,7 @@
                         {{ TUICI18N.get("settingUI-upDownList-visible") }}
                     </h2>
                     <br />
-                    <div
-                        id="TUIC_visible"
-                        class="TUIC_selectbox"
-                        :style="{ '--contentCount': contentCount }"
-                    >
+                    <div id="TUIC_visible" class="TUIC_selectbox">
                         <UpDownButtons :id="id" :settings="settings[id]" />
                     </div>
                 </div>
@@ -39,11 +35,7 @@
                         {{ TUICI18N.get("settingUI-upDownList-invisible") }}
                     </h2>
                     <br />
-                    <div
-                        id="TUIC_invisible"
-                        class="TUIC_selectbox"
-                        :style="{ '--contentCount': contentCount }"
-                    >
+                    <div id="TUIC_invisible" class="TUIC_selectbox">
                         <UpDownButtons
                             :id="id"
                             :settings="
@@ -115,7 +107,13 @@ export default defineComponent({
                 tooltiptag: "settingUI-upDownList-restoreDefault",
             },
         ];
-        return { UpdownButtonFuncs, TUICI18N, TUICData, settings };
+        let _contentCount;
+        if (props.contentCount < 5) {
+            _contentCount = 5;
+        } else {
+            _contentCount = props.contentCount;
+        }
+        return { UpdownButtonFuncs, TUICI18N, TUICData, settings, _contentCount };
     },
     //アップダウンリスト(id:設定のID。TUICPref直下 title:設定の名前, option:下に表示する設定)
     props: ["title", "TUICVisibleButtons", "contentCount", "TUICInvisibleButtons", "id"],
@@ -123,4 +121,11 @@ export default defineComponent({
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+* {
+    background-color: red;
+}
+details div div .TUIC_selectbox {
+    --contentCount: v-bind(_contentCount);
+}
+</style>
