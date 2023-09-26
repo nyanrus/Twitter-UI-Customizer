@@ -10,6 +10,7 @@
         "moduleResolution": "NodeNext",
         //https://github.com/colinhacks/zod/issues/2260#issuecomment-1709531677
         "skipLibCheck": true,
-        "allowImportingTsExtensions": true
+        "allowImportingTsExtensions": true,
+        "module": "ESNext"
     }
 }

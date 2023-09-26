@@ -1,5 +1,7 @@
 import browser from "webextension-polyfill";
 
+const i18nDataaa = import.meta.glob("../_locales/**/*.json");
+console.log(i18nDataaa);
 let updateID = "";
 let loadedI18n = false;
 let i18nObject = {};

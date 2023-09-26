@@ -5,5 +5,5 @@ import fs from "fs";
 // process.chdir(__dirname);
 
 fs.cpSync("./i18n", "./dist/i18n", { recursive: true });
-fs.cpSync("./_locales", "./dist/_locales", { recursive: true });
+// fs.cpSync("./_locales", "./dist/_locales", { recursive: true });
 fs.cpSync("./icon", "./dist/icon", { recursive: true });

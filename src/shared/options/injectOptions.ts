@@ -1,5 +1,7 @@
 import { createApp } from "vue";
 import index from "./index.vue";
 
-const app = createApp(index);
-app.mount("#TUICOptionMain");
+export const inject = () => {
+    const app = createApp(index);
+    app.mount("#TUICOptionMain");
+};
