@@ -13,7 +13,11 @@
                         {{ TUICI18N.get("settingUI-upDownList-visible") }}
                     </h2>
                     <br />
-                    <div id="TUIC_visible" class="TUIC_selectbox">
+                    <div
+                        id="TUIC_visible"
+                        class="TUIC_selectbox"
+                        :style="{ '--contentCount': _contentCount }"
+                    >
                         <UpDownButtons :id="id" :settings="settings[id]" />
                     </div>
                 </div>
@@ -35,7 +39,11 @@
                         {{ TUICI18N.get("settingUI-upDownList-invisible") }}
                     </h2>
                     <br />
-                    <div id="TUIC_invisible" class="TUIC_selectbox">
+                    <div
+                        id="TUIC_invisible"
+                        class="TUIC_selectbox"
+                        :style="{ '--contentCount': _contentCount }"
+                    >
                         <UpDownButtons
                             :id="id"
                             :settings="
@@ -107,25 +115,15 @@ export default defineComponent({
                 tooltiptag: "settingUI-upDownList-restoreDefault",
             },
         ];
-        let _contentCount;
-        if (props.contentCount < 5) {
-            _contentCount = 5;
-        } else {
-            _contentCount = props.contentCount;
+        const UDALL = TUICData.settings[props.id].all;
+        let _contentCount = 5;
+        if (UDALL.length > 5) {
+            _contentCount = UDALL.length;
         }
         return { UpdownButtonFuncs, TUICI18N, TUICData, settings, _contentCount };
     },
     //アップダウンリスト(id:設定のID。TUICPref直下 title:設定の名前, option:下に表示する設定)
-    props: ["title", "TUICVisibleButtons", "contentCount", "TUICInvisibleButtons", "id"],
+    props: ["title", "TUICVisibleButtons", "TUICInvisibleButtons", "id"],
     components: { UpDownButtons },
 });
 </script>
-
-<style scoped>
-* {
-    background-color: red;
-}
-details div div .TUIC_selectbox {
-    --contentCount: v-bind(_contentCount);
-}
-</style>
