@@ -47,6 +47,8 @@ browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
     } else if (message.type == "update") {
         if (message.updateType == "iconClick")
             browser.notifications.onClicked.removeListener(updateNotification);
+    if (message.type == "update") {
+        if (message.updateType == "iconClick") browser.notifications.onClicked.removeListener(updateNotification);
         update1(message.updateType);
     } else if (message.type == "getI18n") {
         returnI18n(sendResponse);
@@ -71,24 +73,6 @@ const update1 = async (updateType) => {
     if (setting[updateID]) {
         updateCheck();
     }
-};
-
-const deviceMessage = async (url, res) => {
-    fetch(url, {
-        method: "GET",
-    })
-        .then((response) => {
-            if (response && response.ok) {
-                response.json().then((json) => {
-                    res(json);
-                });
-            } else {
-                res({});
-            }
-        })
-        .catch((error) => {
-            res({});
-        });
 };
 
 const returnI18n = async (res) => {

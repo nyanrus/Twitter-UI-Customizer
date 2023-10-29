@@ -3,11 +3,11 @@
  * << Twitter を思いのままに。 >>
  */
 
-import { TUICObserver } from "./observer.ts";
-import { TUICLibrary } from "./library.ts";
-import { TUICI18N } from "./i18n.ts";
-import { addCssElement } from "./applyCSS.ts";
-import { isSafemode, runSafemode } from "./safemode.ts";
+import { TUICObserver } from "./observer.js";
+import { TUICLibrary } from "./library.js";
+import { TUICI18N } from "./i18n.js";
+import { addCssElement } from "./applyCSS.js";
+import { isSafemode, runSafemode } from "./safemode.js";
 
 (async () => {
     await TUICI18N.fetch();
@@ -36,13 +36,13 @@ import { isSafemode, runSafemode } from "./safemode.ts";
         const queryElem = document.createElement("meta");
         queryElem.id = "twitter_ui_customizer_query";
         queryElem.setAttribute("query", "");
-        document.querySelector("head")?.appendChild(queryElem);
+        document.querySelector("head").appendChild(queryElem);
     } else {
         const queryElem = document.querySelector("#twitter_ui_customizer_query");
-        const query = queryElem?.getAttribute("query") + "A";
+        const query = queryElem.getAttribute("query") + "A";
 
         TUICLibrary.getClasses.query = query;
-        queryElem?.setAttribute("query", query);
+        queryElem.setAttribute("query", query);
     }
 
     for (const elem of document.querySelectorAll(".TUICOriginalContent")) {
@@ -66,8 +66,8 @@ import { isSafemode, runSafemode } from "./safemode.ts";
         updateType: "openTwitter",
     });
 
-    // // 旧バージョンからのアップデート
-    // await TUICLibrary.updatePref.update();
+    // 旧バージョンからのアップデート
+    await TUICLibrary.updatePref.update();
 
     (TUICObserver.target = document.querySelector("body")),
         TUICObserver.observer.observe(TUICObserver.target, TUICObserver.config);

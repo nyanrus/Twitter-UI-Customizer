@@ -1,4 +1,5 @@
 {
+    "XtoTwitter-PostToTweet-rightSidebar-spaceTitle": "Saurara kai tsaye a cikin Sarari",
     "XtoTwitter-PostToTweet-engagements-retweetTitle": "Sake tweets",
     "XtoTwitter-PostToTweet-engagementsTitle": "Haɗin gwiwa",
     "XtoTwitter-PostToTweet-retweet-dialogConfirm": "Sake yin tweet",
@@ -55,9 +56,9 @@
     "XtoTwitter-PostToTweet-pinnedTweet": "Pinned Tweet",
     "XtoTwitter-PostToTweet-replyRangeDetail": "Zaɓi wanda zai iya ba da amsa ga wannan Tweet. Duk wanda aka ambata yana iya ko da yaushe amsawa.",
     "XtoTwitter-PostToTweet-placeholder-addTweet": "Add another Tweet!",
-    "XtoTwitter-PostToTweet-placeholder-addTweet-latest": "Add another post!",
+    "XtoTwitter-PostToTweet-placeholder-addTweet-latest": "Add another post",
     "XtoTwitter-PostToTweet-placeholder-addTweet-old": "Add another Tweet!",
-    "XtoTwitter-PostToTweet-placeholder-reply-latest": "Post your reply!",
+    "XtoTwitter-PostToTweet-placeholder-reply-latest": "Post your reply",
     "XtoTwitter-PostToTweet-placeholder-reply": "Tweet your reply!",
     "XtoTwitter-PostToTweet-tweetAllButton-latest": "Post all",
     "XtoTwitter-PostToTweet-tweetAllButton": "Yi Tweet ɗin duk",
