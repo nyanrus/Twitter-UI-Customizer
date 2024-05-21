@@ -62,7 +62,7 @@
 </template>
 
 <script setup lang="ts">
-import UpDownList from "@shared/options/components/UpDownList.vue";
+import UpDownList from "@shared/settings/nr/UpDownList.vue";
 import SectionTitle2 from "../components/SectionTitle2.vue";
 import settingSubtitle2 from "../components/settingSubtitle2.vue";
 import FIGURE_TWEETBUTTONS_BOTTOM from "@content/icons/figure/tweet_buttons.svg?component";

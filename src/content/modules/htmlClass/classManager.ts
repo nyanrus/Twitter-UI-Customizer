@@ -2,7 +2,7 @@ import { ProcessedClass } from "@shared/sharedData";
 import { TUICObserver } from "../observer";
 import { applySystemCss } from "@content/applyCSS";
 
-const ClassList = [
+const CLASS_LIST = [
     "NOT_TUIC_DISPNONE",
     "TUIC_DISPNONE",
     "TUIC_DISPNONE_PARENT",
@@ -34,12 +34,7 @@ export const updateClasses = (isInit: boolean = false) => {
     if (!isInit) TUICObserver.callback();
 };
 const deleteClasses = () => {
-    for (const id of ClassList) {
-        document.querySelectorAll(`.${id}`).forEach((elem) => {
-            elem.classList.remove(id);
-        }); /*
-            for (const elem of document.getElementsByClassName(id)) {
-                elem.classList.remove(id);
-            }*/
+    for (const id of CLASS_LIST) {
+        document.querySelectorAll(`.${id}`).forEach((elem) =>elem.classList.remove(id));
     }
 };

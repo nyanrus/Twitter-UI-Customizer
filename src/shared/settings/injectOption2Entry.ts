@@ -1,15 +1,15 @@
 import { createApp } from "vue";
-import optionMain from "../settings/SettingMain.ce.vue";
+import settingsMain from "./SettingsMain.ce.vue";
 import { createPinia } from "pinia";
 
 export const injectOptionMain = () => {
-    if (optionMain.styles !== undefined) {
+    if (settingsMain.styles !== undefined) {
         const style = document.createElement("style");
-        style.textContent = optionMain.styles;
+        style.textContent = settingsMain.styles;
         document.head.appendChild(style);
     }
 
-    const app = createApp(optionMain);
+    const app = createApp(settingsMain);
     app.use(createPinia());
     app.mount("#TUICOptionEntry");
 };

@@ -835,3 +835,7 @@ textarea#css_textarea {
     width: 100%;
     height: 100%;
 }
+
+.tuic-settings-itemlist-selected {
+    background: rgba(29, 161, 242, 1);
+}

@@ -1,4 +1,4 @@
-import { injectOptionMain } from "@shared/options/injectOption2Entry";
+import { injectOptionMain } from "@shared/settings/injectOption2Entry";
 
 export function displaySetting(rootElement: HTMLElement) {
     //document.querySelector("#TUICOptionMain");

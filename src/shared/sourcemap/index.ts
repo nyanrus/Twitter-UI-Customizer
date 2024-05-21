@@ -5,15 +5,15 @@ import init, {NRSourceMap} from "@third-party/sourcemap/dist/sourcemap_js";
  * @experimental Does not work on Chrome
  */
 export async function getSourceMap(sourcemapUrl: string, line:number, col:number) : Promise<string>{
-  const _inst = await init();
-  const nrSourceMap = new NRSourceMap(await (await fetch(sourcemapUrl)).text());
-  const token = nrSourceMap.lookup(line,col);
-  const source = token.source;
-  const src_line = token.line;
-  const src_col = token.col;
-  token.free();
-  nrSourceMap.free();
-  return `${source}:${src_line}:${src_col}`;
+    const _inst = await init();
+    const nrSourceMap = new NRSourceMap(await (await fetch(sourcemapUrl)).text());
+    const token = nrSourceMap.lookup(line,col);
+    const source = token.source;
+    const src_line = token.line;
+    const src_col = token.col;
+    token.free();
+    nrSourceMap.free();
+    return `${source}:${src_line}:${src_col}`;
 }
 
 export interface NRStack {
@@ -61,6 +61,4 @@ export async function parseErrorStringCH(stack: string): Promise<NRStack> {
     //     at __wbg_init (index.js:3618:38)
     //     at async getSourceMap (index.js:3622:3)
     //     at async index.js:3873:5
-
-
 }
