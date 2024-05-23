@@ -95,7 +95,7 @@ export default defineConfig(({ command, mode }) => {
             },
             vitePluginWebExt(__dirname, r("dist"), r("dist"), mode === "chromiumCRX" ? "disable-web-ext" : mode),
             UnoCSS(),
-            solidPlugin(),
+            solidPlugin({"solid":{"delegateEvents":false}}),
             // Vue Plugins
             vue(),
             svgLoader({
