@@ -187,30 +187,32 @@
 }
 
 .TUIC_icon_button_con {
+    width: 36px;
+    height: 36px;
+
+    background: transparent;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
-    padding: 2px;
-    padding: 0;
     cursor: pointer;
-    background: transparent;
     border: none;
-    border-radius: 9999px;
+    border-radius: 100%;
     transition: 0.3s;
 }
 
-.TUIC_icon_button_con > svg * {
+/* .TUIC_icon_button_con > svg * {
     stroke: var(--twitter-TUIC-color);
     transition: 0.2s;
-}
+} */
 
-.TUIC_icon_button_con > svg {
+.TUIC_icon_button_con > div {
     width: 22px;
     height: 22px;
     pointer-events: none;
-    stroke-width: 0.5px;
+    background-color: var(--twitter-TUIC-color);
+    /* mask-size: 70%; */
+    mask-repeat: no-repeat;
+    mask-position: center;
 }
 
 .TUIC_icon_button_con:hover {
