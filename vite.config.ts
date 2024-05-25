@@ -113,6 +113,7 @@ export default defineConfig(({ command, mode }) => {
                 { find: "@third-party", replacement: r("third-party") },
             ],
         },
+        appType: "custom"
     };
     return json;
 });

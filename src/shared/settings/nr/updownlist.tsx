@@ -70,6 +70,23 @@ export function foo(parent: Element, array: string[], id: string) {
         updateClasses();
     });
 
+    function _moveH(direction: "up" | "down") {
+        const sel = selected();
+        if (sel.position === "left") {
+            setLeftItems((arr) => moveH(arr, sel.id, direction));
+        } else if (sel.position === "right") {
+            setRightItems((arr) => moveH(arr, sel.id, direction));
+        }
+    }
+
+    function _moveV(direction: "left" | "right") {
+        const sel = selected();
+        if (direction === sel.position) return;
+        const [_left, _right] = moveV(leftItems(), rightItems(), sel.id, direction);
+        setLeftItems(() => _left);
+        setRightItems(() => _right);
+    }
+
     function reset(settingsId: string) {
         setLeftItems(structuredClone(TUICPref.getDefaultPref(settingsId).data));
         setRightItems(TUICPref.getSettingIDs(id as any).filter((value: string) => !array.includes(value)));
@@ -85,11 +102,7 @@ export function foo(parent: Element, array: string[], id: string) {
 
                     //? in right, up down should not used
                     if (sel.position === "right") return;
-                    if (sel.position === "left") {
-                        setLeftItems((arr) => moveH(arr, sel.id, event.key === "ArrowDown" ? "down" : "up"));
-                    } else if (sel.position === "right") {
-                        setRightItems((arr) => moveH(arr, sel.id, event.key === "ArrowDown" ? "down" : "up"));
-                    }
+                    _moveH(event.key === "ArrowDown" ? "down" : "up");
 
                     parent.querySelector<HTMLElement>(".tuic-settings-itemlist > .tuic-settings-itemlist-selected").focus();
                 }
@@ -98,10 +111,7 @@ export function foo(parent: Element, array: string[], id: string) {
                     event.preventDefault();
                     const sel = selected();
                     const direction = event.key === "ArrowRight" ? "right" : "left";
-                    if (direction === sel.position) return;
-                    const [_left, _right] = moveV(leftItems(), rightItems(), sel.id, direction);
-                    setLeftItems(() => _left);
-                    setRightItems(() => _right);
+                    _moveV(direction);
                     parent.querySelector<HTMLElement>(`[data-id=${sel.id}]`).focus();
                 }
             }}
@@ -133,11 +143,9 @@ export function foo(parent: Element, array: string[], id: string) {
                 <button
                     class="TUIC_icon_button_con"
                     onClick={(ev) => {
-                        ev.preventDefault();
                         const sel = selected();
-                        const [_left, _right] = moveV(leftItems(), rightItems(), sel.id, "left");
-                        setLeftItems(() => _left);
-                        setRightItems(() => _right);
+                        const direction = "left";
+                        _moveV(direction);
                         parent.querySelector<HTMLElement>(`[data-id=${sel.id}]`).focus();
                     }}
                 >
@@ -147,9 +155,8 @@ export function foo(parent: Element, array: string[], id: string) {
                     class="TUIC_icon_button_con"
                     onClick={() => {
                         const sel = selected();
-                        const [_left, _right] = moveV(leftItems(), rightItems(), sel.id, "right");
-                        setLeftItems(() => _left);
-                        setRightItems(() => _right);
+                        const direction = "right";
+                        _moveV(direction);
                         parent.querySelector<HTMLElement>(`[data-id=${sel.id}]`).focus();
                     }}
                 >
@@ -160,11 +167,10 @@ export function foo(parent: Element, array: string[], id: string) {
                     class="TUIC_icon_button_con"
                     onClick={() => {
                         const sel = selected();
-                        if (sel.position === "left") {
-                            setLeftItems((arr) => moveH(arr, sel.id, "up"));
-                        } else if (sel.position === "right") {
-                            setRightItems((arr) => moveH(arr, sel.id, "up"));
-                        }
+
+                        //? in right, up down should not used
+                        if (sel.position === "right") return;
+                        _moveH("up");
 
                         parent.querySelector<HTMLElement>(".tuic-settings-itemlist > .tuic-settings-itemlist-selected").focus();
                     }}
@@ -175,11 +181,10 @@ export function foo(parent: Element, array: string[], id: string) {
                     class="TUIC_icon_button_con"
                     onClick={() => {
                         const sel = selected();
-                        if (sel.position === "left") {
-                            setLeftItems((arr) => moveH(arr, sel.id, "down"));
-                        } else if (sel.position === "right") {
-                            setRightItems((arr) => moveH(arr, sel.id, "down"));
-                        }
+
+                        //? in right, up down should not used
+                        if (sel.position === "right") return;
+                        _moveH("down");
 
                         parent.querySelector<HTMLElement>(".tuic-settings-itemlist > .tuic-settings-itemlist-selected").focus();
                     }}

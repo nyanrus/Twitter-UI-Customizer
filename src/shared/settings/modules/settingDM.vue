@@ -8,7 +8,7 @@
 </template>
 
 <script setup lang="ts">
-import CheckBoxList from "@shared/options/components/CheckBoxList.vue";
+import CheckBoxList from "@shared/settings/nr/CheckBoxList.vue";
 import settingSubtitle2 from "../components/settingSubtitle2.vue";
 import { TUICI18N } from "@modules/i18n";
 </script>

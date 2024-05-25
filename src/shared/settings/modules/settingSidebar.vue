@@ -40,7 +40,7 @@ import ICON_HOME_TUIC from "@content/icons/home/home_tuic.svg?component";
 import ICON_HOME_TWITTER from "@content/icons/home/home_twitter.svg?component";
 import ICON_HOME_X from "@content/icons/home/home_x.svg?component";
 import UpDownList from "@shared/settings/nr/UpDownList.vue";
-import CheckBoxList from "@shared/options/components/CheckBoxList.vue";
+import CheckBoxList from "@shared/settings/nr/CheckBoxList.vue";
 import settingSubTitle from "@shared/options/components/textParts/settingSubTitle.vue";
 import IconRadioButtonList from "@shared/options/components/IconRadioButtonList.vue";
 import SectionTitle2 from "../components/SectionTitle2.vue";

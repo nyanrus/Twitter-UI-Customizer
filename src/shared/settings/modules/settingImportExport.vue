@@ -92,7 +92,7 @@ import { ref } from "vue";
 import { titleObserverFunction } from "@content/modules/observer/titleObserver";
 import { updateClasses } from "@content/modules/htmlClass/classManager";
 import { isSafemode } from "@content/modules/settings/safemode/isSafemode";
-import CheckBoxList from "@shared/options/components/CheckBoxList.vue";
+import CheckBoxList from "@shared/settings/nr/CheckBoxList.vue";
 
 // EXPORT LOGIC
 const exportText = ref<HTMLInputElement>();

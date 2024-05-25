@@ -10,6 +10,6 @@
 
 <script setup lang="ts">
 import settingSubtitle2 from "../components/settingSubtitle2.vue";
-import CheckBoxList from "@shared/options/components/CheckBoxList.vue";
+import CheckBoxList from "@shared/settings/nr/CheckBoxList.vue";
 import customCSS from "@shared/options/modules/customCSS.vue";
 </script>

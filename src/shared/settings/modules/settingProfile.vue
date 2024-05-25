@@ -16,7 +16,7 @@
 
 <script setup lang="ts">
 import SettingSubtitle2 from "../components/settingSubtitle2.vue";
-import CheckBoxList from "@shared/options/components/CheckBoxList.vue";
-import RadioButtonList from "@shared/options/components/RadioButtonList.vue";
+import CheckBoxList from "@shared/settings/nr/CheckBoxList.vue";
+import RadioButtonList from "@shared/settings/nr/RadioButtonList.vue";
 import UpDownList from "@shared/settings/nr/UpDownList.vue";
 </script>

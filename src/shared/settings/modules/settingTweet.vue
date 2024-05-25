@@ -68,8 +68,8 @@ import settingSubtitle2 from "../components/settingSubtitle2.vue";
 import FIGURE_TWEETBUTTONS_BOTTOM from "@content/icons/figure/tweet_buttons.svg?component";
 import FIGURE_TWEETBUTTONS_TOP from "@content/icons/figure/tweet_buttons_top.svg?component";
 import FIGURE_TWEET_ENGAGEMENT from "@content/icons/figure/tweet_engagement.svg?component";
-import CheckBox from "@shared/options/components/CheckBox.vue";
-import CheckBoxList from "@shared/options/components/CheckBoxList.vue";
-import RadioButtonList from "@shared/options/components/RadioButtonList.vue";
+import CheckBox from "@shared/settings/nr/CheckBox.vue";
+import CheckBoxList from "@shared/settings/nr/CheckBoxList.vue";
+import RadioButtonList from "@shared/settings/nr/RadioButtonList.vue";
 import SettingSubTitle from "@shared/options/components/textParts/settingSubTitle.vue";
 </script>
