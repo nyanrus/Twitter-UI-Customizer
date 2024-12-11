@@ -1,6 +1,5 @@
 import { isSafemode } from "@modules/settings/safemode/isSafemode";
 import { getPref, setPref, savePref, mergePref } from "@modules/pref";
-import { titleObserverFunction } from "@modules/observer/titleObserver";
 import { updateClasses } from "@modules/htmlClass/classManager";
 
 export const XToTwitterRestoreIcon = () => {
@@ -16,7 +15,6 @@ export const XToTwitterRestoreIcon = () => {
     setPref("", mergePref(getPref(""), importPref));
     savePref();
     updateClasses();
-    titleObserverFunction();
     if (!isSafemode) {
         document.querySelector("#TUIC_setting").remove();
     }

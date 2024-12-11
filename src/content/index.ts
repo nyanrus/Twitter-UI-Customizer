@@ -10,7 +10,7 @@ import { runSafemode } from "@modules/settings/safemode/safemode";
 import { isSafemode } from "@modules/settings/safemode/isSafemode";
 import { startTluiObserver } from "@shared/tlui/observer";
 import { initIconObserverFunction } from "@modules/observer/functions/changeIcon";
-import { titleObserverFunction } from "@modules/observer/titleObserver";
+import { TitleObserver } from "@modules/observer/titleObserver";
 import { updateClasses } from "./modules/htmlClass/classManager";
 import { placeSettingObserver } from "./modules/settings";
 import { placePrintPrefButton } from "./printPref";
@@ -77,7 +77,9 @@ import { waitForElement } from "@modules/utils/controlElements";
         }
 
         // タイトル変更のためのObserver
-        waitForElement("title").then(titleObserverFunction);
+        waitForElement("title").then(() => {
+            TitleObserver.getInstance();
+        });
 
         // TLUI用のObserver
         startTluiObserver();

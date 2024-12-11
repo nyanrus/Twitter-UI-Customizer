@@ -16,7 +16,6 @@ import defaultPrefButton from "../components/defaultPrefButton.vue";
 import { ColorData } from "@shared/sharedData";
 
 import { getPref, setPref, savePref, mergePref } from "@modules/pref";
-import { titleObserverFunction } from "@content/modules/observer/titleObserver";
 import { updateClasses } from "@content/modules/htmlClass/classManager";
 import { isSafemode } from "@content/modules/settings/safemode/isSafemode";
 
@@ -93,7 +92,6 @@ const clickEv = (index) => {
         document.querySelector("#TUIC_setting").remove();
     }
     updateClasses();
-    titleObserverFunction();
     if (!getPref("XToTwitter.XToTwitter") && document.title.endsWith(" / Twitter")) {
         document.title = document.title.replace(" / Twitter", " / X");
     }

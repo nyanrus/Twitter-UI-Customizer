@@ -80,7 +80,6 @@
 import { TUICI18N } from "@modules/i18n";
 import { getPref, setPref, savePref, updatePref, mergePref, mergeDefaultPref, exportPref } from "@modules/pref";
 import { waitForElement } from "@modules/utils/controlElements";
-import { applySystemCss } from "@content/applyCSS";
 import { Dialog } from "@shared/tlui/components/Dialog";
 import { ButtonComponent } from "@shared/tlui/components/ButtonComponent";
 
@@ -89,9 +88,6 @@ import FIGURE_IMPORTREPLACE from "@content/icons/figure/import_replace.svg?compo
 import SectionTitle2 from "../components/SectionTitle2.vue";
 import SettingSubTitle from "@shared/options/components/textParts/settingSubTitle.vue";
 import { ref } from "vue";
-import { titleObserverFunction } from "@content/modules/observer/titleObserver";
-import { updateClasses } from "@content/modules/htmlClass/classManager";
-import { isSafemode } from "@content/modules/settings/safemode/isSafemode";
 import CheckBoxList from "@shared/options/components/CheckBoxList.vue";
 
 // EXPORT LOGIC
@@ -128,18 +124,6 @@ const importFunc = async (type: number) => {
         }
 
         savePref();
-        if (isSafemode) {
-            location.href = `${location.protocol}//${location.hostname}`;
-        } else {
-            document.querySelector("#TUIC_setting").remove();
-            updateClasses();
-            applySystemCss();
-
-            titleObserverFunction();
-            if (!getPref("otherBoolSetting.XtoTwitter") && document.title.endsWith(" / Twitter")) {
-                document.title = document.title.replace(" / Twitter", " / X");
-            }
-        }
     } catch (x) {
         console.error(x);
         await waitForElement("#layers");

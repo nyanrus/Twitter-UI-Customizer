@@ -1,4 +1,6 @@
+import { createSignal } from "solid-js";
 import { TUICSettings } from "./settings";
+import { updateClasses } from "../htmlClass/classManager";
 
 let config = null;
 
@@ -48,7 +50,11 @@ export function setPref(identifier: string, value: unknown, source = config) {
         const { object, key } = getPointerFromKey(source, identifier);
         object[key] = value;
     }
+    setOnChangePref((v) => !v);
+    updateClasses();
 }
+
+export const [onChangePref, setOnChangePref] = createSignal(false);
 
 /**
  * TUICのPrefの値を削除します。

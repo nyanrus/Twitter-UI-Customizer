@@ -5,12 +5,10 @@
 <script setup lang="ts">
 import { TUICI18N } from "@modules/i18n";
 import { waitForElement } from "@modules/utils/controlElements";
-import { getPref, setPref, mergeDefaultPref } from "@modules/pref";
+import { setPref, mergeDefaultPref } from "@modules/pref";
 import { isSafemode } from "@modules/settings/safemode/isSafemode";
 import { Dialog } from "@shared/tlui/components/Dialog";
 import { ButtonComponent } from "@shared/tlui/components/ButtonComponent";
-import { titleObserverFunction } from "@modules/observer/titleObserver";
-import { updateClasses } from "@modules/htmlClass/classManager";
 import ICON_RESET from "@content/icons/common/reset.svg?component";
 import IconButton from "@shared/settings/components/IconButton.vue";
 
@@ -31,12 +29,13 @@ const setDefault = async () => {
                 if (isSafemode) {
                     location.href = `${location.protocol}//${location.hostname}`;
                 } else {
-                    document.querySelector("#TUIC_setting").remove();
-                    updateClasses();
-                    titleObserverFunction();
-                    if (!getPref("XToTwitter.XtoTwitter") && document.title.endsWith(" / Twitter")) {
-                        document.title = document.title.replace(" / Twitter", " / X");
-                    }
+                    window.location.reload();
+                    // document.querySelector("#TUIC_setting").remove();
+                    // updateClasses();
+                    // titleObserverFunction();
+                    // if (!getPref("XToTwitter.XtoTwitter") && document.title.endsWith(" / Twitter")) {
+                    //     document.title = document.title.replace(" / Twitter", " / X");
+                    // }
                 }
             }),
             new ButtonComponent(

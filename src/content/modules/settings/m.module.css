@@ -1,0 +1,50 @@
+.root {
+    width: 600px;
+    height: 130px;
+    /* background: black; */
+    /* color: rgb(231, 233, 234); */
+    /* font-size: 15px; */
+    user-select: none;
+}
+
+.root2 {
+    padding: 12px 16px 12px 16px;
+    display: flex;
+    flex-direction: row;
+}
+
+.mention {
+    color: #1da1f2;
+}
+
+.image_root {
+    margin-right: 8px;
+    background: white;
+    border-radius: 9999px;
+    width: 40px;
+    height: 40px;
+}
+
+.profile_image {
+    border-radius: 9999px;
+}
+
+.message {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile_root {
+    margin-bottom: 2px;
+    display: flex;
+    flex-direction: row;
+}
+
+.profile_username {
+    font-weight: 700;
+}
+
+.profile_id {
+    margin-left: 4px;
+    color: rgb(113, 118, 123);
+}

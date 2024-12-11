@@ -11,6 +11,8 @@ import UnoCSS from "unocss/vite";
 import solidPlugin from "vite-plugin-solid";
 //
 
+import { transform } from "lightningcss";
+
 import { changeManifest } from "./scripts/change-manifest";
 
 const r = (str: string): string => {
@@ -135,6 +137,36 @@ export default defineConfig(({ command, mode }) => {
                     plugins: ["prefixIds"],
                 },
             }),
+            {
+                name: "custom-css-import",
+                enforce: "pre",
+                resolveId: (id, importer) =>
+                // add .custom so CSS modules are not precessed by the default pipeline
+                    id.endsWith(".module.css")
+                        ? path.join(path.dirname(importer!), `${id}.custom`)
+                        : undefined,
+                load: async (id) => {
+                    if (id.endsWith(".module.css.custom")) {
+                        const filename = id.slice(0, -7);
+                        const a = transform({
+                            filename,
+                            code: await fs.readFile(filename),
+                            cssModules: true,
+                        });
+                        const styles = Object.fromEntries(
+                            Object.entries(a.exports!)
+                            // https://github.com/parcel-bundler/lightningcss/issues/291
+                                .sort((a, b) => a[0].localeCompare(b[0]))
+                                .map((a) => [a[0], a[1].name]),
+                        );
+                        const text = a.code.toString();
+                        return [
+                            `export const text = ${JSON.stringify(text)};`,
+                            `export const styles = ${JSON.stringify(styles)};`,
+                        ].join("\n");
+                    }
+                },
+            },
         ],
         resolve: {
             alias: [

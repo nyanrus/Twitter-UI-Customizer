@@ -10,7 +10,6 @@
 <script setup lang="ts">
 import { TUICI18N } from "@modules/i18n";
 import { getPref, setPref, savePref } from "@modules/pref";
-import { titleObserverFunction } from "@modules/observer/titleObserver";
 import { updateClasses } from "@modules/htmlClass/classManager";
 
 defineProps<{
@@ -22,7 +21,6 @@ const changePref = (path: string, event: Event) => {
     setPref(path, (event.target as HTMLInputElement).checked);
     savePref();
     updateClasses();
-    titleObserverFunction();
 };
 </script>
 
